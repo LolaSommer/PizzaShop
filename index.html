@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pizza Shop</title>
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+         <a href="#main" class="visually-hidden-focusable">Пропустить к содержимому</a> 
+        <header>
+            <div class="header__logo"><svg><use href="img/sprite.svg#logo-icon"></use></svg></div>
+            <nav class="nav">
+             <ul class="nav__bar">
+                <li class="nav__item"><a href="#hero" class="nav__link">Home</a></li>
+                <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
+                <li class="nav__item"><a href="#events" class="nav__link">Events</a></li>
+                <li class="nav__item"><a href="#about" class="nav__link">About us</a></li>
+             </ul>
+            </nav>
+            <button type="submit" class="header__btn">Log in</button>
+            <svg><use href="img/sprite.svg#cart-icon"></use></svg>
+        </header>
+        <main>
+            <section class="hero" id="hero">
+                <h1 class="hero__header">The Fastest Pizza Delivery</h1>
+                <p class="hero__text">We’ll deliver a hot, juicy pizza to your family in 30 minutes — <span class="text__strong">or it’s free!</span></p>
+                <p class="hero__text">Cooking process:</p>
+              <video autoplay muted loop playsinline>
+            <source src="img/pizza-prep.mp4" type="video/mp4">
+            <source src="img/pizza-prep.webm" type="video/webm">
+            </video>
+            <div class="hero__btn">
+                <button class="btn-left" type="button">Order Now</button>
+                <button class="btn-right" type="button">Pizza Menu</button>
+            </div>
+           <picture>
+            <source srcset="img/mainimg.webp" type="image/webp">
+            <img src="img/mainimg.jpg" alt="Delicious pizza on the table">
+             </picture>
+            </section>
+             <section class="menu" id="menu">
+                <h1>Menu</h1>
+                <ul class="menu__filter">
+                    <li class="menu__item"><a href="#" class="menu__link">All</a></li>
+                    <li class="menu__item"><a href="#" class="menu__link" >Meat</a></li>
+                    <li class="menu__item"><a href="#" class="menu__link">Veggie</a></li>
+                    <li class="menu__item"><a href="#" class="menu__link" >Seafood</a></li>
+                    <li class="menu__item"><a href="#" class="menu__link">Mushroom</a></li>
+                </ul>
+                <div class="menu__cards">
+                    <div class="menu__card">
+                         <picture class="card__picture">
+                         <source srcset="img/italian.webp" type="image/webp">
+                         <img src="img/italian.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <h4 class="card__header">Italian Classico</h4>
+                         <p class="card__text">Tomato sauce, mozzarella, oregano, basil.</p>
+                         <div class="card__btn">
+                            <button type="button">22</button>
+                            <button type="button">28</button>
+                            <button type="button">33</button>
+                         </div>
+                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <div class="menu__bottom">
+                         <div class="product-card__price"
+                         itemprop="offers"
+                         itemscope
+                         itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="EUR" />
+                        <span class="visually-hidden">Price:</span>
+                        <data itemprop="price" value="8.35" class="price__value">€8,35</data>
+                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        </div>
+                        <button type="button" class="card__minus">-</button>
+                        <span class="card__count">1</span>
+                        <button type="button" class="card__plus">+</button>
+                        </div>
+                        <button type="button" class="card__order">Grab Your Slice</button>
+                    </div>
+                      <div class="menu__card">
+                         <picture class="card__picture">
+                         <source srcset="img/Venecia.webp" type="image/webp">
+                         <img src="img/Venecia.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <h4 class="card__header">Diavola</h4>
+                         <p class="card__text">Tomato sauce, mozzarella, spicy salami, chili.</p>
+                         <div class="card__btn">
+                            <button type="button">22</button>
+                            <button type="button">28</button>
+                            <button type="button">33</button>
+                         </div>
+                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <div class="menu__bottom">
+                         <div class="product-card__price"
+                         itemprop="offers"
+                         itemscope
+                         itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="EUR" />
+                        <span class="visually-hidden">Price:</span>
+                        <data itemprop="price" value="9.99" class="price__value">€9.99</data>
+                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        </div>
+                        <button type="button" class="card__minus">-</button>
+                        <span class="card__count">1</span>
+                        <button type="button" class="card__plus">+</button>
+                        </div>
+                        <button type="button" class="card__order">Grab Your Slice</button>
+                    </div>
+                      <div class="menu__card">
+                         <picture class="card__picture">
+                         <source srcset="img/meat.webp" type="image/webp">
+                         <img src="img/meat.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <h4 class="card__header">Meat Inferno</h4>
+                         <p class="card__text">Pepperoni, bacon, ham, mozzarella, tomato sauce.</p>
+                         <div class="card__btn">
+                            <button type="button">22</button>
+                            <button type="button">28</button>
+                            <button type="button">33</button>
+                         </div>
+                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <div class="menu__bottom">
+                         <div class="product-card__price"
+                         itemprop="offers"
+                         itemscope
+                         itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="EUR" />
+                        <span class="visually-hidden">Price:</span>
+                        <data itemprop="price" value="9.99" class="price__value">€9.99</data>
+                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        </div>
+                        <button type="button" class="card__minus">-</button>
+                        <span class="card__count">1</span>
+                        <button type="button" class="card__plus">+</button>
+                        </div>
+                        <button type="button" class="card__order">Grab Your Slice</button>
+                    </div>
+                      <div class="menu__card">
+                         <picture class="card__picture">
+                         <source srcset="img/cheese.webp" type="image/webp">
+                         <img src="img/cheese.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <h4 class="card__header">Cheese Heaven</h4>
+                         <p class="card__text">Mozzarella, gorgonzola, parmesan, cheddar, cream base.</p>
+                         <div class="card__btn">
+                            <button type="button">22</button>
+                            <button type="button">28</button>
+                            <button type="button">33</button>
+                         </div>
+                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <div class="menu__bottom">
+                         <div class="product-card__price"
+                         itemprop="offers"
+                         itemscope
+                         itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="EUR" />
+                        <span class="visually-hidden">Price:</span>
+                        <data itemprop="price" value="9.99" class="price__value">€9.99</data>
+                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        </div>
+                        <button type="button" class="card__minus">-</button>
+                        <span class="card__count">1</span>
+                        <button type="button" class="card__plus">+</button>
+                        </div>
+                        <button type="button" class="card__order">Grab Your Slice</button>
+                    </div>
+                  
+                <section class="menu__popular">
+                    <h2>Our Most Popular Pizzas</h2>
+                     <picture>
+                     <source srcset="img/mostpopular.webp" type="image/webp">
+                    <img src="img/mostpopular.webp" alt="Delicious pizza on the table">
+                    </picture>
+                     </section>
+                        <div class="menu__card">
+                         <picture class="card__picture">
+                         <source srcset="img/argentina.webp" type="image/webp">
+                         <img src="img/argentina.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <h4 class="card__header">Argentina Fire</h4>
+                         <p class="card__text">Spicy chorizo, roasted peppers, red onion, mozzarella.</p>
+                         <div class="card__btn">
+                            <button type="button">22</button>
+                            <button type="button">28</button>
+                            <button type="button">33</button>
+                         </div>
+                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <div class="menu__bottom">
+                         <div class="product-card__price"
+                         itemprop="offers"
+                         itemscope
+                         itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="EUR" />
+                        <span class="visually-hidden">Price:</span>
+                        <data itemprop="price" value="9.99" class="price__value">€9.99</data>
+                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        </div>
+                        <button type="button" class="card__minus">-</button>
+                        <span class="card__count">1</span>
+                        <button type="button" class="card__plus">+</button>
+                        </div>
+                        <button type="button" class="card__order">Grab Your Slice</button>
+                    </div>
+                       <div class="menu__card">
+                         <picture class="card__picture">
+                         <source srcset="img/mushrooms.webp" type="image/webp">
+                         <img src="img/mushrooms.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <h4 class="card__header">Forest Style</h4>
+                         <p class="card__text">Mushrooms, caramelized onions, mozzarella, garlic butter.</p>
+                         <div class="card__btn">
+                            <button type="button">22</button>
+                            <button type="button">28</button>
+                            <button type="button">33</button>
+                         </div>
+                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <div class="menu__bottom">
+                         <div class="product-card__price"
+                         itemprop="offers"
+                         itemscope
+                         itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="EUR" />
+                        <span class="visually-hidden">Price:</span>
+                        <data itemprop="price" value="9.99" class="price__value">€9.99</data>
+                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        </div>
+                        <button type="button" class="card__minus">-</button>
+                        <span class="card__count">1</span>
+                        <button type="button" class="card__plus">+</button>
+                        </div>
+                        <button type="button" class="card__order">Grab Your Slice</button>
+                    </div>
+                       <div class="menu__card">
+                         <picture class="card__picture">
+                         <source srcset="img/tomato.webp" type="image/webp">
+                         <img src="img/tomato.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <h4 class="card__header">Margherita Fresca</h4>
+                         <p class="card__text">Tomato sauce, fresh mozzarella, cherry tomatoes, basil.</p>
+                         <div class="card__btn">
+                            <button type="button">22</button>
+                            <button type="button">28</button>
+                            <button type="button">33</button>
+                         </div>
+                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <div class="menu__bottom">
+                         <div class="product-card__price"
+                         itemprop="offers"
+                         itemscope
+                         itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="EUR" />
+                        <span class="visually-hidden">Price:</span>
+                        <data itemprop="price" value="9.99" class="price__value">€9.99</data>
+                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        </div>
+                        <button type="button" class="card__minus">-</button>
+                        <span class="card__count">1</span>
+                        <button type="button" class="card__plus">+</button>
+                        </div>
+                        <button type="button" class="card__order">Grab Your Slice</button>
+                    </div>
+                       <div class="menu__card">
+                         <picture class="card__picture">
+                         <source srcset="img/italianX2.webp" type="image/webp">
+                         <img src="img/italianX2.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <h4 class="card__header">Double Italian</h4>
+                         <p class="card__text">Double mozzarella, double crust, tomato sauce.</p>
+                         <div class="card__btn">
+                            <button type="button">22</button>
+                            <button type="button">28</button>
+                            <button type="button">33</button>
+                         </div>
+                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <div class="menu__bottom">
+                         <div class="product-card__price"
+                         itemprop="offers"
+                         itemscope
+                         itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="EUR" />
+                        <span class="visually-hidden">Price:</span>
+                        <data itemprop="price" value="9.99" class="price__value">€9.99</data>
+                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        </div>
+                        <button type="button" class="card__minus">-</button>
+                        <span class="card__count">1</span>
+                        <button type="button" class="card__plus">+</button>
+                        </div>
+                        <button type="button" class="card__order">Grab Your Slice</button>
+                    </div>
+                    </div>
+                </section>
+             
+              <section class="events" id="events">
+                         <div class="events__pic">
+                          <picture class="pic__img">
+                         <source srcset="img/howwecool.webp" type="image/webp">
+                         <img src="img/howwecool.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <p class="pic__text">How We Cook</p>
+                         <button type="button" class="pic__button">More</button>
+                         </div>
+                         <div class="events__pic">
+                          <picture class="pic__img">
+                         <source srcset="img/blog.webp" type="image/webp">
+                         <img src="img/blog.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <p class="pic__text">Our Blog</p>
+                         <button type="button" class="pic__button">More</button>
+                         </div>
+                         <div class="events__pic">
+                         <h2 class="pic__header">Events</h2>
+                         <p class="pic__text">We regularly host events where you can enjoy delicious food at special prices!</p>
+                         </div>
+                         <div class="events__pic">
+                          <picture class="pic__img">
+                         <source srcset="img/price.webp" type="image/webp">
+                         <img src="img/price.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <p class="pic__text">Two Pizzas for the Price of One</p>
+                         <button type="button" class="pic__button">More</button>
+                         </div>
+                         <div class="events__pic">
+                          <picture class="pic__img">
+                         <source srcset="img/kitchen.webp" type="image/webp">
+                         <img src="img/kitchen.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <p class="pic__text">Kitchen Tour</p>
+                         <button type="button" class="pic__button">More</button>
+                         </div>
+                         <div class="events__pic">
+                          <picture class="pic__img">
+                         <source srcset="img/freecofe.webp" type="image/webp">
+                         <img src="img/freecofe.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <p class="pic__text">Free Coffee with Three Pizzas</p>
+                         <button type="button" class="pic__button">More</button>
+                         </div>
+                         <div class="events__pic">
+                          <picture class="pic__img">
+                         <source srcset="img/ourinst.webp" type="image/webp">
+                         <img src="img/ourinst.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <p class="pic__text">Follow Us on Instagram</p>
+                         <button type="button" class="pic__button">More</button>
+                         </div>
+                         <div class="events__pic">
+                          <picture class="pic__img">
+                         <source srcset="img/choose.webp" type="image/webp">
+                         <img src="img/choose.webp" alt="Delicious pizza on the table">
+                         </picture>
+                         <p class="pic__text">Why Choose Us?</p>
+                         <button type="button" class="pic__button">More</button>
+                         </div>
+                        
+
+              </section>
+               <section class="about" id="about">
+                <div class="about__colls">
+                    <div class="about__text">
+                        <p>In just a couple of years, we’ve opened six locations across the country — New York, Los Angeles, Chicago, Austin, Miami, and Seattle. And we’re just getting started — more cities are already on the map!</p>
+                        <picture>
+                         <source srcset="img/pizzas.webp" type="image/webp">
+                         <img src="img/pizzas.webp" alt="Delicious pizza on the table">
+                         </picture>
+                        <p>Each kitchen operates on a grand scale — more than 4,000–5,000 sq. ft. of space and hundreds of dedicated team members making sure every order is prepared, packed, and delivered right on time.</p>
+                    </div>
+                    <div class="about__img">
+                         <picture>
+                         <source srcset="img/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden 1.webp" type="image/webp">
+                         <img src="img/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden 1.webp" alt="Delicious pizza on the table">
+                         </picture>
+                    </div>
+                </div>
+
+               </section>
+        </main>
+        <footer>
+
+        </footer>
+        <script src="main.js"></script>
+    </body>
+</html>

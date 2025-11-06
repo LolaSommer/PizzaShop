@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+  <!-- стрелка -->
+  <symbol id="arrow" viewBox="0 0 104 36">
+    <path d="M103.47 27.79c.46-.46.46-1.2 0-1.67l-7.52-7.53a1.18 1.18 0 0 0-1.67 1.67l6.69 6.69-6.69 6.69a1.18 1.18 0 1 0 1.67 1.67l7.52-7.52zM50.19 13.19a1 1 0 0 0-1.65 1.39l1.65-1.39z" fill="currentColor"/>
+  </symbol>
+
+  <!-- instagram -->
+  <symbol id="inst-icon" viewBox="0 0 25 25">
+    <rect width="24.392" height="24.392" rx="4" fill="currentColor"/>
+  </symbol>
+
+  <!-- twitter -->
+  <symbol id="twitter-icon" viewBox="0 0 32 32">
+    <rect width="31.8507" height="31.8507" rx="5" fill="currentColor"/>
+  </symbol>
+
+  <!-- facebook -->
+  <symbol id="facebook-icon" viewBox="0 0 26 26">
+    <rect width="25.8031" height="25.8031" rx="5" fill="currentColor"/>
+  </symbol>
+
+  <!-- логотип -->
+  <symbol id="logo-icon" viewBox="0 0 159 33">
+    <path d="M5.1 10.9c.46-.77 1.15-1.42 2.09-1.96C8.14 8.43 9.3 8.17 10.66 8.17c1.32 0 2.5.25 3.54.75 1.04.5 1.87 1.17 2.5 2 .64.83 1.11 1.76 1.43 2.77.32.99.48 2.03.48 3.12s-.16 2.12-.48 3.12a8.62 8.62 0 0 1-1.43 2.77c-.63.83-1.46 1.5-2.5 2a7.6 7.6 0 0 1-3.54.75c-2.06 0-3.68-.61-4.87-1.83V8.68H0v23.84h5.1V10.9Z" fill="currentColor"/>
+  </symbol>
+
+  <!-- корзина -->
+  <symbol id="cart-icon" viewBox="0 0 152 152">
+    <circle cx="76" cy="76" r="40.5" stroke="currentColor" stroke-width="3" fill="none"/>
+  </symbol>
+
+  <!-- кнопка видео (круг) -->
+  <symbol id="video-circle" viewBox="0 0 152 152">
+    <circle cx="76" cy="76" r="40.5" fill="none" stroke="currentColor" stroke-width="3"/>
+  </symbol>
+
+  <!-- треугольник play -->
+  <symbol id="video-play" viewBox="0 0 24 27">
+    <path d="M21.86 13.02c0 .54-.29 1.03-.75 1.3L3.75 24.34a1.33 1.33 0 0 1-1.5 0A1.32 1.32 0 0 1 1.5 23V3a1.32 1.32 0 0 1 1.5 0l17.36 10.02c.37.27.6.71.6 1.2Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+
+</svg>
+
