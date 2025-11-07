@@ -103,14 +103,50 @@
     }
     
     &__cards{
-        display: flex;
+       display: flex;
         justify-content: center;
         gap:100px;
         padding-inline: 30px;
+  
         
     }
     &__card{
-      align-content: start;
+        display: flex;
+        flex-direction: column;
+        max-width: 297px;
      
     }
-}
+    &__img-wrapper{
+         height: 160px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+   }
+   &__bottom{
+    display: flex;
+    flex-wrap: wrap;
+    gap:50px;
+   }
+   &__popular{
+    position:relative;
+   }
+   &__title{
+    position: absolute;
+    color:$color-white;
+    font-size:42px;
+    font-weight: $fw-medium;
+    text-transform: uppercase;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   }
+    }
+    .events{
+        &__colls-1,&__colls-2,&__colls-3{
+            display: flex;
+            gap:20px;
+        }
+        &__pic{
+            position:relative;
+        }
+    }

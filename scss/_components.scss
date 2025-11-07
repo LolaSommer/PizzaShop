@@ -64,13 +64,15 @@
         color:$color-white;
         transition: all 0.3s ease;
      }
-     p.card__text{
+     .card__text{
         color:$color-white;
         font-size: $fs-small;
+        text-align:start;
      }
      .card__btn{
         display: flex;
-        justify-content: space-between;
+        gap:25px;
+        padding-left: 10px;
         &-22,&-28,&-33{
             border-radius: 50px;
             width: 40px;
@@ -108,7 +110,59 @@
             margin-bottom: 10px;
             text-align: center;
      }
+     .card__plus{
+        background: $color-btn;
+        color:$color-white;
+     }
      .card__count{
         color:$color-text;
 
+     }
+     .product-card__price{
+        color:$color-white;
+        padding-top: 17px;
+        font-size: $fs-price;
+
+        
+     }
+     .card__positiv{
+        padding-top: 20px;
+     }
+     .pic__text{
+        color:$color-white;
+        font-weight: $fw-medium;
+        font-size: $fs-price;
+        text-transform: uppercase;
+        position: absolute;
+        top: 40%;
+       left: 50%;
+        transform: translate(-50%, -50%);
+
+     }
+     .pic__header{
+        font-size: $fs-h1;
+        color:$color-white;
+        font-weight: $fw-black;
+        text-align: end;
+     }
+     .pic__text-info{
+        color:$color-white;
+        font-size:$fs-filter;
+        text-align: end;
+     }
+     .pic__img{
+        
+     }
+     .pic__button{
+      position: absolute;
+       top: 80%;
+       left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: $fs-small;
+        border-radius: 30px;
+        border:none;
+        color:$color-white;
+        background: $color-btn;
+        width: 204px;
+        padding-block: 8px;
      }

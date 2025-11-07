@@ -37,7 +37,7 @@ section {
   padding-bottom: 80px; /* расстояние между секциями */
 }
 
-h1, h2, h3, h4{
+h1, h2, h3{
   margin-bottom: 24px; /* отступ после заголовка */
 }
 
@@ -52,6 +52,7 @@ p {
   margin-inline:auto;
 }
 h4{
-  font-size: $fs-h3;
+  font-size:25px;
   color: $color-white;
+  text-align: center;
 }
