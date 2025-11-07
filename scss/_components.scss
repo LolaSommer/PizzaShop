@@ -1,0 +1,114 @@
+ .video__btn{
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    border-radius:50px;
+    width: 80px;
+    height:80px;
+    border:3px solid $color-border;
+    background: $color-bg;
+    &::before{
+        content:"";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-left:20px solid $color-border;
+        border-bottom:12px solid transparent;
+        border-top:12px solid transparent;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 55%;
+        background:transparent;
+    }
+     }
+     .text__strong{
+        font-weight: $fw-black;
+     }
+     
+   .hero__btn{
+        position: relative;
+        display: flex;
+       
+        font-size:22px;
+        margin-top: 60px;
+        border-radius:30px;
+        border:2px solid $color-border;
+        max-width:380px;
+        background: $color-bg;
+      
+        cursor: pointer;
+        overflow: hidden;
+        height: 60px;
+        &-left{
+            flex: 1;
+           border-radius: 30px;
+           background:none;
+           border:none;
+           padding-block: 5px;
+           color:$color-border;
+
+        }
+        &-right{
+            flex:1;
+        border-radius: 30px;
+           padding-block: 5px;
+           color:$color-border;
+           background:none;
+           border:none;
+
+        }
+    }
+     btn-active{
+        background: $color-btn;
+        color:$color-white;
+        transition: all 0.3s ease;
+     }
+     p.card__text{
+        color:$color-white;
+        font-size: $fs-small;
+     }
+     .card__btn{
+        display: flex;
+        justify-content: space-between;
+        &-22,&-28,&-33{
+            border-radius: 50px;
+            width: 40px;
+            padding-block: 10px;
+            border:1px solid $color-border;
+            background:$color-bg;
+            color:$color-text;
+            margin-bottom: 10px;
+        }
+     }
+     .card__ingridients{
+      border-radius: 30px;
+      width: 194px;
+      padding-block: 8px;
+      background:$color-bg;
+      border:1px solid $color-border;
+      color:$color-border;
+     }
+     .card__order{
+          border-radius: 30px;
+      width: 194px;
+      padding-block: 8px;
+      background:$color-btn;
+      border:1px solid $color-border;
+      color:$color-white;
+      margin-top: 15px;
+     }
+     .card__minus,.card__plus{
+         border-radius: 50px;
+            width: 23px;
+            padding-block: 2px;
+            border:1px solid $color-text;
+            background:$color-bg;
+            color:$color-text;
+            margin-bottom: 10px;
+            text-align: center;
+     }
+     .card__count{
+        color:$color-text;
+
+     }

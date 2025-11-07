@@ -9,8 +9,10 @@
     </head>
     <body>
          <a href="#main" class="visually-hidden-focusable">Пропустить к содержимому</a> 
-        <header>
-            <div class="header__logo"><svg><use href="img/sprite.svg#logo-icon"></use></svg></div>
+        <div class="container">
+         <header class="header">
+            <div class="header__logo"><svg><use href="img/sprite.svg#logo-icon"></use></svg>
+            </div>
             <nav class="nav">
              <ul class="nav__bar">
                 <li class="nav__item"><a href="#hero" class="nav__link">Home</a></li>
@@ -19,35 +21,45 @@
                 <li class="nav__item"><a href="#about" class="nav__link">About us</a></li>
              </ul>
             </nav>
-            <button type="submit" class="header__btn">Log in</button>
-            <svg><use href="img/sprite.svg#cart-icon"></use></svg>
+            <div class="header__btn">
+            <button type="submit" class="header__order">Log in</button>
+            <button class="header__cart"><svg class="header__cart-icon"><use href="img/sprite.svg#cart-icon"></use></svg></button>
+            </div>
+            
         </header>
         <main>
             <section class="hero" id="hero">
-                <h1 class="hero__header">The Fastest Pizza Delivery</h1>
+                <div class="hero__colls">
+                <h1 class="hero__header">The Fastest<br>Pizza Delivery</h1>
                 <p class="hero__text">We’ll deliver a hot, juicy pizza to your family in 30 minutes — <span class="text__strong">or it’s free!</span></p>
                 <p class="hero__text">Cooking process:</p>
-              <video autoplay muted loop playsinline>
+                <div class="hero__video">
+              <video class="hero__video" autoplay muted loop playsinline>
             <source src="img/pizza-prep.mp4" type="video/mp4">
             <source src="img/pizza-prep.webm" type="video/webm">
             </video>
-            <div class="hero__btn">
-                <button class="btn-left" type="button">Order Now</button>
-                <button class="btn-right" type="button">Pizza Menu</button>
+            <button type="button" class="video__btn"></button>
             </div>
+            <div class="hero__btn">
+                <button class="hero__btn-left" type="button">Order Now</button>
+                <button class="hero__btn-right" type="button">Pizza Menu</button>
+            </div>
+            </div>
+            <div class="hero__colls">
            <picture>
             <source srcset="img/mainimg.webp" type="image/webp">
-            <img src="img/mainimg.jpg" alt="Delicious pizza on the table">
+            <img class="hero__img" src="img/mainimg.jpg" alt="Delicious pizza on the table">
              </picture>
+             </div>
             </section>
              <section class="menu" id="menu">
-                <h1>Menu</h1>
+                <h1 class="menu__header">Menu</h1>
                 <ul class="menu__filter">
-                    <li class="menu__item"><a href="#" class="menu__link">All</a></li>
-                    <li class="menu__item"><a href="#" class="menu__link" >Meat</a></li>
-                    <li class="menu__item"><a href="#" class="menu__link">Veggie</a></li>
-                    <li class="menu__item"><a href="#" class="menu__link" >Seafood</a></li>
-                    <li class="menu__item"><a href="#" class="menu__link">Mushroom</a></li>
+                    <button type="button" class="menu__item">All</button>
+                    <button type="button" class="menu__item">Meat</button>
+                    <button type="button"  class="menu__item">Veggie</button>
+                    <button  type="button" class="menu__item">Seafood</button>
+                    <button  type="button"class="menu__item">Mushroom</button>
                 </ul>
                 <div class="menu__cards">
                     <div class="menu__card">
@@ -56,11 +68,11 @@
                          <img src="img/italian.webp" alt="Delicious pizza on the table">
                          </picture>
                          <h4 class="card__header">Italian Classico</h4>
-                         <p class="card__text">Tomato sauce, mozzarella, oregano, basil.</p>
+                         <p class="card__text">Filling:Tomato sauce, mozzarella, oregano, basil.</p>
                          <div class="card__btn">
-                            <button type="button">22</button>
-                            <button type="button">28</button>
-                            <button type="button">33</button>
+                            <button class="card__btn-22" type="button">22</button>
+                            <button class="card__btn-28" type="button">28</button>
+                            <button class="card__btn-33" type="button">33</button>
                          </div>
                          <button class="card__ingridients" type="button">+ Ingridients</button>
                          <div class="menu__bottom">
@@ -85,11 +97,11 @@
                          <img src="img/Venecia.webp" alt="Delicious pizza on the table">
                          </picture>
                          <h4 class="card__header">Diavola</h4>
-                         <p class="card__text">Tomato sauce, mozzarella, spicy salami, chili.</p>
+                         <p class="card__text">Filling:Tomato sauce, mozzarella, spicy salami, chili.</p>
                          <div class="card__btn">
-                            <button type="button">22</button>
-                            <button type="button">28</button>
-                            <button type="button">33</button>
+                            <button class="card__btn-22"type="button">22</button>
+                            <button class="card__btn-28"type="button">28</button>
+                            <button class="card__btn-33"type="button">33</button>
                          </div>
                          <button class="card__ingridients" type="button">+ Ingridients</button>
                          <div class="menu__bottom">
@@ -114,11 +126,11 @@
                          <img src="img/meat.webp" alt="Delicious pizza on the table">
                          </picture>
                          <h4 class="card__header">Meat Inferno</h4>
-                         <p class="card__text">Pepperoni, bacon, ham, mozzarella, tomato sauce.</p>
+                         <p class="card__text">Filling:Pepperoni, bacon, ham, mozzarella, tomato sauce.</p>
                          <div class="card__btn">
-                            <button type="button">22</button>
-                            <button type="button">28</button>
-                            <button type="button">33</button>
+                            <button class="card__btn-22"type="button">22</button>
+                            <button class="card__btn-28"type="button">28</button>
+                            <button class="card__btn-33"type="button">33</button>
                          </div>
                          <button class="card__ingridients" type="button">+ Ingridients</button>
                          <div class="menu__bottom">
@@ -143,11 +155,11 @@
                          <img src="img/cheese.webp" alt="Delicious pizza on the table">
                          </picture>
                          <h4 class="card__header">Cheese Heaven</h4>
-                         <p class="card__text">Mozzarella, gorgonzola, parmesan, cheddar, cream base.</p>
+                         <p class="card__text">Filling:Mozzarella, gorgonzola, parmesan, cheddar, cream base.</p>
                          <div class="card__btn">
-                            <button type="button">22</button>
-                            <button type="button">28</button>
-                            <button type="button">33</button>
+                            <button class="card__btn-22"type="button">22</button>
+                            <button class="card__btn-28"type="button">28</button>
+                            <button class="card__btn-33"type="button">33</button>
                          </div>
                          <button class="card__ingridients" type="button">+ Ingridients</button>
                          <div class="menu__bottom">
@@ -166,7 +178,8 @@
                         </div>
                         <button type="button" class="card__order">Grab Your Slice</button>
                     </div>
-                  
+                </div>
+
                 <section class="menu__popular">
                     <h2>Our Most Popular Pizzas</h2>
                      <picture>
@@ -174,17 +187,18 @@
                     <img src="img/mostpopular.webp" alt="Delicious pizza on the table">
                     </picture>
                      </section>
+                     <div class="menu__cards">
                         <div class="menu__card">
                          <picture class="card__picture">
                          <source srcset="img/argentina.webp" type="image/webp">
                          <img src="img/argentina.webp" alt="Delicious pizza on the table">
                          </picture>
                          <h4 class="card__header">Argentina Fire</h4>
-                         <p class="card__text">Spicy chorizo, roasted peppers, red onion, mozzarella.</p>
+                         <p class="card__text">Filling:Spicy chorizo, roasted peppers, red onion, mozzarella.</p>
                          <div class="card__btn">
-                            <button type="button">22</button>
-                            <button type="button">28</button>
-                            <button type="button">33</button>
+                            <button class="card__btn-22"type="button">22</button>
+                            <button class="card__btn-28"type="button">28</button>
+                            <button class="card__btn-33"type="button">33</button>
                          </div>
                          <button class="card__ingridients" type="button">+ Ingridients</button>
                          <div class="menu__bottom">
@@ -209,11 +223,11 @@
                          <img src="img/mushrooms.webp" alt="Delicious pizza on the table">
                          </picture>
                          <h4 class="card__header">Forest Style</h4>
-                         <p class="card__text">Mushrooms, caramelized onions, mozzarella, garlic butter.</p>
+                         <p class="card__text">Filling:Mushrooms, caramelized onions, mozzarella, garlic butter.</p>
                          <div class="card__btn">
-                            <button type="button">22</button>
-                            <button type="button">28</button>
-                            <button type="button">33</button>
+                            <button class="card__btn-22"type="button">22</button>
+                            <button class="card__btn-28"type="button">28</button>
+                            <button class="card__btn-33"type="button">33</button>
                          </div>
                          <button class="card__ingridients" type="button">+ Ingridients</button>
                          <div class="menu__bottom">
@@ -226,6 +240,7 @@
                         <data itemprop="price" value="9.99" class="price__value">€9.99</data>
                         <link itemprop="availability" href="https://schema.org/InStock" />
                         </div>
+                        
                         <button type="button" class="card__minus">-</button>
                         <span class="card__count">1</span>
                         <button type="button" class="card__plus">+</button>
@@ -238,11 +253,11 @@
                          <img src="img/tomato.webp" alt="Delicious pizza on the table">
                          </picture>
                          <h4 class="card__header">Margherita Fresca</h4>
-                         <p class="card__text">Tomato sauce, fresh mozzarella, cherry tomatoes, basil.</p>
+                         <p class="card__text">Filling:Tomato sauce, fresh mozzarella, cherry tomatoes, basil.</p>
                          <div class="card__btn">
-                            <button type="button">22</button>
-                            <button type="button">28</button>
-                            <button type="button">33</button>
+                            <button class="card__btn-22"type="button">22</button>
+                            <button class="card__btn-28"type="button">28</button>
+                            <button class="card__btn-33"type="button">33</button>
                          </div>
                          <button class="card__ingridients" type="button">+ Ingridients</button>
                          <div class="menu__bottom">
@@ -267,11 +282,11 @@
                          <img src="img/italianX2.webp" alt="Delicious pizza on the table">
                          </picture>
                          <h4 class="card__header">Double Italian</h4>
-                         <p class="card__text">Double mozzarella, double crust, tomato sauce.</p>
+                         <p class="card__text">Filling:Double mozzarella, double crust, tomato sauce.</p>
                          <div class="card__btn">
-                            <button type="button">22</button>
-                            <button type="button">28</button>
-                            <button type="button">33</button>
+                            <button class="card__btn-22" type="button">22</button>
+                            <button class="card__btn-28" type="button">28</button>
+                            <button class="card__btn-33" type="button">33</button>
                          </div>
                          <button class="card__ingridients" type="button">+ Ingridients</button>
                          <div class="menu__bottom">
@@ -374,12 +389,63 @@
                          </picture>
                     </div>
                 </div>
-
                </section>
         </main>
         <footer>
-
+            <div class="footer__container">
+            <div class="footer__logo"><svg><use href="img/sprite.svg#logo-icon"></use></svg></div>
+            <div class="footer__nav">
+            <div class="footer__nav-item">
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Order Now</a></li>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Events</a></li>
+            <li><a href="">Menu</a></li>
+          </ul>
+          </div>
+           <div class="footer__nav-item">
+          <ul>
+            <li><a href="">Events</a></li>
+            <li><a href="">Free Coffee with Three Pizzas</a></li>
+            <li><a href="">Two Pizzas for the Price of One</a></li>
+            <li><a href="">Kitchen Tour</a></li>
+          </ul>
+           </div>
+            <div class="footer__nav-item">
+          <ul>
+            <li><a href="">Menu</a></li>
+            <li><a href="">Show All</a></li>
+            <li><a href="">Seafood</a></li>
+            <li><a href="">Vegetarian</a></li>
+            <li><a href="">Meat Lovers</a></li>
+          </ul>
+            </div>
+             <div class="footer__nav-item">
+          <ul>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Our Story</a></li>
+            <li><a href="">Why Choose Us?</a></li>
+          </ul>
+             </div>
+             </div>
+          <div class="footer__contacts">
+            <div class="footer__coll">
+          <p class="footer__tel">
+          <a class="footer__link" href="tel:15551234567" aria-label="Call PizzaShop">
+         +1 555 123 4567
+         </a>
+         </p>
+         </div>
+         <div class="footer__social">
+         <div class="footer__icon"><svg><use href="img/sprite.svg#icon-inst"></use></svg></div>
+         <div class="footer__icon"><svg><use href="img/sprite.svg#icon-twitter"></use></svg></div>
+         <div class="footer__icon"><svg><use href="img/sprite.svg#icon-fb"></use></svg></div>
+         </div>
+         </div>
+         </div>
         </footer>
-        <script src="main.js"></script>
+        </div>
+        <script src="js/main.js"></script>
     </body>
 </html>

@@ -1,0 +1,116 @@
+.nav{
+    &__bar{
+    font-size: $fs-body;
+    display: flex;
+    justify-content: flex-end;
+    gap:80px;
+    }
+    
+    &__link{
+        text-decoration: none;
+        color:$color-text
+    }
+}
+.header{
+    display: grid;
+    grid-template-columns: auto auto auto;
+   
+    align-items: center;
+    &__logo{
+        max-width:162px;
+        color:#FFA228;
+       filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
+    }
+    &__btn{
+        display:flex;
+        justify-content:center;
+        gap:20px;
+        
+    }
+    &__cart{
+        background: $color-bg;
+        border:none;
+        cursor: pointer;
+       
+    }
+    &__cart-icon{
+        height: 40px;
+        width:45px;
+        color:#FFA228;
+       filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
+    }
+    &__order{
+       padding-inline: 50px;
+        background: $color-btn;
+        color:$color-white;
+        border-radius: 30px;
+        text-align: center;
+        font-size: $fs-body;
+        cursor: pointer;
+         transition: transform .3s ease, box-shadow .3s ease;
+        &:hover{
+        transform: translateY(-3px) scale(1.05);
+        }
+    }
+}
+.hero{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:120px;
+    &__video{
+    width: 100%;
+     max-width: 300px;
+     border-radius: 12px;
+     position: relative;
+    }
+    &__text{
+        color:$color-text;
+        font-size: $fs-h3;
+    }
+    &__header{
+        color:$color-white;
+        font-size: $fs-h1;
+        font-weight: $fw-black;
+    }
+    &__img{
+       max-height: 684px;
+        width: auto;
+        align-self: end;
+        margin-top: 30px;
+    }
+
+}
+.menu{
+    &__header{
+        font-size: $fs-h1;
+        font-weight: $fw-black;
+        color:$color-white;
+        text-align: center;
+    }
+    &__filter{
+        display: flex;
+        gap:80px;
+        font-size: $fs-filter;
+           
+    }
+    &__item{
+        padding-block: 15px;
+        width: 200px;
+        border-radius: 30px;
+        color:$color-white;
+        background: #210A01;
+        border: none;
+    }
+    
+    &__cards{
+        display: flex;
+        justify-content: center;
+        gap:100px;
+        padding-inline: 30px;
+        
+    }
+    &__card{
+      align-content: start;
+     
+    }
+}
