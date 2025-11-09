@@ -344,7 +344,7 @@
                          <div class="events__pic">
                           <picture class="pic__img">
                          <source srcset="img/howwecool.webp" type="image/webp">
-                         <img src="img/howwecool.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/howwecool.webp" alt="Delicious pizza on the table">
                          </picture>
                          <p class="pic__text">How We Cook</p>
                          <button type="button" class="pic__button">More</button>
@@ -352,7 +352,7 @@
                          <div class="events__pic">
                           <picture class="pic__img">
                          <source srcset="img/blog.webp" type="image/webp">
-                         <img src="img/blog.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/blog.webp" alt="Delicious pizza on the table">
                          </picture>
                          <p class="pic__text">Our Blog</p>
                          <button type="button" class="pic__button">More</button>
@@ -366,7 +366,7 @@
                          <div class="events__pic">
                           <picture class="pic__img">
                          <source srcset="img/price.webp" type="image/webp">
-                         <img src="img/price.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/price.webp" alt="Delicious pizza on the table">
                          </picture>
                          <p class="pic__text">Two Pizzas for the Price of One</p>
                          <button type="button" class="pic__button">More</button>
@@ -374,7 +374,7 @@
                          <div class="events__pic">
                           <picture class="pic__img">
                          <source srcset="img/kitchen.webp" type="image/webp">
-                         <img src="img/kitchen.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/kitchen.webp" alt="Delicious pizza on the table">
                          </picture>
                          <p class="pic__text">Kitchen Tour</p>
                          <button type="button" class="pic__button">More</button>
@@ -384,7 +384,7 @@
                          <div class="events__pic">
                           <picture class="pic__img">
                          <source srcset="img/freecofe.webp" type="image/webp">
-                         <img src="img/freecofe.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/freecofe.webp" alt="Delicious pizza on the table">
                          </picture>
                          <p class="pic__text">Free Coffee with Three Pizzas</p>
                          <button type="button" class="pic__button">More</button>
@@ -392,7 +392,7 @@
                          <div class="events__pic">
                           <picture class="pic__img">
                          <source srcset="img/ourinst.webp" type="image/webp">
-                         <img src="img/ourinst.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/ourinst.webp" alt="Delicious pizza on the table">
                          </picture>
                          <p class="pic__text">Follow Us on Instagram</p>
                          <button type="button" class="pic__button">More</button>
@@ -400,7 +400,7 @@
                          <div class="events__pic">
                           <picture class="pic__img">
                          <source srcset="img/choose.webp" type="image/webp">
-                         <img src="img/choose.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/choose.webp" alt="Delicious pizza on the table">
                          </picture>
                          <p class="pic__text">Why Choose Us?</p>
                          <button type="button" class="pic__button">More</button>
@@ -410,77 +410,85 @@
                <section class="about" id="about">
                 <div class="about__colls">
                     <div class="about__text">
+                      <h1 class="about__header">About us</h1>
                         <p>In just a couple of years, we’ve opened six locations across the country — New York, Los Angeles, Chicago, Austin, Miami, and Seattle. And we’re just getting started — more cities are already on the map!</p>
                         <picture>
                          <source srcset="img/pizzas.webp" type="image/webp">
-                         <img src="img/pizzas.webp" alt="Delicious pizza on the table">
+                         <img class="about__svg" src="img/pizzas.webp" alt="Delicious pizza on the table">
                          </picture>
                         <p>Each kitchen operates on a grand scale — more than 4,000–5,000 sq. ft. of space and hundreds of dedicated team members making sure every order is prepared, packed, and delivered right on time.</p>
                     </div>
                     <div class="about__img">
                          <picture>
                          <source srcset="img/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden 1.webp" type="image/webp">
-                         <img src="img/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden 1.webp" alt="Delicious pizza on the table">
+                         <img class="about__img-pizza" src="img/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden 1.webp" alt="Delicious pizza on the table">
                          </picture>
                     </div>
                 </div>
                </section>
+               </div>
         </main>
-        <footer>
+        
+        
+        <footer class="footer">
+          <div class="container__footer">
             <div class="footer__container">
-            <div class="footer__logo"><svg><use href="img/sprite.svg#logo-icon"></use></svg></div>
-            <div class="footer__nav">
+              <div class="footer__rows">
+             <div class="footer__logo"><svg class="footer__logo-img"><use href="img/sprite.svg#logo-icon"></use></svg></div>
             <div class="footer__nav-item">
           <ul>
-            <li><a href="">Home</a></li>
-            <li><a href="">Order Now</a></li>
-            <li><a href="">About Us</a></li>
-            <li><a href="">Events</a></li>
-            <li><a href="">Menu</a></li>
+            <li><a class="footer__nav-link footer__strong" href="">Home</a></li>
+            <li><a class="footer__nav-link"  href="">Order Now</a></li>
+            <li><a class="footer__nav-link"  href="">About Us</a></li>
+            <li><a class="footer__nav-link"  href="">Events</a></li>
+            <li><a class="footer__nav-link"  href="">Menu</a></li>
           </ul>
           </div>
            <div class="footer__nav-item">
           <ul>
-            <li><a href="">Events</a></li>
-            <li><a href="">Free Coffee with Three Pizzas</a></li>
-            <li><a href="">Two Pizzas for the Price of One</a></li>
-            <li><a href="">Kitchen Tour</a></li>
+            <li><a class="footer__nav-link footer__strong"  href="">Events</a></li>
+            <li><a class="footer__nav-link" href="">Free Coffee</a></li>
+            <li><a class="footer__nav-link" href="">Two the Price of One</a></li>
+            <li><a class="footer__nav-link"  href="">Kitchen Tour</a></li>
           </ul>
            </div>
             <div class="footer__nav-item">
           <ul>
-            <li><a href="">Menu</a></li>
-            <li><a href="">Show All</a></li>
-            <li><a href="">Seafood</a></li>
-            <li><a href="">Vegetarian</a></li>
-            <li><a href="">Meat Lovers</a></li>
+            <li><a class="footer__nav-link footer__strong " href="">Menu</a></li>
+            <li><a class="footer__nav-link" href="">Show All</a></li>
+            <li><a class="footer__nav-link" href="">Seafood</a></li>
+            <li><a class="footer__nav-link" href="">Vegetarian</a></li>
+            <li><a class="footer__nav-link" href="">Meat Lovers</a></li>
           </ul>
             </div>
              <div class="footer__nav-item">
           <ul>
-            <li><a href="">About Us</a></li>
-            <li><a href="">Our Story</a></li>
-            <li><a href="">Why Choose Us?</a></li>
+            <li><a class="footer__nav-link footer__strong" href="">About Us</a></li>
+            <li><a class="footer__nav-link" href="">Our Story</a></li>
+            <li><a class="footer__nav-link" href="">Why Choose Us?</a></li>
           </ul>
              </div>
+            
              </div>
           <div class="footer__contacts">
             <div class="footer__coll">
           <p class="footer__tel">
           <a class="footer__link" href="tel:15551234567" aria-label="Call PizzaShop">
-         +1 555 123 4567
+         +1 (555) 123 4567
          </a>
          </p>
          </div>
          <div class="footer__social">
-         <div class="footer__icon"><svg><use href="img/sprite.svg#icon-inst"></use></svg></div>
-         <div class="footer__icon"><svg><use href="img/sprite.svg#icon-twitter"></use></svg></div>
-         <div class="footer__icon"><svg><use href="img/sprite.svg#icon-fb"></use></svg></div>
+         <div class="footer__icon"><svg class="footer__img"><use href="img/sprite.svg#icon-inst"></use></svg></div>
+         <div class="footer__icon"><svg class="footer__img"><use href="img/sprite.svg#icon-twitter"></use></svg></div>
+         <div class="footer__icon"><svg class="footer__img"><use href="img/sprite.svg#icon-fb"></use></svg></div>
+         </div>
          </div>
          </div>
          </div>
         </footer>
-        </div>
+        
+        
         <script src="js/main.js"></script>
     </body>
 </html>

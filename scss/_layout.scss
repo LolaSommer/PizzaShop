@@ -105,15 +105,19 @@
     &__cards{
        display: flex;
         justify-content: center;
-        gap:100px;
+        flex-wrap: wrap;
+        gap:80px;
         padding-inline: 30px;
+       
   
         
     }
     &__card{
-        display: flex;
-        flex-direction: column;
-        max-width: 297px;
+    flex: 0 1 229px;  // ← вот это ключ
+     box-sizing: border-box;
+     max-width: 297px;
+        
+        
      
     }
     &__img-wrapper{
@@ -145,8 +149,116 @@
         &__colls-1,&__colls-2,&__colls-3{
             display: flex;
             gap:20px;
+            align-items: end;
         }
         &__pic{
             position:relative;
         }
     }
+.about{
+    &__colls{
+     display:grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap:50px;
+    }
+    &__text{
+        color:$color-text;
+        font-size: $fs-filter;
+        padding-right: 30px;
+    }
+    &__svg{
+    padding-block: 20px;
+    }
+   &__header{
+    font-size: $fs-h1;
+    font-weight: $fw-black;
+    color:$color-white;
+    margin-bottom: 20px;
+   }
+   &__img-pizza{
+    padding-top: 25px;
+    border-radius: 20px;
+    overflow: hidden;
+   }
+}
+.footer{ 
+    width: 100%;
+    background:$color-bg-footer;
+    font-family: $font-main;
+    min-height: 436px;
+    
+    &__container{
+    display: flex;            
+    flex-direction: column;   
+    justify-content: space-between; 
+    height: 100%;
+        
+    }
+  &__rows{
+    display: grid;
+    gap:40px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding-block: 30px;
+    margin-block: 30px;
+    align-items: start;
+    
+  }
+&__social{
+    display: flex;
+    gap:15px;
+    align-items: center;
+}
+&__icon{
+    color:#FFA228;
+    filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
+}
+&__img{
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+&__contacts{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    
+}
+&__link{
+    text-decoration: none;
+    color:#FFA228;
+    filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
+    font-size: $fs-filter;
+   
+}
+&__logo{
+    display: flex;
+    align-items: flex-start;
+    color:#FFA228;
+    filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
+    align-self: start;
+    justify-self: start;
+    
+    
+}
+&__logo-img{
+    display: block;
+    max-width:142px;
+    height:33px;
+
+    
+}
+&__nav-link {
+    text-decoration: none;
+    font-size: $fs-body;
+    color:$color-footer;
+    letter-spacing:$ls-wide;
+   
+}
+&__strong{
+    color:$color-footer-header;
+    text-transform: uppercase;
+}
+&__nav-item{
+    line-height: $lh-loose;
+}
+}
