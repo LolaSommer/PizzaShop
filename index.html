@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-         <a href="#main" class="visually-hidden-focusable">Пропустить к содержимому</a> 
+         <a href="#main" class="visually-hidden-focusable">skip to content</a> 
         <div class="container">
          <header class="header">
             <div class="header__logo"><svg aria-hidden="true" focusable="false"><use href="img/sprite.svg#logo-icon"></use></svg>
@@ -23,7 +23,7 @@
             </nav>
             <div class="header__btn">
             <button  type="button"  aria-label="Log in to your account" class="header__order">Log in</button>
-            <button type="button" class="header__cart"><svg class="header__cart-icon" aria-hidden="true"><use href="img/sprite.svg#cart-icon"></use></svg></button>
+            <button type="button" class="header__cart"><svg class="header__cart-icon" aria-label="Open shopping cart" aria-hidden="true"><use href="img/sprite.svg#cart-icon"></use></svg></button>
             <span class="visually-hidden" aria-live="polite">3 items in cart</span>
             </div>
             
@@ -72,8 +72,8 @@
                          <img src="img/italian.webp" alt="Italian pizza with tomato sauce, mozzarella, oregano and basil">
                          </picture>
                          </div>
-                         <h4 class="card__header">Italian</h4>
-                         <p class="card__text">Filling:Tomato sauce, mozzarella, oregano, basil.</p>
+                         <h4 itemprop="name" class="card__header">Italian</h4>
+                         <p itemprop="description" class="card__text">Filling:Tomato sauce, mozzarella, oregano, basil.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
                             <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
@@ -81,15 +81,11 @@
                          </div>
                          <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Italian Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
-                         <div class="product-card__price"
-                         itemprop="offers"
-                         itemscope
-                         itemtype="https://schema.org/Offer"
-                        aria-label="Price: 9 dollars 99 cents, available in stock">
-                        <meta itemprop="priceCurrency" content="USD"/>
-                        <span class="visually-hidden">Price:</span>
+                         <div class="product-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <span class="visually-hidden">Price: 9 dollars 99 cents, available in stock</span>
                         <data itemprop="price" value="8.35" class="price__value">9,99<sup>$</sup></data>
-                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        <link itemprop="availability" href="https://schema.org/InStock">
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
@@ -107,8 +103,8 @@
                          <img src="img/Venecia.webp" alt="Diavola pizza with tomato sauce, mozzarella, spicy salami and chili">
                          </picture>
                         </div>
-                         <h4 class="card__header">Diavola</h4>
-                         <p class="card__text">Filling:Tomato sauce, mozzarella, spicy salami, chili.</p>
+                         <h4 itemprop="name" class="card__header">Diavola</h4>
+                         <p itemprop="description" class="card__text">Filling:Tomato sauce, mozzarella, spicy salami, chili.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
                             <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
@@ -116,15 +112,12 @@
                          </div>
                          <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Diavola Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
-                         <div class="product-card__price"
-                         itemprop="offers"
-                         itemscope
-                         itemtype="https://schema.org/Offer"
-                        aria-label="Price: 9 dollars 99 cents, available in stock">
-                        <meta itemprop="priceCurrency" content="USD" />
-                        <span class="visually-hidden">Price:</span>
+                         <div class="product-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <span class="visually-hidden">Price: 9 dollars 99 cents, available in stock</span>
+
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
-                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        <link itemprop="availability" href="https://schema.org/InStock">
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
@@ -142,8 +135,8 @@
                          <img src="img/meat.webp" alt="Inferno pizza with pepperoni, bacon, ham, mozzarella and tomato sauce">
                          </picture>
                          </div>
-                         <h4 class="card__header">Inferno</h4>
-                         <p class="card__text">Filling:Pepperoni, bacon, ham, mozzarella, tomato sauce.</p>
+                         <h4 itemprop="name" class="card__header">Inferno</h4>
+                         <p itemprop="description" class="card__text">Filling:Pepperoni, bacon, ham, mozzarella, tomato sauce.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
                             <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
@@ -151,15 +144,12 @@
                          </div>
                          <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Inferno Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
-                         <div class="product-card__price"
-                         itemprop="offers"
-                         itemscope
-                         itemtype="https://schema.org/Offer"
-                        aria-label="Price: 9 dollars 99 cents, available in stock">
-                        <meta itemprop="priceCurrency" content="USD" />
-                        <span class="visually-hidden">Price:</span>
+                         <div class="product-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <span class="visually-hidden">Price: 9 dollars 99 cents, available in stock</span>
+
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
-                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        <link itemprop="availability" href="https://schema.org/InStock">
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
@@ -177,8 +167,8 @@
                          <img src="img/cheese.webp" alt="Formaggio pizza with mozzarella, gorgonzola, parmesan and cheddar">
                          </picture>
                         </div>
-                         <h4 class="card__header">Formaggio</h4>
-                         <p class="card__text">Filling:Mozzarella, gorgonzola, parmesan, cheddar, cream base.</p>
+                         <h4 itemprop="name" class="card__header">Formaggio</h4>
+                         <p itemprop="description" class="card__text">Filling:Mozzarella, gorgonzola, parmesan, cheddar, cream base.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
                             <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
@@ -186,15 +176,12 @@
                          </div>
                          <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Formaggio Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
-                         <div class="product-card__price"
-                         itemprop="offers"
-                         itemscope
-                         itemtype="https://schema.org/Offer"
-                        aria-label="Price: 9 dollars 99 cents, available in stock">
-                        <meta itemprop="priceCurrency" content="USD" />
-                        <span class="visually-hidden">Price:</span>
+                         <div class="product-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <span class="visually-hidden">Price: 9 dollars 99 cents, available in stock</span>
+
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
-                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        <link itemprop="availability" href="https://schema.org/InStock">
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
@@ -206,14 +193,14 @@
                     <div class="sr-only" aria-live="polite"></div>
                       </div>
                 </div>
-
-                <section class="menu__popular">
+             
+                <aside class="menu__popular">
                     <h2 class="menu__title">Our Most Popular Pizzas</h2>
                      <picture>
                      <source srcset="img/mostpopular.webp" type="image/webp">
                     <img src="img/mostpopular.webp" alt="" aria-hidden="true">
                     </picture>
-                     </section>
+                  </aside>
                      <div class="menu__cards">
                         <div class="menu__card">
                           <div class="menu__img-wrapper">
@@ -222,8 +209,8 @@
                          <img src="img/argentina.webp" alt="Argentina pizza with spicy chorizo, roasted peppers, red onion and mozzarella">
                          </picture>
                           </div>
-                         <h4 class="card__header">Argentina</h4>
-                         <p class="card__text">Filling:Spicy chorizo, roasted peppers, red onion, mozzarella.</p>
+                         <h4 itemprop="name" class="card__header">Argentina</h4>
+                         <p itemprop="description" class="card__text">Filling:Spicy chorizo, roasted peppers, red onion, mozzarella.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false" >22</button>
                             <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
@@ -231,15 +218,12 @@
                          </div>
                          <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Argentina Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
-                         <div class="product-card__price"
-                         itemprop="offers"
-                         itemscope
-                         itemtype="https://schema.org/Offer"
-                        aria-label="Price: 9 dollars 99 cents, available in stock">
-                        <meta itemprop="priceCurrency" content="USD" />
-                        <span class="visually-hidden">Price:</span>
+                         <div class="product-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <span class="visually-hidden">Price: 9 dollars 99 cents, available in stock</span>
+
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
-                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        <link itemprop="availability" href="https://schema.org/InStock">
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
@@ -257,8 +241,8 @@
                          <img src="img/mushrooms.webp" alt="Forest pizza with mushrooms, caramelized onions, mozzarella and garlic butter">
                          </picture>
                         </div>
-                         <h4 class="card__header">Forest</h4>
-                         <p class="card__text">Filling:Mushrooms, caramelized onions, mozzarella, garlic butter.</p>
+                         <h4 itemprop="name" class="card__header">Forest</h4>
+                         <p itemprop="description" class="card__text">Filling:Mushrooms, caramelized onions, mozzarella, garlic butter.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
                             <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
@@ -266,15 +250,12 @@
                          </div>
                          <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Forest Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
-                         <div class="product-card__price"
-                         itemprop="offers"
-                         itemscope
-                         itemtype="https://schema.org/Offer"
-                        aria-label="Price: 9 dollars 99 cents, available in stock">
-                        <meta itemprop="priceCurrency" content="USD" />
-                        <span class="visually-hidden">Price:</span>
+                         <div class="product-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <span class="visually-hidden">Price: 9 dollars 99 cents, available in stock</span>
+
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
-                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        <link itemprop="availability" href="https://schema.org/InStock">
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
@@ -292,8 +273,8 @@
                          <img src="img/tomato.webp" alt="Margherita pizza with tomato sauce, fresh mozzarella, cherry tomatoes and basil">
                          </picture>
                         </div>
-                         <h4 class="card__header">Margherita</h4>
-                         <p class="card__text">Filling:Tomato sauce, fresh mozzarella, cherry tomatoes, basil.</p>
+                         <h4 itemprop="name" class="card__header">Margherita</h4>
+                         <p itemprop="description" class="card__text">Filling:Tomato sauce, fresh mozzarella, cherry tomatoes, basil.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
                             <button class="card__btn-28" type="button" role="radio" aria-checked="true" >28</button>
@@ -301,15 +282,12 @@
                          </div>
                          <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Margherita Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
-                         <div class="product-card__price"
-                         itemprop="offers"
-                         itemscope
-                         itemtype="https://schema.org/Offer"
-                        aria-label="Price: 9 dollars 99 cents, available in stock">
-                        <meta itemprop="priceCurrency" content="USD" />
-                        <span class="visually-hidden">Price:</span>
+                         <div class="product-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <span class="visually-hidden">Price: 9 dollars 99 cents, available in stock</span>
+
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
-                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        <link itemprop="availability" href="https://schema.org/InStock">
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
@@ -327,8 +305,8 @@
                          <img src="img/italianX2.webp" alt="Double pizza with double mozzarella, double crust and tomato sauce">
                          </picture>
                        </div>
-                         <h4 class="card__header">Double</h4>
-                         <p class="card__text">Filling:Double mozzarella, double crust, tomato sauce.</p>
+                         <h4 itemprop="name" class="card__header">Double</h4>
+                         <p itemprop="description" class="card__text">Filling:Double mozzarella, double crust, tomato sauce.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
                             <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
@@ -336,15 +314,12 @@
                          </div>
                          <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Double Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
-                         <div class="product-card__price"
-                         itemprop="offers"
-                         itemscope
-                         itemtype="https://schema.org/Offer"
-                        aria-label="Price: 9 dollars 99 cents, available in stock">
-                        <meta itemprop="priceCurrency" content="USD" />
-                        <span class="visually-hidden">Price:</span>
+                         <div class="product-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="USD">
+                        <span class="visually-hidden">Price: 9 dollars 99 cents, available in stock</span>
+
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
-                        <link itemprop="availability" href="https://schema.org/InStock" />
+                        <link itemprop="availability" href="https://schema.org/InStock">
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
@@ -446,7 +421,7 @@
                 </div>
                </section>
                </div>
-        </main> 
+       </main> 
         <footer class="footer">
           <div class="container__footer">
             <div class="footer__container">
@@ -504,8 +479,6 @@
          </div>
          </div>
         </footer>
-        
-        
         <script src="js/main.js"></script>
     </body>
 </html>

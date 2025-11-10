@@ -132,6 +132,9 @@ h4 {
   color: #FFFFFF;
   text-align: center; }
 
+aside {
+  padding-block: 1.875rem; }
+
 .nav__bar {
   font-size: 1.125rem;
   display: flex;
