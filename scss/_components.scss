@@ -4,8 +4,8 @@
     left: 50%; 
     transform: translate(-50%, -50%);
     border-radius:50px;
-    width: 80px;
-    height:80px;
+    width:clamp(2.5rem,4vw,5rem);
+    height:clamp(2.5rem,4vw,5rem);
     border:3px solid $color-border;
     background: $color-bg;
     &::before{
@@ -13,9 +13,9 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        border-left:20px solid $color-border;
-        border-bottom:12px solid transparent;
-        border-top:12px solid transparent;
+        border-left:1.25rem solid $color-border;
+        border-bottom:0.75rem solid transparent;
+        border-top:0.75rem solid transparent;
         transform: translate(-50%, -50%);
         top: 50%;
         left: 55%;
@@ -29,33 +29,44 @@
    .hero__btn{
         position: relative;
         display: flex;
-       
-        font-size:22px;
-        margin-top: 60px;
-        border-radius:30px;
+        font-size:1.375rem;
+        margin-top:3.75rem;
+        border-radius:1.875rem;
         border:2px solid $color-border;
-        max-width:380px;
+        max-width:clamp(12.5rem,18vw,23.75rem);
         background: $color-bg;
-      
-        cursor: pointer;
         overflow: hidden;
-        height: 60px;
+        height:3.75rem;
         &-left{
-            flex: 1;
-           border-radius: 30px;
+            flex:1;
+            cursor: pointer;
+           border-radius:1.875rem;
            background:none;
            border:none;
-           padding-block: 5px;
+           padding-block:0.313rem;
            color:$color-border;
+           transition: transform .3s ease, box-shadow .3s ease;
+             &:hover {
+        background:$color-btn;
+        color:$color-white;
+        
+    }
 
         }
         &-right{
             flex:1;
-        border-radius: 30px;
-           padding-block: 5px;
+            cursor: pointer;
+            border-radius:1.875rem;
+           padding-block:0.313rem;
            color:$color-border;
            background:none;
            border:none;
+           transition: transform .3s ease, box-shadow .3s ease;
+             &:hover {
+        background:$color-btn;
+        color:$color-white;
+        
+    }
 
         }
     }
@@ -71,48 +82,85 @@
      }
      .card__btn{
         display: flex;
-        gap:25px;
-        padding-left: 10px;
+        gap:clamp(0.625rem,2vw,1.563rem);
+        padding-left:0.625rem;
         &-22,&-28,&-33{
-            border-radius: 50px;
-            width: 40px;
-            padding-block: 10px;
+            border-radius:3.125rem;
+            width:2.5rem;
+            padding-block:0.625rem;
             border:1px solid $color-border;
             background:$color-bg;
             color:$color-text;
-            margin-bottom: 10px;
+            margin-bottom:0.625rem;
+            cursor:pointer;
+               transition: transform .3s ease, box-shadow .3s ease;
+             &:hover {
+        background:$color-btn;
+        color:$color-white;
+      
+    }
         }
      }
      .card__ingridients{
-      border-radius: 30px;
-      width: 194px;
-      padding-block: 8px;
+      border-radius:1.875rem;
+      width: clamp(7rem,10vw,12.125rem);
+      padding-block:0.5rem;
       background:$color-bg;
       border:1px solid $color-border;
       color:$color-border;
+       cursor:pointer;
+               transition: transform .3s ease, box-shadow .3s ease;
+             &:hover {
+        background:$color-btn;
+        color:$color-white;
+    }
      }
      .card__order{
-          border-radius: 30px;
-      width: 194px;
-      padding-block: 8px;
+      border-radius:1.875rem;
+      width: clamp(7rem,10vw,12.125rem);
+      padding-block:0.5rem;
       background:$color-btn;
       border:1px solid $color-border;
       color:$color-white;
-      margin-top: 15px;
+      margin-top:0.938rem;
+      cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-bg;
+        color:$color-border;
+        transform: translateY(-3px) scale(1.05);
+    }
      }
      .card__minus,.card__plus{
-         border-radius: 50px;
-            width: 23px;
-            padding-block: 2px;
+            border-radius:3.125rem;
+            width:1.438rem;
+            padding-block:0.125rem;
             border:1px solid $color-text;
             background:$color-bg;
             color:$color-text;
-            margin-bottom: 10px;
+            margin-bottom:0.625rem;
             text-align: center;
-     }
+    }
+     
      .card__plus{
         background: $color-btn;
         color:$color-white;
+           cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-bg;
+        color:$color-border;
+      }
+
+     }
+     .card__minus{
+         cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-btn;
+        color:$color-white;
+       
+      }
      }
      .card__count{
         color:$color-text;
@@ -120,13 +168,13 @@
      }
      .product-card__price{
         color:$color-white;
-        padding-top: 17px;
+        padding-top:1.063rem;
         font-size: $fs-price;
 
         
      }
      .card__positiv{
-        padding-top: 20px;
+        padding-top:1.25rem;
      }
 
      .pic__text{
@@ -160,16 +208,23 @@
       position: absolute;
        top: 80%;
        left: 50%;
+       text-align: center;
         transform: translate(-50%, -50%);
         font-size: $fs-small;
-        border-radius: 30px;
+        border-radius:1.875rem;
         border:none;
         color:$color-white;
         background: $color-btn;
-        width: 204px;
-        padding-block: 8px;
+        width:clamp(7rem,10vw,12.75rem);
+        padding-block:0.5rem;
+           cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-bg;
+        color:$color-border;
+      }
      }
      .pic__img{
-      border-radius: 50px;
-      padding-block: 20px;
+      border-radius:3.125rem;
+      padding-block:1.25rem;
      }

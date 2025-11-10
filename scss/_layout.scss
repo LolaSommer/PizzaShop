@@ -3,12 +3,18 @@
     font-size: $fs-body;
     display: flex;
     justify-content: flex-end;
-    gap:80px;
+    gap:clamp(2.5rem,4vw,5rem);
     }
     
     &__link{
         text-decoration: none;
-        color:$color-text
+        color:$color-text;
+          cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-bg;
+        color:$color-border;
+    }
     }
 }
 .header{
@@ -17,14 +23,15 @@
    
     align-items: center;
     &__logo{
-        max-width:162px;
+        max-width:clamp(6rem,8vw,10.125rem);
         color:#FFA228;
        filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
     }
     &__btn{
         display:flex;
         justify-content:center;
-        gap:20px;
+        gap:clamp(0.625rem,3vw,1.25rem);
+       
         
     }
     &__cart{
@@ -34,16 +41,16 @@
        
     }
     &__cart-icon{
-        height: 40px;
-        width:45px;
+        height: 2.5rem;
+        width:2.813rem;
         color:#FFA228;
        filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
     }
     &__order{
-       padding-inline: 50px;
+       padding-inline: clamp(1.5rem,2vw,3.125rem);
         background: $color-btn;
         color:$color-white;
-        border-radius: 30px;
+        border-radius:1.875rem;
         text-align: center;
         font-size: $fs-body;
         cursor: pointer;
@@ -56,12 +63,14 @@
 .hero{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap:120px;
+    gap:clamp(3rem,5vw,7.5rem);
+   
     &__video{
-    width: 100%;
-     max-width: 300px;
-     border-radius: 12px;
+     max-width: clamp(10rem,15vw,18.75rem);
+     border-radius:0.75rem;
      position: relative;
+     object-fit: cover; aspect-ratio:16/9;
+    
     }
     &__text{
         color:$color-text;
@@ -71,14 +80,29 @@
         color:$color-white;
         font-size: $fs-h1;
         font-weight: $fw-black;
+        
     }
     &__img{
-       max-height: 684px;
+       max-height: clamp(21rem,38vw,42.75rem);
         width: auto;
         align-self: end;
-        margin-top: 30px;
+        margin-top:1.875rem;
     }
-
+&__colls{
+    position: relative;
+}
+&__arrow-small{
+    position: absolute;
+    width:5.625rem;
+    height:3.438rem;
+    color:$color-text;
+    padding-left:1.25rem;
+    
+}
+&__arrow{
+    color:$color-text;
+    position: absolute;
+}
 }
 .menu{
     &__header{
@@ -89,14 +113,14 @@
     }
     &__filter{
         display: flex;
-        gap:80px;
+        gap:clamp(2.5rem,4vw,5rem);
         font-size: $fs-filter;
            
     }
     &__item{
-        padding-block: 15px;
-        width: 200px;
-        border-radius: 30px;
+        padding-block:0.938rem;
+        width:clamp(6rem,10vw,12.5rem);
+        border-radius:1.875rem;
         color:$color-white;
         background: #210A01;
         border: none;
@@ -106,22 +130,22 @@
        display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        gap:80px;
-        padding-inline: 30px;
+        gap:clamp(2.5rem,4vw,5rem);
+        padding-inline:1.875rem;
        
   
         
     }
     &__card{
-    flex: 0 1 229px;  // ← вот это ключ
+    flex: 0 1 14.313rem;
      box-sizing: border-box;
-     max-width: 297px;
+     max-width: clamp(10rem,15vw,18.563rem);
         
         
      
     }
     &__img-wrapper{
-         height: 160px;
+       height:clamp(5rem,8vw,10rem);
        display: flex;
        justify-content: center;
        align-items: center;
@@ -129,7 +153,7 @@
    &__bottom{
     display: flex;
     flex-wrap: wrap;
-    gap:50px;
+    gap:clamp(1.75rem,2vw,3.125rem);
    }
    &__popular{
     position:relative;
@@ -137,7 +161,7 @@
    &__title{
     position: absolute;
     color:$color-white;
-    font-size:42px;
+    font-size:2.625rem;
     font-weight: $fw-medium;
     text-transform: uppercase;
     top: 43%;
@@ -148,7 +172,7 @@
     .events{
         &__colls-1,&__colls-2,&__colls-3{
             display: flex;
-            gap:20px;
+            gap:clamp(0.625rem,3vw,1.25rem);
             align-items: end;
         }
         &__pic{
@@ -159,25 +183,25 @@
     &__colls{
      display:grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap:50px;
+    gap:clamp(1.75rem,2vw,3.125rem);
     }
     &__text{
         color:$color-text;
         font-size: $fs-filter;
-        padding-right: 30px;
+        padding-right:1.875rem;
     }
     &__svg{
-    padding-block: 20px;
+    padding-block:1.25rem;
     }
    &__header{
     font-size: $fs-h1;
     font-weight: $fw-black;
     color:$color-white;
-    margin-bottom: 20px;
+    margin-bottom:1.25rem;
    }
    &__img-pizza{
-    padding-top: 25px;
-    border-radius: 20px;
+    padding-top:1.563rem;
+    border-radius:1.25rem;
     overflow: hidden;
    }
 }
@@ -185,7 +209,7 @@
     width: 100%;
     background:$color-bg-footer;
     font-family: $font-main;
-    min-height: 436px;
+    min-height:clamp(15rem,20vw,27.25rem);
     
     &__container{
     display: flex;            
@@ -196,38 +220,50 @@
     }
   &__rows{
     display: grid;
-    gap:40px;
+    gap:clamp(1.25rem,2vw,2.5rem);
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    padding-block: 30px;
-    margin-block: 30px;
+    padding-block:1.875rem;
+    margin-block:1.875rem;
     align-items: start;
     
   }
 &__social{
     display: flex;
-    gap:15px;
+    gap:0.938rem;
     align-items: center;
 }
 &__icon{
     color:#FFA228;
     filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
+    cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-bg;
+        color:$color-border;
+    }
 }
 &__img{
-    width: 24px;
-    height: 24px;
+    width:1.5rem;
+    height:1.5rem;
     flex-shrink: 0;
 }
 &__contacts{
     display: flex;
     justify-content: space-between;
-    padding-top: 30px;
+    padding-top:1.875rem;
     
 }
 &__link{
     text-decoration: none;
     color:#FFA228;
-    filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
+    text-shadow: 0 0 6px rgba(255, 100, 50, 0.6);
     font-size: $fs-filter;
+     cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-bg;
+        color:$color-border;
+    }
    
 }
 &__logo{
@@ -242,8 +278,8 @@
 }
 &__logo-img{
     display: block;
-    max-width:142px;
-    height:33px;
+    max-width:clamp(4.425rem,6vw,8.875rem);
+    height:2.063rem;
 
     
 }
@@ -252,6 +288,12 @@
     font-size: $fs-body;
     color:$color-footer;
     letter-spacing:$ls-wide;
+      cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-bg;
+        color:$color-border;
+    }
    
 }
 &__strong{

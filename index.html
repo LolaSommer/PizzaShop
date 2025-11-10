@@ -11,9 +11,9 @@
          <a href="#main" class="visually-hidden-focusable">Пропустить к содержимому</a> 
         <div class="container">
          <header class="header">
-            <div class="header__logo"><svg><use href="img/sprite.svg#logo-icon"></use></svg>
+            <div class="header__logo"><svg aria-hidden="true" focusable="false"><use href="img/sprite.svg#logo-icon"></use></svg>
             </div>
-            <nav class="nav">
+            <nav class="nav" aria-label="Main navigation">
              <ul class="nav__bar">
                 <li class="nav__item"><a href="#hero" class="nav__link">Home</a></li>
                 <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
@@ -22,28 +22,31 @@
              </ul>
             </nav>
             <div class="header__btn">
-            <button type="submit" class="header__order">Log in</button>
-            <button class="header__cart"><svg class="header__cart-icon"><use href="img/sprite.svg#cart-icon"></use></svg></button>
+            <button  type="button"  aria-label="Log in to your account" class="header__order">Log in</button>
+            <button type="button" class="header__cart"><svg class="header__cart-icon" aria-hidden="true"><use href="img/sprite.svg#cart-icon"></use></svg></button>
+            <span class="visually-hidden" aria-live="polite">3 items in cart</span>
             </div>
             
         </header>
         <main>
-            <section class="hero" id="hero">
+            <section class="hero" id="hero" aria-labelledby="hero-heading">
                 <div class="hero__colls">
-                <h1 class="hero__header">The Fastest<br>Pizza Delivery</h1>
+                <h1  id="hero-heading"  class="hero__header">The Fastest<svg class="hero__arrow-small"><use href="img/sprite.svg#small-arrow"></use></svg><br>Pizza Delivery</h1>
                 <p class="hero__text">We’ll deliver a hot, juicy pizza to your family in 30 minutes — <span class="text__strong">or it’s free!</span></p>
                 <p class="hero__text">Cooking process:</p>
                 <div class="hero__video">
-              <video class="hero__video" autoplay muted loop playsinline>
+              <video class="hero__video" aria-label="Watch how the pizza is made" muted playsinline preload="metadata">
             <source src="img/pizza-prep.mp4" type="video/mp4">
             <source src="img/pizza-prep.webm" type="video/webm">
+            Your browser does not support the video tag.
             </video>
-            <button type="button" class="video__btn"></button>
+            <button type="button" aria-label="Play video" class="video__btn"></button>
             </div>
             <div class="hero__btn">
                 <button class="hero__btn-left" type="button">Order Now</button>
                 <button class="hero__btn-right" type="button">Pizza Menu</button>
             </div>
+            <svg class="hero__arrow"><use href="img/sprite.svg#arrow"></use></svg>
             </div>
             <div class="hero__colls">
            <picture>
@@ -54,7 +57,7 @@
             </section>
              <section class="menu" id="menu">
                 <h1 class="menu__header">Menu</h1>
-                <ul class="menu__filter">
+                <ul class="menu__filter" aria-label="Menu filter">
                     <button type="button" class="menu__item">All</button>
                     <button type="button" class="menu__item">Meat</button>
                     <button type="button"  class="menu__item">Veggie</button>
@@ -66,141 +69,149 @@
                       <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/italian.webp" type="image/webp">
-                         <img src="img/italian.webp" alt="Delicious pizza on the table">
+                         <img src="img/italian.webp" alt="Italian pizza with tomato sauce, mozzarella, oregano and basil">
                          </picture>
                          </div>
                          <h4 class="card__header">Italian</h4>
                          <p class="card__text">Filling:Tomato sauce, mozzarella, oregano, basil.</p>
-                         <div class="card__btn">
-                            <button class="card__btn-22" type="button">22</button>
-                            <button class="card__btn-28" type="button">28</button>
-                            <button class="card__btn-33" type="button">33</button>
+                         <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
+                            <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
+                            <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
+                            <button class="card__btn-33" type="button" role="radio" aria-checked="false">33</button>
                          </div>
-                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Italian Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
                          <div class="product-card__price"
                          itemprop="offers"
                          itemscope
-                         itemtype="https://schema.org/Offer">
+                         itemtype="https://schema.org/Offer"
+                        aria-label="Price: 9 dollars 99 cents, available in stock">
                         <meta itemprop="priceCurrency" content="EUR" />
                         <span class="visually-hidden">Price:</span>
                         <data itemprop="price" value="8.35" class="price__value">9,99<sup>$</sup></data>
                         <link itemprop="availability" href="https://schema.org/InStock" />
                         </div>
                         <div class="card__positiv">
-                        <button type="button" class="card__minus">-</button>
-                        <span class="card__count">1</span>
-                        <button type="button" class="card__plus">+</button>
+                        <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
+                        <span class="card__count" role="status">1</span>
+                        <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                         </div>
-                        <button type="button" class="card__order">Grab Your Slice</button>
+                        <button type="button" class="card__order" aria-label="Add Italian Pizza to cart">Grab Your Slice</button>
+                        <div class="sr-only" aria-live="polite"></div>
                     </div>
                       <div class="menu__card">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/Venecia.webp" type="image/webp">
-                         <img src="img/Venecia.webp" alt="Delicious pizza on the table">
+                         <img src="img/Venecia.webp" alt="Diavola pizza with tomato sauce, mozzarella, spicy salami and chili">
                          </picture>
                         </div>
                          <h4 class="card__header">Diavola</h4>
                          <p class="card__text">Filling:Tomato sauce, mozzarella, spicy salami, chili.</p>
-                         <div class="card__btn">
-                            <button class="card__btn-22"type="button">22</button>
-                            <button class="card__btn-28"type="button">28</button>
-                            <button class="card__btn-33"type="button">33</button>
+                         <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
+                            <button class="card__btn-22"type="button" role="radio" aria-checked="false">22</button>
+                            <button class="card__btn-28"type="button" role="radio" aria-checked="true">28</button>
+                            <button class="card__btn-33"type="button" role="radio" aria-checked="false">33</button>
                          </div>
-                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Diavola Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
                          <div class="product-card__price"
                          itemprop="offers"
                          itemscope
-                         itemtype="https://schema.org/Offer">
+                         itemtype="https://schema.org/Offer"
+                        aria-label="Price: 9 dollars 99 cents, available in stock">
                         <meta itemprop="priceCurrency" content="EUR" />
                         <span class="visually-hidden">Price:</span>
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
                         <link itemprop="availability" href="https://schema.org/InStock" />
                         </div>
                         <div class="card__positiv">
-                        <button type="button" class="card__minus">-</button>
-                        <span class="card__count">1</span>
-                        <button type="button" class="card__plus">+</button>
+                        <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
+                        <span class="card__count" role="status" >1</span>
+                        <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
-                        <button type="button" class="card__order">Grab Your Slice</button>
-                    </div>
+                        <button type="button" class="card__order" aria-label="Add Diavola Pizza to cart">Grab Your Slice</button>
+                       <div class="sr-only" aria-live="polite"></div>
+                      </div>
                       <div class="menu__card">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/meat.webp" type="image/webp">
-                         <img src="img/meat.webp" alt="Delicious pizza on the table">
+                         <img src="img/meat.webp" alt="Inferno pizza with pepperoni, bacon, ham, mozzarella and tomato sauce">
                          </picture>
                          </div>
                          <h4 class="card__header">Inferno</h4>
                          <p class="card__text">Filling:Pepperoni, bacon, ham, mozzarella, tomato sauce.</p>
-                         <div class="card__btn">
-                            <button class="card__btn-22"type="button">22</button>
-                            <button class="card__btn-28"type="button">28</button>
-                            <button class="card__btn-33"type="button">33</button>
+                         <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
+                            <button class="card__btn-22"type="button" role="radio" aria-checked="false">22</button>
+                            <button class="card__btn-28"type="button" role="radio" aria-checked="true">28</button>
+                            <button class="card__btn-33"type="button" role="radio" aria-checked="false">33</button>
                          </div>
-                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Inferno Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
                          <div class="product-card__price"
                          itemprop="offers"
                          itemscope
-                         itemtype="https://schema.org/Offer">
+                         itemtype="https://schema.org/Offer"
+                        aria-label="Price: 9 dollars 99 cents, available in stock">
                         <meta itemprop="priceCurrency" content="EUR" />
                         <span class="visually-hidden">Price:</span>
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
                         <link itemprop="availability" href="https://schema.org/InStock" />
                         </div>
                         <div class="card__positiv">
-                        <button type="button" class="card__minus">-</button>
-                        <span class="card__count">1</span>
-                        <button type="button" class="card__plus">+</button>
+                        <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
+                        <span class="card__count" role="status">1</span>
+                        <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
-                        <button type="button" class="card__order">Grab Your Slice</button>
-                    </div>
+                        <button type="button" class="card__order" aria-label="Add Inferno Pizza to cart">Grab Your Slice</button>
+                    <div class="sr-only" aria-live="polite"></div>
+                      </div>
                       <div class="menu__card">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/cheese.webp" type="image/webp">
-                         <img src="img/cheese.webp" alt="Delicious pizza on the table">
+                         <img src="img/cheese.webp" alt="Formaggio pizza with mozzarella, gorgonzola, parmesan and cheddar">
                          </picture>
                         </div>
                          <h4 class="card__header">Formaggio</h4>
                          <p class="card__text">Filling:Mozzarella, gorgonzola, parmesan, cheddar, cream base.</p>
-                         <div class="card__btn">
-                            <button class="card__btn-22"type="button">22</button>
-                            <button class="card__btn-28"type="button">28</button>
-                            <button class="card__btn-33"type="button">33</button>
+                         <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
+                            <button class="card__btn-22"type="button" role="radio" aria-checked="false">22</button>
+                            <button class="card__btn-28"type="button" role="radio" aria-checked="true">28</button>
+                            <button class="card__btn-33"type="button" role="radio" aria-checked="false">33</button>
                          </div>
-                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Formaggio Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
                          <div class="product-card__price"
                          itemprop="offers"
                          itemscope
-                         itemtype="https://schema.org/Offer">
+                         itemtype="https://schema.org/Offer"
+                        aria-label="Price: 9 dollars 99 cents, available in stock">
                         <meta itemprop="priceCurrency" content="EUR" />
                         <span class="visually-hidden">Price:</span>
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
                         <link itemprop="availability" href="https://schema.org/InStock" />
                         </div>
                         <div class="card__positiv">
-                        <button type="button" class="card__minus">-</button>
-                        <span class="card__count">1</span>
-                        <button type="button" class="card__plus">+</button>
+                        <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
+                        <span class="card__count" role="status">1</span>
+                        <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
-                        <button type="button" class="card__order">Grab Your Slice</button>
-                    </div>
+                        <button type="button" class="card__order" aria-label="Add Formaggio Pizza to cart">Grab Your Slice</button>
+                    <div class="sr-only" aria-live="polite"></div>
+                      </div>
                 </div>
 
                 <section class="menu__popular">
                     <h2 class="menu__title">Our Most Popular Pizzas</h2>
                      <picture>
                      <source srcset="img/mostpopular.webp" type="image/webp">
-                    <img src="img/mostpopular.webp" alt="Delicious pizza on the table">
+                    <img src="img/mostpopular.webp" alt="" aria-hidden="true">
                     </picture>
                      </section>
                      <div class="menu__cards">
@@ -208,220 +219,228 @@
                           <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/argentina.webp" type="image/webp">
-                         <img src="img/argentina.webp" alt="Delicious pizza on the table">
+                         <img src="img/argentina.webp" alt="Argentina pizza with spicy chorizo, roasted peppers, red onion and mozzarella">
                          </picture>
                           </div>
                          <h4 class="card__header">Argentina</h4>
                          <p class="card__text">Filling:Spicy chorizo, roasted peppers, red onion, mozzarella.</p>
-                         <div class="card__btn">
-                            <button class="card__btn-22"type="button">22</button>
-                            <button class="card__btn-28"type="button">28</button>
-                            <button class="card__btn-33"type="button">33</button>
+                         <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
+                            <button class="card__btn-22"type="button" role="radio" aria-checked="false" >22</button>
+                            <button class="card__btn-28"type="button" role="radio" aria-checked="true">28</button>
+                            <button class="card__btn-33"type="button" role="radio" aria-checked="false">33</button>
                          </div>
-                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Argentina Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
                          <div class="product-card__price"
                          itemprop="offers"
                          itemscope
-                         itemtype="https://schema.org/Offer">
+                         itemtype="https://schema.org/Offer"
+                        aria-label="Price: 9 dollars 99 cents, available in stock">
                         <meta itemprop="priceCurrency" content="EUR" />
                         <span class="visually-hidden">Price:</span>
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
                         <link itemprop="availability" href="https://schema.org/InStock" />
                         </div>
                         <div class="card__positiv">
-                        <button type="button" class="card__minus">-</button>
-                        <span class="card__count">1</span>
-                        <button type="button" class="card__plus">+</button>
+                        <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
+                        <span class="card__count" role="status">1</span>
+                        <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
-                        <button type="button" class="card__order">Grab Your Slice</button>
-                    </div>
+                        <button type="button" class="card__order" aria-label="Add Argentina Pizza to cart">Grab Your Slice</button>
+                    <div class="sr-only" aria-live="polite"></div>
+                      </div>
                        <div class="menu__card">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/mushrooms.webp" type="image/webp">
-                         <img src="img/mushrooms.webp" alt="Delicious pizza on the table">
+                         <img src="img/mushrooms.webp" alt="Forest pizza with mushrooms, caramelized onions, mozzarella and garlic butter">
                          </picture>
                         </div>
                          <h4 class="card__header">Forest</h4>
                          <p class="card__text">Filling:Mushrooms, caramelized onions, mozzarella, garlic butter.</p>
-                         <div class="card__btn">
-                            <button class="card__btn-22"type="button">22</button>
-                            <button class="card__btn-28"type="button">28</button>
-                            <button class="card__btn-33"type="button">33</button>
+                         <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
+                            <button class="card__btn-22"type="button" role="radio" aria-checked="false">22</button>
+                            <button class="card__btn-28"type="button" role="radio" aria-checked="true">28</button>
+                            <button class="card__btn-33"type="button" role="radio" aria-checked="false">33</button>
                          </div>
-                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Forest Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
                          <div class="product-card__price"
                          itemprop="offers"
                          itemscope
-                         itemtype="https://schema.org/Offer">
+                         itemtype="https://schema.org/Offer"
+                        aria-label="Price: 9 dollars 99 cents, available in stock">
                         <meta itemprop="priceCurrency" content="EUR" />
                         <span class="visually-hidden">Price:</span>
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
                         <link itemprop="availability" href="https://schema.org/InStock" />
                         </div>
                         <div class="card__positiv">
-                        <button type="button" class="card__minus">-</button>
-                        <span class="card__count">1</span>
-                        <button type="button" class="card__plus">+</button>
+                        <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
+                        <span class="card__count" role="status">1</span>
+                        <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
-                        <button type="button" class="card__order">Grab Your Slice</button>
-                    </div>
+                        <button type="button" class="card__order" aria-label="Add Forest Pizza to cart">Grab Your Slice</button>
+                    <div class="sr-only" aria-live="polite"></div>
+                      </div>
                        <div class="menu__card">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/tomato.webp" type="image/webp">
-                         <img src="img/tomato.webp" alt="Delicious pizza on the table">
+                         <img src="img/tomato.webp" alt="Margherita pizza with tomato sauce, fresh mozzarella, cherry tomatoes and basil">
                          </picture>
                         </div>
                          <h4 class="card__header">Margherita</h4>
                          <p class="card__text">Filling:Tomato sauce, fresh mozzarella, cherry tomatoes, basil.</p>
-                         <div class="card__btn">
-                            <button class="card__btn-22"type="button">22</button>
-                            <button class="card__btn-28"type="button">28</button>
-                            <button class="card__btn-33"type="button">33</button>
+                         <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
+                            <button class="card__btn-22"type="button" role="radio" aria-checked="false">22</button>
+                            <button class="card__btn-28"type="button" role="radio" aria-checked="true" >28</button>
+                            <button class="card__btn-33"type="button" role="radio" aria-checked="false">33</button>
                          </div>
-                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Margherita Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
                          <div class="product-card__price"
                          itemprop="offers"
                          itemscope
-                         itemtype="https://schema.org/Offer">
+                         itemtype="https://schema.org/Offer"
+                        aria-label="Price: 9 dollars 99 cents, available in stock">
                         <meta itemprop="priceCurrency" content="EUR" />
                         <span class="visually-hidden">Price:</span>
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
                         <link itemprop="availability" href="https://schema.org/InStock" />
                         </div>
                         <div class="card__positiv">
-                        <button type="button" class="card__minus">-</button>
-                        <span class="card__count">1</span>
-                        <button type="button" class="card__plus">+</button>
+                        <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
+                        <span class="card__count" role="status">1</span>
+                        <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
-                        <button type="button" class="card__order">Grab Your Slice</button>
-                    </div>
+                        <button type="button" class="card__order" aria-label="Add Margherita Pizza to cart">Grab Your Slice</button>
+                    <div class="sr-only" aria-live="polite"></div>
+                      </div>
                        <div class="menu__card">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/italianX2.webp" type="image/webp">
-                         <img src="img/italianX2.webp" alt="Delicious pizza on the table">
+                         <img src="img/italianX2.webp" alt="Double pizza with double mozzarella, double crust and tomato sauce">
                          </picture>
                        </div>
                          <h4 class="card__header">Double</h4>
                          <p class="card__text">Filling:Double mozzarella, double crust, tomato sauce.</p>
-                         <div class="card__btn">
-                            <button class="card__btn-22" type="button">22</button>
-                            <button class="card__btn-28" type="button">28</button>
-                            <button class="card__btn-33" type="button">33</button>
+                         <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
+                            <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
+                            <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
+                            <button class="card__btn-33" type="button" role="radio" aria-checked="false">33</button>
                          </div>
-                         <button class="card__ingridients" type="button">+ Ingridients</button>
+                         <button class="card__ingridients" type="button" aria-label="Add extra ingredients for Double Pizza">+ Ingridients</button>
                          <div class="menu__bottom">
                          <div class="product-card__price"
                          itemprop="offers"
                          itemscope
-                         itemtype="https://schema.org/Offer">
+                         itemtype="https://schema.org/Offer"
+                        aria-label="Price: 9 dollars 99 cents, available in stock">
                         <meta itemprop="priceCurrency" content="EUR" />
                         <span class="visually-hidden">Price:</span>
                         <data itemprop="price" value="9.99" class="price__value">9,99<sup>$</sup></data>
                         <link itemprop="availability" href="https://schema.org/InStock" />
                         </div>
                         <div class="card__positiv">
-                        <button type="button" class="card__minus">-</button>
-                        <span class="card__count">1</span>
-                        <button type="button" class="card__plus">+</button>
+                        <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
+                        <span class="card__count" role="status" >1</span>
+                        <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
-                        <button type="button" class="card__order">Grab Your Slice</button>
-                    </div>
+                        <button type="button" class="card__order" aria-label="Add Double Pizza to cart">Grab Your Slice</button>
+                    <div class="sr-only" aria-live="polite"></div>
+                      </div>
                     </div>
                 </section>
-             
-              <section class="events" id="events">
+             <section class="events" id="events">
                          <div class="events__colls-1">
-                         <div class="events__pic">
-                          <picture class="pic__img">
+                        <a href="#" class="events__pic" aria-label="Read more about how we cook pizza">
+                        <picture class="pic__wrapper">
                          <source srcset="img/howwecool.webp" type="image/webp">
-                         <img class="pic__img" src="img/howwecool.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/howwecool.webp" alt="Chef taking a freshly baked pizza out of the oven" loading="lazy">
                          </picture>
-                         <p class="pic__text">How We Cook</p>
-                         <button type="button" class="pic__button">More</button>
-                         </div>
-                         <div class="events__pic">
-                          <picture class="pic__img">
+                        <p class="pic__text">How We Cook</p>
+                         <span class="pic__button">More</span>
+                        </a>
+
+                        <a href="#" class="events__pic" aria-label="Read more from our pizza blog">
+                       <picture class="pic__wrapper">
                          <source srcset="img/blog.webp" type="image/webp">
-                         <img class="pic__img" src="img/blog.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/blog.webp" alt="Close-up of deep dish pizza on a wooden table with cutlery" loading="lazy" >
                          </picture>
                          <p class="pic__text">Our Blog</p>
-                         <button type="button" class="pic__button">More</button>
-                         </div>
+                         <span class="pic__button">More</span>
+                        </a>
                          <div class="events__pic">
                          <h2 class="pic__header">Events</h2>
                          <p class="pic__text-info">We regularly host events where you<br> can enjoy delicious food at special prices!</p>
                          </div>
                          </div>
                          <div class="events__colls-2">
-                         <div class="events__pic">
-                          <picture class="pic__img">
+                            <a href="#" class="events__pic" aria-label="Learn more about our two pizzas for the price of one offer">
+                        <picture class="pic__wrapper">
                          <source srcset="img/price.webp" type="image/webp">
-                         <img class="pic__img" src="img/price.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/price.webp" alt="Woman eating pizza in a cozy restaurant" loading="lazy">
                          </picture>
                          <p class="pic__text">Two Pizzas for the Price of One</p>
-                         <button type="button" class="pic__button">More</button>
-                         </div>
-                         <div class="events__pic">
-                          <picture class="pic__img">
+                         <span class="pic__button">More</span>
+                        </a>
+                           <a href="#" class="events__pic" aria-label="Take a virtual kitchen tour">
+                         <picture class="pic__wrapper">
                          <source srcset="img/kitchen.webp" type="image/webp">
-                         <img class="pic__img" src="img/kitchen.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/kitchen.webp" alt="Restaurant kitchen with served dishes and glasses on the table" loading="lazy">
                          </picture>
                          <p class="pic__text">Kitchen Tour</p>
-                         <button type="button" class="pic__button">More</button>
-                         </div>
+                         <span  class="pic__button">More</span>
+                        </a>
                          </div>
                          <div class="events__colls-3">
-                         <div class="events__pic">
-                          <picture class="pic__img">
+                         <a href="#" class="events__pic" aria-label="Learn more about our free coffee with three pizzas offer">
+                        <picture class="pic__wrapper">
                          <source srcset="img/freecofe.webp" type="image/webp">
-                         <img class="pic__img" src="img/freecofe.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/freecofe.webp" alt="Pepperoni pizza with melted cheese on a wooden background" loading="lazy">
                          </picture>
                          <p class="pic__text">Free Coffee with Three Pizzas</p>
-                         <button type="button" class="pic__button">More</button>
-                         </div>
-                         <div class="events__pic">
-                          <picture class="pic__img">
+                         <span  class="pic__button">More</span>
+                        </a>
+                         <a href="#" class="events__pic" aria-label="Visit our Instagram page">
+                        <picture class="pic__wrapper">
                          <source srcset="img/ourinst.webp" type="image/webp">
-                         <img class="pic__img" src="img/ourinst.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/ourinst.webp" alt="Friends taking photos and laughing over lunch" loading="lazy">
                          </picture>
                          <p class="pic__text">Follow Us on Instagram</p>
-                         <button type="button" class="pic__button">More</button>
-                         </div>
-                         <div class="events__pic">
-                          <picture class="pic__img">
+                         <span class="pic__button">More</span>
+                        </a>
+                        <a href="#" class="events__pic" aria-label="Find out why customers choose us">
+                         <picture class="pic__wrapper">
                          <source srcset="img/choose.webp" type="image/webp">
-                         <img class="pic__img" src="img/choose.webp" alt="Delicious pizza on the table">
+                         <img class="pic__img" src="img/choose.webp" alt="Slice of pizza with melted cheese being lifted from the plate" loading="lazy">
                          </picture>
                          <p class="pic__text">Why Choose Us?</p>
-                         <button type="button" class="pic__button">More</button>
-                         </div>
+                         <span class="pic__button">More</span>
+                        </a>
                          </div>
               </section>
                <section class="about" id="about">
                 <div class="about__colls">
                     <div class="about__text">
-                      <h1 class="about__header">About us</h1>
+                      <h2 class="about__header">About us</h2>
                         <p>In just a couple of years, we’ve opened six locations across the country — New York, Los Angeles, Chicago, Austin, Miami, and Seattle. And we’re just getting started — more cities are already on the map!</p>
                         <picture>
                          <source srcset="img/pizzas.webp" type="image/webp">
-                         <img class="about__svg" src="img/pizzas.webp" alt="Delicious pizza on the table">
+                         <img class="about__svg" src="img/pizzas.webp" alt="Three different pizzas with various toppings representing the variety of our menu." loading="lazy">
                          </picture>
                         <p>Each kitchen operates on a grand scale — more than 4,000–5,000 sq. ft. of space and hundreds of dedicated team members making sure every order is prepared, packed, and delivered right on time.</p>
                     </div>
                     <div class="about__img">
                          <picture>
                          <source srcset="img/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden 1.webp" type="image/webp">
-                         <img class="about__img-pizza" src="img/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden 1.webp" alt="Delicious pizza on the table">
+                         <img class="about__img-pizza" src="img/top-view-pepperoni-pizza-with-mushroom-sausages-bell-pepper-olive-corn-black-wooden 1.webp" alt="Close-up of freshly baked pizza with pepperoni, mushrooms, olives, and green peppers on a dark wooden table." loading="lazy">
                          </picture>
                     </div>
                 </div>
@@ -434,7 +453,7 @@
           <div class="container__footer">
             <div class="footer__container">
               <div class="footer__rows">
-             <div class="footer__logo"><svg class="footer__logo-img"><use href="img/sprite.svg#logo-icon"></use></svg></div>
+             <div class="footer__logo"><svg aria-hidden="true" focusable="false" class="footer__logo-img"><use href="img/sprite.svg#logo-icon"></use></svg></div>
             <div class="footer__nav-item">
           <ul>
             <li><a class="footer__nav-link footer__strong" href="">Home</a></li>
@@ -479,9 +498,9 @@
          </p>
          </div>
          <div class="footer__social">
-         <div class="footer__icon"><svg class="footer__img"><use href="img/sprite.svg#icon-inst"></use></svg></div>
-         <div class="footer__icon"><svg class="footer__img"><use href="img/sprite.svg#icon-twitter"></use></svg></div>
-         <div class="footer__icon"><svg class="footer__img"><use href="img/sprite.svg#icon-fb"></use></svg></div>
+         <a href="#"  aria-label="Instagram" class="footer__icon"><svg class="footer__img" aria-hidden="true" focusable="false" ><use href="img/sprite.svg#icon-inst"></use></svg></a>
+         <a href="#" aria-label="Twitter" class="footer__icon"><svg class="footer__img" aria-hidden="true" focusable="false"><use href="img/sprite.svg#icon-twitter"></use></svg></a>
+         <a href="#" aria-label="Facebook" class="footer__icon"><svg class="footer__img" aria-hidden="true" focusable="false"><use href="img/sprite.svg#icon-fb"></use></svg></a>
          </div>
          </div>
          </div>
