@@ -28,7 +28,7 @@
             </div>
             
         </header>
-        <main>
+        <main id="main">
             <section class="hero" id="hero" aria-labelledby="hero-heading">
                 <div class="hero__colls">
                 <h1  id="hero-heading"  class="hero__header">The Fastest<svg class="hero__arrow-small"><use href="img/sprite.svg#small-arrow"></use></svg><br>Pizza Delivery</h1>
@@ -65,14 +65,14 @@
                     <li><button  type="button" class="menu__item">Mushroom</button></li>
                 </ul>
                 <div class="menu__cards">
-                    <div class="menu__card">
+                    <div class="menu__card" itemscope itemtype="https://schema.org/Product">
                       <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/italian.webp" type="image/webp">
                          <img src="img/italian.webp" alt="Italian pizza with tomato sauce, mozzarella, oregano and basil">
                          </picture>
                          </div>
-                         <h4 itemprop="name" class="card__header">Italian</h4>
+                         <h3 itemprop="name" class="card__header">Italian</h3>
                          <p itemprop="description" class="card__text">Filling:Tomato sauce, mozzarella, oregano, basil.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
@@ -96,14 +96,14 @@
                         <button type="button" class="card__order" aria-label="Add Italian Pizza to cart">Grab Your Slice</button>
                         <div class="sr-only" aria-live="polite"></div>
                     </div>
-                      <div class="menu__card">
+                      <div class="menu__card" itemscope itemtype="https://schema.org/Product">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/Venecia.webp" type="image/webp">
                          <img src="img/Venecia.webp" alt="Diavola pizza with tomato sauce, mozzarella, spicy salami and chili">
                          </picture>
                         </div>
-                         <h4 itemprop="name" class="card__header">Diavola</h4>
+                         <h3 itemprop="name" class="card__header">Diavola</h3>
                          <p itemprop="description" class="card__text">Filling:Tomato sauce, mozzarella, spicy salami, chili.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
@@ -128,14 +128,14 @@
                         <button type="button" class="card__order" aria-label="Add Diavola Pizza to cart">Grab Your Slice</button>
                        <div class="sr-only" aria-live="polite"></div>
                       </div>
-                      <div class="menu__card">
+                      <div class="menu__card" itemscope itemtype="https://schema.org/Product">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/meat.webp" type="image/webp">
                          <img src="img/meat.webp" alt="Inferno pizza with pepperoni, bacon, ham, mozzarella and tomato sauce">
                          </picture>
                          </div>
-                         <h4 itemprop="name" class="card__header">Inferno</h4>
+                         <h3 itemprop="name" class="card__header">Inferno</h3>
                          <p itemprop="description" class="card__text">Filling:Pepperoni, bacon, ham, mozzarella, tomato sauce.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
@@ -160,14 +160,14 @@
                         <button type="button" class="card__order" aria-label="Add Inferno Pizza to cart">Grab Your Slice</button>
                     <div class="sr-only" aria-live="polite"></div>
                       </div>
-                      <div class="menu__card">
+                      <div class="menu__card" itemscope itemtype="https://schema.org/Product">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/cheese.webp" type="image/webp">
                          <img src="img/cheese.webp" alt="Formaggio pizza with mozzarella, gorgonzola, parmesan and cheddar">
                          </picture>
                         </div>
-                         <h4 itemprop="name" class="card__header">Formaggio</h4>
+                         <h3 itemprop="name" class="card__header">Formaggio</h3>
                          <p itemprop="description" class="card__text">Filling:Mozzarella, gorgonzola, parmesan, cheddar, cream base.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
@@ -202,14 +202,14 @@
                     </picture>
                   </aside>
                      <div class="menu__cards">
-                        <div class="menu__card">
+                        <div class="menu__card" itemscope itemtype="https://schema.org/Product">
                           <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/argentina.webp" type="image/webp">
                          <img src="img/argentina.webp" alt="Argentina pizza with spicy chorizo, roasted peppers, red onion and mozzarella">
                          </picture>
                           </div>
-                         <h4 itemprop="name" class="card__header">Argentina</h4>
+                         <h3 itemprop="name" class="card__header">Argentina</h3>
                          <p itemprop="description" class="card__text">Filling:Spicy chorizo, roasted peppers, red onion, mozzarella.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false" >22</button>
@@ -234,14 +234,14 @@
                         <button type="button" class="card__order" aria-label="Add Argentina Pizza to cart">Grab Your Slice</button>
                     <div class="sr-only" aria-live="polite"></div>
                       </div>
-                       <div class="menu__card">
+                       <div class="menu__card" itemscope itemtype="https://schema.org/Product">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/mushrooms.webp" type="image/webp">
                          <img src="img/mushrooms.webp" alt="Forest pizza with mushrooms, caramelized onions, mozzarella and garlic butter">
                          </picture>
                         </div>
-                         <h4 itemprop="name" class="card__header">Forest</h4>
+                         <h3 itemprop="name" class="card__header">Forest</h3>
                          <p itemprop="description" class="card__text">Filling:Mushrooms, caramelized onions, mozzarella, garlic butter.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
@@ -266,14 +266,14 @@
                         <button type="button" class="card__order" aria-label="Add Forest Pizza to cart">Grab Your Slice</button>
                     <div class="sr-only" aria-live="polite"></div>
                       </div>
-                       <div class="menu__card">
+                       <div class="menu__card" itemscope itemtype="https://schema.org/Product">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/tomato.webp" type="image/webp">
                          <img src="img/tomato.webp" alt="Margherita pizza with tomato sauce, fresh mozzarella, cherry tomatoes and basil">
                          </picture>
                         </div>
-                         <h4 itemprop="name" class="card__header">Margherita</h4>
+                         <h3 itemprop="name" class="card__header">Margherita</h3>
                          <p itemprop="description" class="card__text">Filling:Tomato sauce, fresh mozzarella, cherry tomatoes, basil.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
@@ -298,14 +298,14 @@
                         <button type="button" class="card__order" aria-label="Add Margherita Pizza to cart">Grab Your Slice</button>
                     <div class="sr-only" aria-live="polite"></div>
                       </div>
-                       <div class="menu__card">
+                       <div class="menu__card" itemscope itemtype="https://schema.org/Product">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/italianX2.webp" type="image/webp">
                          <img src="img/italianX2.webp" alt="Double pizza with double mozzarella, double crust and tomato sauce">
                          </picture>
                        </div>
-                         <h4 itemprop="name" class="card__header">Double</h4>
+                         <h3 itemprop="name" class="card__header">Double</h3>
                          <p itemprop="description" class="card__text">Filling:Double mozzarella, double crust, tomato sauce.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
                             <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
