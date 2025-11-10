@@ -495,7 +495,7 @@ btn-active {
       background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
       color: #FFFFFF; }
 
-.card__ingridients {
+.card__ingredients {
   border-radius: 1.875rem;
   width: clamp(7rem, 10vw, 12.125rem);
   padding-block: 0.5rem;
@@ -504,7 +504,7 @@ btn-active {
   color: #FF5924;
   cursor: pointer;
   transition: transform .3s ease, box-shadow .3s ease; }
-  .card__ingridients:hover {
+  .card__ingredients:hover {
     background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
     color: #FFFFFF; }
 
