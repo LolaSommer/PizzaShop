@@ -228,3 +228,22 @@
       border-radius:3.125rem;
       padding-block:1.25rem;
      }
+     @media (max-width: 768px) {
+        .pic__text{
+            font-size: $fs-filter;
+        }
+        .pic__header{
+            font-size: $fs-h2;
+        }
+     }
+
+     @media (max-width: 480px) {
+        .pic__text{
+            font-size: $fs-small;
+        }
+        .pic__header{
+            font-size: $fs-h3;
+        }
+     }
+
+    

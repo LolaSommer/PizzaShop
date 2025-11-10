@@ -49,6 +49,52 @@ $color-bg-footer:linear-gradient(180deg, #1A0B00 0%, #140800 100%);
         @content;
     }
 }
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin grid-center {
+    display: grid;
+    place-items: center;
+}
+@mixin btn-style {
+    padding-block:0.938rem;
+    padding-inline: clamp(1.5rem,2vw,3.125rem);
+    background: $color-btn;
+    color:$color-white;
+    border-radius:1.875rem;
+    text-align: center;
+    font-size: $fs-body;
+    cursor: pointer;
+     transition: transform .3s ease, box-shadow .3s ease;
+    &:hover{
+    transform: translateY(-3px) scale(1.05);
+    }
+}
+@mixin card-style {
+    background: $color-card-bg;
+    border-radius:1.25rem;
+    padding:clamp(1.25rem,2vw,2.5rem);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+@mixin section-style {
+    padding-block:clamp(3rem,5vw,7.5rem);
+    padding-inline:clamp(1.875rem,3vw,5rem);
+}
+@mixin text-gradient($color-start, $color-end) {
+    background: linear-gradient(90deg, $color-start, $color-end);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@mixin hover-effect {
+    cursor:pointer;
+    transition: transform .3s ease, box-shadow .3s ease;
+    &:hover {
+        background:$color-bg;
+        color:$color-border;
+    }
+}
 
 /* 1. Убираем плавные скроллы */
 @media (prefers-reduced-motion: reduce) {
