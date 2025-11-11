@@ -1,4 +1,5 @@
 .nav{
+   
     &__bar{
     font-size: $fs-body;
     display: flex;
@@ -20,8 +21,13 @@
 .header{
     display: grid;
     grid-template-columns: auto auto auto;
-   
     align-items: center;
+    position:sticky;
+   top:0;
+   z-index:100;
+   width: 100%;
+   background: $color-bg;
+   
     &__logo{
         max-width:clamp(6rem,8vw,10.125rem);
         color:#FFA228;

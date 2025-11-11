@@ -152,7 +152,12 @@ aside {
 .header {
   display: grid;
   grid-template-columns: auto auto auto;
-  align-items: center; }
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%); }
   .header__logo {
     max-width: clamp(6rem, 8vw, 10.125rem);
     color: #FFA228;
@@ -606,6 +611,10 @@ btn-active {
 .pic__img {
   border-radius: 3.125rem;
   padding-block: 1.25rem; }
+
+.nav__link.active {
+  border-bottom: 2px solid #ff3d00;
+  transition: 0.3s ease; }
 
 @media (max-width: 768px) {
   .pic__text {

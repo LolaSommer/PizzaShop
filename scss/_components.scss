@@ -228,6 +228,11 @@
       border-radius:3.125rem;
       padding-block:1.25rem;
      }
+     .nav__link.active{
+      border-bottom: 2px solid #ff3d00;
+      transition: 0.3s ease;
+     }
+
      @media (max-width: 768px) {
         .pic__text{
             font-size: $fs-filter;
