@@ -25,10 +25,12 @@
             </nav>
             <div class="header__btn">
             <button  type="button"  aria-label="Log in to your account" class="header__order">Log in</button>
+            <div class="cart">
             <button type="button" class="header__cart"><svg class="header__cart-icon" aria-label="Open shopping cart"><use href="img/sprite.svg#cart-icon"></use></svg></button>
+            <span class="cart__total">0</span>
             <span class="visually-hidden" aria-live="polite">3 items in cart</span>
+             </div>
             </div>
-            
         </header>
         <main id="main">
             <section class="hero" id="hero" aria-labelledby="hero-heading">
@@ -77,9 +79,9 @@
                          <h3 itemprop="name" class="card__header">Italian</h3>
                          <p itemprop="description" class="card__text">Filling:Tomato sauce, mozzarella, oregano, basil.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
-                            <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
-                            <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
-                            <button class="card__btn-33" type="button" role="radio" aria-checked="false">33</button>
+                            <button class="card__btn-22" type="button" role="radio" aria-checked="false" data-size="22">22</button>
+                            <button class="card__btn-28" type="button" role="radio" aria-checked="true" data-size="28">28</button>
+                            <button class="card__btn-33" type="button" role="radio" aria-checked="false" data-size="33">33</button>
                          </div>
                          <button class="card__ingredients" type="button" aria-label="Add extra ingredients for Italian Pizza">+ Ingredients</button>
                          <div class="menu__bottom">
@@ -91,7 +93,7 @@
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
-                        <span class="card__count" role="status">1</span>
+                        <span class="card__count" role="status">0</span>
                         <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                         </div>
@@ -108,9 +110,9 @@
                          <h3 itemprop="name" class="card__header">Diavola</h3>
                          <p itemprop="description" class="card__text">Filling:Tomato sauce, mozzarella, spicy salami, chili.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
-                            <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
-                            <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
-                            <button class="card__btn-33" type="button" role="radio" aria-checked="false">33</button>
+                            <button class="card__btn-22" type="button" role="radio" aria-checked="false" data-size="22">22</button>
+                            <button class="card__btn-28" type="button" role="radio" aria-checked="true"data-size="28">28</button>
+                            <button class="card__btn-33" type="button" role="radio" aria-checked="false" data-size="33">33</button>
                          </div>
                          <button class="card__ingredients" type="button" aria-label="Add extra ingredients for Diavola Pizza">+ Ingredients</button>
                          <div class="menu__bottom">
@@ -123,7 +125,7 @@
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
-                        <span class="card__count" role="status" >1</span>
+                        <span class="card__count" role="status" >0</span>
                         <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
@@ -140,9 +142,9 @@
                          <h3 itemprop="name" class="card__header">Inferno</h3>
                          <p itemprop="description" class="card__text">Filling:Pepperoni, bacon, ham, mozzarella, tomato sauce.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
-                            <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
-                            <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
-                            <button class="card__btn-33" type="button" role="radio" aria-checked="false">33</button>
+                            <button class="card__btn-22" type="button" role="radio" aria-checked="false" data-size="22">22</button>
+                            <button class="card__btn-28" type="button" role="radio" aria-checked="true" data-size="28">28</button>
+                            <button class="card__btn-33" type="button" role="radio" aria-checked="false" data-size="33">33</button>
                          </div>
                          <button class="card__ingredients" type="button" aria-label="Add extra ingredients for Inferno Pizza">+ Ingredients</button>
                          <div class="menu__bottom">
@@ -155,7 +157,7 @@
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
-                        <span class="card__count" role="status">1</span>
+                        <span class="card__count" role="status">0</span>
                         <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
@@ -172,9 +174,9 @@
                          <h3 itemprop="name" class="card__header">Formaggio</h3>
                          <p itemprop="description" class="card__text">Filling:Mozzarella, gorgonzola, parmesan, cheddar, cream base.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
-                            <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
-                            <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
-                            <button class="card__btn-33" type="button" role="radio" aria-checked="false">33</button>
+                            <button class="card__btn-22" type="button" role="radio" aria-checked="false" data-size="22" >22</button>
+                            <button class="card__btn-28" type="button" role="radio" aria-checked="true" data-size="28">28</button>
+                            <button class="card__btn-33" type="button" role="radio" aria-checked="false" data-size="33">33</button>
                          </div>
                          <button class="card__ingredients" type="button" aria-label="Add extra ingredients for Formaggio Pizza">+ Ingredients</button>
                          <div class="menu__bottom">
@@ -187,7 +189,7 @@
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
-                        <span class="card__count" role="status">1</span>
+                        <span class="card__count" role="status">0</span>
                         <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
@@ -214,9 +216,9 @@
                          <h3 itemprop="name" class="card__header">Argentina</h3>
                          <p itemprop="description" class="card__text">Filling:Spicy chorizo, roasted peppers, red onion, mozzarella.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
-                            <button class="card__btn-22" type="button" role="radio" aria-checked="false" >22</button>
-                            <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
-                            <button class="card__btn-33" type="button" role="radio" aria-checked="false">33</button>
+                            <button class="card__btn-22" type="button" role="radio" aria-checked="false" data-size="22">22</button>
+                            <button class="card__btn-28" type="button" role="radio" aria-checked="true" data-size="28">28</button>
+                            <button class="card__btn-33" type="button" role="radio" aria-checked="false" data-size="33">33</button>
                          </div>
                          <button class="card__ingredients" type="button" aria-label="Add extra ingredients for Argentina Pizza">+ Ingredients</button>
                          <div class="menu__bottom">
@@ -229,7 +231,7 @@
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
-                        <span class="card__count" role="status">1</span>
+                        <span class="card__count" role="status">0</span>
                         <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
@@ -246,9 +248,9 @@
                          <h3 itemprop="name" class="card__header">Forest</h3>
                          <p itemprop="description" class="card__text">Filling:Mushrooms, caramelized onions, mozzarella, garlic butter.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
-                            <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
-                            <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
-                            <button class="card__btn-33" type="button" role="radio" aria-checked="false">33</button>
+                            <button class="card__btn-22" type="button" role="radio" aria-checked="false" data-size="22">22</button>
+                            <button class="card__btn-28" type="button" role="radio" aria-checked="true" data-size="28">28</button>
+                            <button class="card__btn-33" type="button" role="radio" aria-checked="false" data-size="33">33</button>
                          </div>
                          <button class="card__ingredients" type="button" aria-label="Add extra ingredients for Forest Pizza">+ Ingredients</button>
                          <div class="menu__bottom">
@@ -261,7 +263,7 @@
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
-                        <span class="card__count" role="status">1</span>
+                        <span class="card__count" role="status">0</span>
                         <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
@@ -278,9 +280,9 @@
                          <h3 itemprop="name" class="card__header">Margherita</h3>
                          <p itemprop="description" class="card__text">Filling:Tomato sauce, fresh mozzarella, cherry tomatoes, basil.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
-                            <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
-                            <button class="card__btn-28" type="button" role="radio" aria-checked="true" >28</button>
-                            <button class="card__btn-33" type="button" role="radio" aria-checked="false">33</button>
+                            <button class="card__btn-22" type="button" role="radio" aria-checked="false" data-size="22">22</button>
+                            <button class="card__btn-28" type="button" role="radio" aria-checked="true" data-size="28">28</button>
+                            <button class="card__btn-33" type="button" role="radio" aria-checked="false" data-size="33">33</button>
                          </div>
                          <button class="card__ingredients" type="button" aria-label="Add extra ingredients for Margherita Pizza">+ Ingredients</button>
                          <div class="menu__bottom">
@@ -293,7 +295,7 @@
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
-                        <span class="card__count" role="status">1</span>
+                        <span class="card__count" role="status">0</span>
                         <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
@@ -310,9 +312,9 @@
                          <h3 itemprop="name" class="card__header">Double</h3>
                          <p itemprop="description" class="card__text">Filling:Double mozzarella, double crust, tomato sauce.</p>
                          <div class="card__btn" role="radiogroup" aria-label="Select pizza size">
-                            <button class="card__btn-22" type="button" role="radio" aria-checked="false">22</button>
-                            <button class="card__btn-28" type="button" role="radio" aria-checked="true">28</button>
-                            <button class="card__btn-33" type="button" role="radio" aria-checked="false">33</button>
+                            <button class="card__btn-22" type="button" role="radio" aria-checked="false" data-size="22">22</button>
+                            <button class="card__btn-28" type="button" role="radio" aria-checked="true" data-size="28">28</button>
+                            <button class="card__btn-33" type="button" role="radio" aria-checked="false" data-size="33">33</button>
                          </div>
                          <button class="card__ingredients" type="button" aria-label="Add extra ingredients for Double Pizza">+ Ingredients</button>
                          <div class="menu__bottom">
@@ -325,7 +327,7 @@
                         </div>
                         <div class="card__positiv">
                         <button type="button" class="card__minus" aria-label="Decrease quantity">-</button>
-                        <span class="card__count" role="status" >1</span>
+                        <span class="card__count" role="status" >0</span>
                         <button type="button" class="card__plus" aria-label="Increase quantity">+</button>
                         </div>
                          </div>
