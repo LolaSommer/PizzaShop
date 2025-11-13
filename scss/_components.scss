@@ -269,6 +269,132 @@
    color:$color-white;
 }
 
+/*модалка сырая*/
+.hidden{
+ display: none !important;
+}
+.modal{
+  display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+  overflow-y:auto;
+  overscroll-behavior: contain;
+   &__window{
+position:relative;
+background:$color-bg;
+color:$color-white;
+z-index: 1;
+padding:clamp(0.938rem,4vw,1.875rem);
+ max-height: 80vh;
+ height: 80vh;
+border-radius:30px;
+margin:0 auto;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  max-width: 960px; // 🔹 или 880px — проверь визуально
+  width: 100%;
+  }
+  &__cards{
+   display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  padding: 16px 0;
+  }
+    &__overlay{
+    position:absolute;
+    inset:0;
+    z-index: 0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &__close{
+  width:20px;
+  height:20px;
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-border;
+  
+}
+&__system{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   height: 100%;
+   overflow: hidden;
+}
+&__icon{
+  width:1.25rem;
+  height:1.25rem;
+  fill:currentColor;
+}
+&__colls-ingredients{
+   overflow-y: auto;
+   padding-left: 1rem;
+}
+&__ingredients-text{
+   font-size: $fs-body;
+   line-height: $lh-loose;
+   margin: 0;
+}
+&__btn{
+  margin-block: 20px;
+
+}
+&__ingredients-title{
+   text-align: center;
+}
+&__radio{
+   
+}
+&__btn-group{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap:0.5rem;
+ 
+}
+&__colls-img{
+   display: flex;
+   align-items: center;
+   padding-block:1.875rem;
+}
+&__img{
+   width:clamp(15rem,20vw,25.625rem)
+}
+&__card{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap:0.25rem;
+   cursor: pointer;
+  transition:transform .3s ease, box-shadow .3s ease;
+  &:hover{
+   background:$color-bg-footer;
+   color:$color-footer-header;
+   border-radius: 1.25rem;
+   border:1px solid $color-border;
+  }
+}
+&__order{
+   display: flex;
+   justify-content: center;
+   margin-block:1.875rem;
+}
+&__price{
+   margin: 0;
+}
+  }
+.modal__card-active{
+   background:$color-bg-footer;
+   color:$color-footer-header;
+   border-radius: 1.25rem;
+   border:1px solid $color-border;
+}
+       
+
      @media (max-width: 768px) {
         .pic__text{
             font-size: $fs-filter;

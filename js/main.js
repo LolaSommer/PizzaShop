@@ -34,8 +34,9 @@ function updateOnScroll() {
 }
 window.addEventListener('scroll', updateOnScroll);
 
-const cards = document.querySelectorAll('.card__positiv');
- 
+const cards = document.querySelectorAll('.menu__card'); 
+let cartItems = [];
+const cartTotal = document.querySelector('.cart__total');
 cards.forEach((card)=>{
   const pizzaState = { size:null, ingredients:[], quantity:0 }
   const minus = card.querySelector('.card__minus');
@@ -59,20 +60,52 @@ cards.forEach((card)=>{
     }else{
       minus.disabled = false;
     }
+    if (pizzaState.size && pizzaState.quantity > 0) {
+  order.disabled = false;
+} else {
+  order.disabled = true;
+}
+
    
   });
-
-const radioButtons = card.querySelectorAll('.card__btn');
-radioButtons.forEach((radioButton)=>{
-  const button = radioButton.querySelectorAll('button');
-  radioButton.addEventListener('click',(event)=>{
-  
-     button.forEach(l => l.classList.remove('active-btn'));
-  
-      event.target.classList.add('active-btn');
-      pizzaState.size = event.target.dataset.size;
-  })
+const sizeButtons = card.querySelectorAll('.card__btn button');
+sizeButtons.forEach((btn)=>{
+btn.addEventListener('click',(event)=>{
+  sizeButtons.forEach(b=>b.classList.remove('active-btn'));
+  event.currentTarget.classList.add('active-btn');
+  pizzaState.size = event.currentTarget.dataset.size;
+});
+if (pizzaState.size && pizzaState.quantity > 0) {
+  order.disabled = false;
+}
 })
+
+
+
+const order = card.querySelector('.card__order');
+ order.addEventListener('click',()=>{ 
+  const item ={...pizzaState}; 
+  if(item.size && item.quantity >0){
+     cartItems.push(item); 
+    } 
+    pizzaState.quantity = 0;
+    count.textContent = 0;
+    minus.disabled = true;
+    order.disabled = true;
+    sizeButtons.forEach(b => b.classList.remove('active-btn'));
+
+    const total = cartItems.reduce((sum,item)=>sum+item.quantity,0); 
+     cartTotal.textContent = total; });
 });
 
-
+const modal = document.querySelector('.modal');
+const modalClose = document.querySelector('.modal__close');
+const ingredientCards = document.querySelectorAll('.modal__card');
+const modalOrderBtn = document.querySelector('.modal .card__order');
+let madalState = {
+  size:null,
+  crust:null,
+  ingredients:[],
+  basePrice:9.99,
+  extraPrice:0
+};

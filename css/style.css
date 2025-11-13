@@ -649,6 +649,107 @@ btn-active {
   background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
   color: #FFFFFF; }
 
+/*модалка сырая*/
+.hidden {
+  display: none !important; }
+
+.modal {
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  font-size: 1.125rem;
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain; }
+  .modal__window {
+    position: relative;
+    background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%);
+    color: #FFFFFF;
+    z-index: 1;
+    padding: clamp(0.938rem, 4vw, 1.875rem);
+    max-height: 80vh;
+    height: 80vh;
+    border-radius: 30px;
+    margin: 0 auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    max-width: 960px;
+    width: 100%; }
+  .modal__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    padding: 16px 0; }
+  .modal__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px); }
+  .modal__close {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #FF5924; }
+  .modal__system {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    overflow: hidden; }
+  .modal__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor; }
+  .modal__colls-ingredients {
+    overflow-y: auto;
+    padding-left: 1rem; }
+  .modal__ingredients-text {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin: 0; }
+  .modal__btn {
+    margin-block: 20px; }
+  .modal__ingredients-title {
+    text-align: center; }
+  .modal__btn-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; }
+  .modal__colls-img {
+    display: flex;
+    align-items: center;
+    padding-block: 1.875rem; }
+  .modal__img {
+    width: clamp(15rem, 20vw, 25.625rem); }
+  .modal__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+    transition: transform .3s ease, box-shadow .3s ease; }
+    .modal__card:hover {
+      background: linear-gradient(180deg, #1A0B00 0%, #140800 100%);
+      color: #e7cdb4;
+      border-radius: 1.25rem;
+      border: 1px solid #FF5924; }
+  .modal__order {
+    display: flex;
+    justify-content: center;
+    margin-block: 1.875rem; }
+  .modal__price {
+    margin: 0; }
+
+.modal__card-active {
+  background: linear-gradient(180deg, #1A0B00 0%, #140800 100%);
+  color: #e7cdb4;
+  border-radius: 1.25rem;
+  border: 1px solid #FF5924; }
+
 @media (max-width: 768px) {
   .pic__text {
     font-size: 1.25rem; }
