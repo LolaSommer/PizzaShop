@@ -102,10 +102,74 @@ const modal = document.querySelector('.modal');
 const modalClose = document.querySelector('.modal__close');
 const ingredientCards = document.querySelectorAll('.modal__card');
 const modalOrderBtn = document.querySelector('.modal .card__order');
-let madalState = {
+const btnIngredients = document.querySelectorAll('.card__ingredients');
+const modalOverlay = document.querySelector('.modal__overlay');
+let modalState = {
   size:null,
   crust:null,
   ingredients:[],
   basePrice:9.99,
   extraPrice:0
 };
+btnIngredients.forEach((button)=>{
+  button.addEventListener('click', (event)=>{
+         let currentCard = null;
+currentCard = button.closest('.menu__card');
+   const activeBtn = currentCard.querySelector('.active-btn');
+ const modalSizeButtons = modal.querySelectorAll('.modal__radio button')
+   modalSizeButtons.forEach(btn => btn.classList.remove('active-btn'));
+   if(activeBtn){
+ modalSizeButtons.forEach((modalBtn)=>{ 
+  if(modalBtn.dataset.size === activeBtn.dataset.size){
+    modalBtn.classList.add('active-btn');
+  }
+})
+   }
+  
+    const closestCont = button.closest('.menu__card');
+    modal.classList.remove('hidden');
+    modal.setAttribute('aria-hidden','false');
+  });
+
+});
+
+
+modalClose.addEventListener('click',(event)=>{
+  modal.classList.add('hidden');
+   modal.setAttribute('aria-hidden','true');
+
+});
+
+modalOverlay.addEventListener('click',()=>{
+modal.classList.add('hidden');
+});
+
+
+const modalSizeButtons = modal.querySelectorAll('.modal__radio button');
+modalSizeButtons.forEach((modalSizeButton)=>{
+  modalSizeButton.addEventListener('click',()=>{
+    modalSizeButtons.forEach(btn => btn.classList.remove('active-btn'));
+     modalSizeButton.classList.add('active-btn');
+  })
+})
+
+const crustBtns = modal.querySelectorAll('.modal__btn button');
+crustBtns.forEach((crustBtn)=>{
+  crustBtn.addEventListener('click',(event)=>{
+crustBtns.forEach(b=>b.classList.remove('btn-active'));
+event.currentTarget.classList.add('btn-active');
+modalState.crust = event.currentTarget.dataset.crust;
+  });
+
+});
+
+ingredientCards.forEach((ingredientCard)=>{
+ingredientCard.addEventListener('click',(event)=>{
+
+if(ingredientCard.classList.contains('modal__card-value')){
+  event.currentTarget.classList.remove('modal__card-value');
+}else{
+event.currentTarget.classList.add('modal__card-value');
+}
+})
+})

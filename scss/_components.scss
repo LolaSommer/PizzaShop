@@ -269,7 +269,7 @@
    color:$color-white;
 }
 
-/*модалка сырая*/
+
 .hidden{
  display: none !important;
 }
@@ -393,7 +393,16 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
    border-radius: 1.25rem;
    border:1px solid $color-border;
 }
-       
+.btn-active{
+   background: $color-btn;
+   color:$color-white;
+} 
+.modal__card-value{
+   background:$color-bg-footer;
+   color:$color-footer-header;
+   border-radius: 1.25rem;
+   border:1px solid $color-border;
+}
 
      @media (max-width: 768px) {
         .pic__text{

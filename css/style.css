@@ -649,7 +649,6 @@ btn-active {
   background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
   color: #FFFFFF; }
 
-/*модалка сырая*/
 .hidden {
   display: none !important; }
 
@@ -745,6 +744,16 @@ btn-active {
     margin: 0; }
 
 .modal__card-active {
+  background: linear-gradient(180deg, #1A0B00 0%, #140800 100%);
+  color: #e7cdb4;
+  border-radius: 1.25rem;
+  border: 1px solid #FF5924; }
+
+.btn-active {
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  color: #FFFFFF; }
+
+.modal__card-value {
   background: linear-gradient(180deg, #1A0B00 0%, #140800 100%);
   color: #e7cdb4;
   border-radius: 1.25rem;
