@@ -191,12 +191,16 @@ aside {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(3rem, 5vw, 7.5rem); }
-  .hero__video {
+  .hero__play {
     max-width: clamp(10rem, 15vw, 18.75rem);
     border-radius: 0.75rem;
     position: relative;
     object-fit: cover;
     aspect-ratio: 16/9; }
+  .hero__video {
+    max-width: clamp(10rem, 15vw, 18.75rem);
+    border-radius: 0.75rem;
+    position: relative; }
   .hero__text {
     color: #A3A3A3;
     font-size: 1.25rem; }
@@ -472,7 +476,7 @@ aside {
       background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
       color: #FFFFFF; }
 
-btn-active {
+.btn-active {
   background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
   color: #FFFFFF;
   transition: all 0.3s ease; }

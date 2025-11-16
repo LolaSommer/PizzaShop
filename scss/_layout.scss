@@ -71,12 +71,18 @@
     grid-template-columns: 1fr 1fr;
     gap:clamp(3rem,5vw,7.5rem);
    
-    &__video{
+    &__play{
      max-width: clamp(10rem,15vw,18.75rem);
      border-radius:0.75rem;
      position: relative;
      object-fit: cover; aspect-ratio:16/9;
     
+    }
+    &__video{
+    max-width: clamp(10rem,15vw,18.75rem);
+     border-radius:0.75rem;
+     position: relative;
+     
     }
     &__text{
         color:$color-text;

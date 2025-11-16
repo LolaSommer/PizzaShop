@@ -104,6 +104,7 @@ const ingredientCards = document.querySelectorAll('.modal__card');
 const modalOrderBtn = document.querySelector('.modal .card__order');
 const btnIngredients = document.querySelectorAll('.card__ingredients');
 const modalOverlay = document.querySelector('.modal__overlay');
+
 let modalState = {
   size:null,
   crust:null,
@@ -115,6 +116,21 @@ btnIngredients.forEach((button)=>{
   button.addEventListener('click', (event)=>{
          let currentCard = null;
 currentCard = button.closest('.menu__card');
+      const cardTitle = currentCard.querySelector('.card__header');
+const modalTitle = modal.querySelector('.ingredients__title');
+modalTitle.textContent = cardTitle.textContent;
+
+const cardText = currentCard.querySelector('.card__text');
+const modalText = modal.querySelector('.modal__ingredients-text');
+modalText.textContent = cardText.textContent;
+
+ const cardSource = currentCard.querySelector('source');
+const modalSource = modal.querySelector('.modal__img').previousElementSibling; // <source>
+modalSource.srcset = cardSource.srcset;
+
+   
+
+
    const activeBtn = currentCard.querySelector('.active-btn');
  const modalSizeButtons = modal.querySelectorAll('.modal__radio button')
    modalSizeButtons.forEach(btn => btn.classList.remove('active-btn'));
@@ -125,12 +141,11 @@ currentCard = button.closest('.menu__card');
   }
 })
    }
-  
     const closestCont = button.closest('.menu__card');
     modal.classList.remove('hidden');
     modal.setAttribute('aria-hidden','false');
   });
-
+ 
 });
 
 
@@ -147,9 +162,10 @@ modal.classList.add('hidden');
 
 const modalSizeButtons = modal.querySelectorAll('.modal__radio button');
 modalSizeButtons.forEach((modalSizeButton)=>{
-  modalSizeButton.addEventListener('click',()=>{
+  modalSizeButton.addEventListener('click',(event)=>{
     modalSizeButtons.forEach(btn => btn.classList.remove('active-btn'));
      modalSizeButton.classList.add('active-btn');
+  modalState.size = event.currentTarget.dataset.size
   })
 })
 
@@ -162,14 +178,70 @@ modalState.crust = event.currentTarget.dataset.crust;
   });
 
 });
+ingredientCards.forEach((ingredientCard)=>{ 
 
-ingredientCards.forEach((ingredientCard)=>{
-ingredientCard.addEventListener('click',(event)=>{
+  ingredientCard.addEventListener('click',(event)=>{
+    const card = event.currentTarget;
+   const price = parseFloat(card.querySelector('.picture__price').textContent);
+   const name = card.querySelector('.picture__text').textContent.trim();
+     if(ingredientCard.classList.contains('modal__card-value')){
+       event.currentTarget.classList.remove('modal__card-value'); 
+      modalState.ingredients = modalState.ingredients.filter(item => item !==name);
+      modalState.extraPrice -= price;
 
-if(ingredientCard.classList.contains('modal__card-value')){
-  event.currentTarget.classList.remove('modal__card-value');
-}else{
-event.currentTarget.classList.add('modal__card-value');
+      
+      }
+       else{ 
+        event.currentTarget.classList.add('modal__card-value'); 
+        modalState.ingredients.push(name);
+       modalState.extraPrice +=price;
+       }
+
+});
+});
+
+const video = document.querySelector('video');
+const videoBtn = document.querySelector('.video__btn');
+videoBtn.addEventListener('click',()=>{
+  video.play();
+  videoBtn.style.display = 'none';
+});
+video.addEventListener('click',()=>{
+ video.pause();
+videoBtn.style.display = 'block';
+});
+
+const btnRight = document.querySelector('.hero__btn-right');
+const menuSection = document.querySelector('.menu');
+const btnLeft = document.querySelector('.hero__btn-left');
+btnRight.addEventListener('click',()=>{
+  btnRight.classList.add('btn-active');
+  btnLeft.classList.remove('btn-active');
+  menuSection.scrollIntoView({behavior: 'smooth'});
+});
+btnLeft.addEventListener('click',()=>{
+btnLeft.classList.add('btn-active');
+btnRight.classList.remove('btn-active');
+modal.classList.remove('hidden');
+});
+
+const resetModal = ()=>{
+ingredientCards.forEach(card => card.classList.remove('modal__card-value'));
+crustBtns.forEach(btns =>btns.classList.remove('btn-active'));
+modalSizeButtons.forEach(buttons =>buttons.classList.remove('active-btn'));
+
+  modalState.size = null;
+  modalState.crust = null;
+  modalState.ingredients = [];
+  modalState.extraPrice =0;
 }
-})
+modalClose.addEventListener('click',()=>{
+  modal.classList.add('hidden');
+  modal.setAttribute('aria-hidden','true');
+  resetModal();
+});
+modalOverlay.addEventListener('click',()=>{
+   modal.classList.add('hidden');
+   modal.setAttribute('aria-hidden','true');
+  resetModal();
 })
