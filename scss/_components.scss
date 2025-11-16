@@ -131,6 +131,22 @@
         transform: translateY(-3px) scale(1.05);
     }
      }
+       .modal__order-btn{
+      border-radius:1.875rem;
+      width: clamp(7rem,10vw,12.125rem);
+      padding-block:0.5rem;
+      background:$color-btn;
+      border:1px solid $color-border;
+      color:$color-white;
+      margin-top:0.938rem;
+      cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-bg;
+        color:$color-border;
+        transform: translateY(-3px) scale(1.05);
+    }
+     }
      .card__minus,.card__plus{
             border-radius:3.125rem;
             width:1.438rem;
@@ -403,7 +419,9 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
    border-radius: 1.25rem;
    border:1px solid $color-border;
 }
-
+.modal__body-active{
+   overflow: hidden;
+}
      @media (max-width: 768px) {
         .pic__text{
             font-size: $fs-filter;

@@ -532,6 +532,21 @@ aside {
     color: #FF5924;
     transform: translateY(-3px) scale(1.05); }
 
+.modal__order-btn {
+  border-radius: 1.875rem;
+  width: clamp(7rem, 10vw, 12.125rem);
+  padding-block: 0.5rem;
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  border: 1px solid #FF5924;
+  color: #FFFFFF;
+  margin-top: 0.938rem;
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease; }
+  .modal__order-btn:hover {
+    background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%);
+    color: #FF5924;
+    transform: translateY(-3px) scale(1.05); }
+
 .card__minus, .card__plus {
   border-radius: 3.125rem;
   width: 1.438rem;
@@ -762,6 +777,9 @@ aside {
   color: #e7cdb4;
   border-radius: 1.25rem;
   border: 1px solid #FF5924; }
+
+.modal__body-active {
+  overflow: hidden; }
 
 @media (max-width: 768px) {
   .pic__text {
