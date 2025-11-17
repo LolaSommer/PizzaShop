@@ -37,6 +37,7 @@ function updateOnScroll() {
 }
 
 window.addEventListener('scroll', updateOnScroll);
+
 //карточка товара
 const cards = document.querySelectorAll('.menu__card'); 
 let cartItems = [];
@@ -48,6 +49,27 @@ cards.forEach((card)=>{
   28: 12.99,
   33: 15.99,
 };
+//кнопка оформления заказа
+ const pizzaState = { size:22, ingredients:[], quantity:1 }
+const order = card.querySelector('.card__order');
+ //обновление цены,кол-ва, размера при нажатии на кнопку 
+    const resetCardState = ()=>{
+    pizzaState.quantity = 1;
+    pizzaState.size = 22;
+count.textContent = 1;
+sizeButtons.forEach(b => b.classList.remove('active-btn'));
+const defaultBtn = card.querySelector('[data-size="22"]');
+defaultBtn.classList.add('active-btn');
+updatePrice();   
+    }
+ order.addEventListener('click',()=>{ 
+  const item ={...pizzaState}; 
+  if(item.size && item.quantity >0){
+     cartItems.push(item); 
+    } 
+   resetCardState();
+    const total = cartItems.reduce((sum,item)=>sum+item.quantity,0); 
+     cartTotal.textContent = total; });
 const priceElement = card.querySelector('.price__value');
 //функция обновления цены
 const updatePrice=()=>{
@@ -58,7 +80,6 @@ priceElement.textContent = `${total}$`;
  //переменные счетчик пицц + и -
   const minus = card.querySelector('.card__minus');
   const count = card.querySelector('.card__count');
-   const pizzaState = { size:null, ingredients:[], quantity:0 }
   pizzaState.quantity = +count.textContent;
   card.addEventListener('click',(event)=>{
     event.preventDefault();
@@ -75,16 +96,7 @@ priceElement.textContent = `${total}$`;
       pizzaState.quantity = value;
       updatePrice();
     }
-    if(value ===0){
-      minus.disabled = true;
-    }else{
-      minus.disabled = false;
-    }
-    if (pizzaState.size && pizzaState.quantity > 0) {
-  order.disabled = false;
-} else {
-  order.disabled = true;
-}
+   
 
    
   });
@@ -102,28 +114,6 @@ if (pizzaState.size && pizzaState.quantity > 0) {
 }
 })
 
-
-//кнопка оформления заказа
-const order = card.querySelector('.card__order');
- //обновление цены,кол-ва, размера при нажатии на кнопку 
-    const resetCardState = ()=>{
-    pizzaState.quantity = 0;
-    count.textContent = 0;
-    minus.disabled = true;
-    order.disabled = true;
-    sizeButtons.forEach(b => b.classList.remove('active-btn'));
-    pizzaState.size = null;
-    priceElement.textContent = `0.00$`;
-    pizzaState.ingredients = [];
-    }
- order.addEventListener('click',()=>{ 
-  const item ={...pizzaState}; 
-  if(item.size && item.quantity >0){
-     cartItems.push(item); 
-    } 
-   resetCardState();
-    const total = cartItems.reduce((sum,item)=>sum+item.quantity,0); 
-     cartTotal.textContent = total; });
 });
 //модальное окно 
 const modal = document.querySelector('.modal');
@@ -134,50 +124,62 @@ const btnIngredients = document.querySelectorAll('.card__ingredients');
 const modalOverlay = document.querySelector('.modal__overlay');
 //объект пицца в модальном окне:размер, тесто, ингредиенты, базовая цена и экстрацена
 let modalState = {
-  size:null,
+  size:22,
   crust:null,
   ingredients:[],
   basePrice:9.99,
-  extraPrice:0
+  extraPrice:0,
+  quantity:1
 };
+//обновление цены 
+const updateModalPrice = () => {
+  const total = (modalState.basePrice + modalState.extraPrice).toFixed(2);
+  modalOrderBtn.textContent = `Grab Your Slice ${total}$`;
+};
+
 //кнопка ингредиенты 
-btnIngredients.forEach((button)=>{
-  button.addEventListener('click', (event)=>{
-         let currentCard = null;
-currentCard = button.closest('.menu__card');
-//обновление контента при открытии модального окна
-      const cardTitle = currentCard.querySelector('.card__header');
-const modalTitle = modal.querySelector('.ingredients__title');
-modalTitle.textContent = cardTitle.textContent;
 
-const cardText = currentCard.querySelector('.card__text');
-const modalText = modal.querySelector('.modal__ingredients-text');
-modalText.textContent = cardText.textContent;
+btnIngredients.forEach((button) => {
+  button.addEventListener('click', (event) => {
+    const currentCard = button.closest('.menu__card');
 
- const cardSource = currentCard.querySelector('source');
-const modalSource = modal.querySelector('.modal__img').previousElementSibling; // <source>
-modalSource.srcset = cardSource.srcset;
+    // Получаем цену пиццы из карточки
+    const cardPrice = parseFloat(currentCard.querySelector('.price__value').textContent);
+    modalState.basePrice = cardPrice;
 
-   
+    // Обновление контента в модалке
+    const cardTitle = currentCard.querySelector('.card__header');
+    const modalTitle = modal.querySelector('.ingredients__title');
+    modalTitle.textContent = cardTitle.textContent;
 
-//кнопки размера пиццы в модальном окне, которые сохраняют выбор с карточики товара или нет 
-   const activeBtn = currentCard.querySelector('.active-btn');
- const modalSizeButtons = modal.querySelectorAll('.modal__radio button')
-   modalSizeButtons.forEach(btn => btn.classList.remove('active-btn'));
-   if(activeBtn){
- modalSizeButtons.forEach((modalBtn)=>{ 
-  if(modalBtn.dataset.size === activeBtn.dataset.size){
-    modalBtn.classList.add('active-btn');
-  }
-})
-   }
-   //закрытие модалки при нажатии на крестик и свободное пространство
-    const closestCont = button.closest('.menu__card');
+    const cardText = currentCard.querySelector('.card__text');
+    const modalText = modal.querySelector('.modal__ingredients-text');
+    modalText.textContent = cardText.textContent;
+
+    const cardSource = currentCard.querySelector('source');
+    const modalSource = modal.querySelector('.modal__img').previousElementSibling;
+    modalSource.srcset = cardSource.srcset;
+
+    // Применяем активный размер пиццы из карточки к кнопкам в модалке
+    const activeBtn = currentCard.querySelector('.active-btn');
+    const modalSizeButtons = modal.querySelectorAll('.modal__radio button');
+    modalSizeButtons.forEach(btn => btn.classList.remove('active-btn'));
+
+    if (activeBtn) {
+      modalSizeButtons.forEach((modalBtn) => {
+        if (modalBtn.dataset.size === activeBtn.dataset.size) {
+          modalBtn.classList.add('active-btn');
+        }
+      });
+    }
+
+    // Показываем модалку
     modal.classList.remove('hidden');
-    modal.setAttribute('aria-hidden','false');
+    modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal__body-active');
+
+    updateModalPrice();
   });
- 
 });
 
 //крестик закрытия
@@ -193,7 +195,7 @@ modal.classList.add('hidden');
 document.body.classList.remove('modal__body-active');
 });
 
-
+//радио кнопки в модалке
 const modalSizeButtons = modal.querySelectorAll('.modal__radio button');
 modalSizeButtons.forEach((modalSizeButton)=>{
   modalSizeButton.addEventListener('click',(event)=>{
@@ -212,8 +214,8 @@ modalState.crust = event.currentTarget.dataset.crust;
   });
 
 });
+//кнопки ингредиентов 
 ingredientCards.forEach((ingredientCard)=>{ 
-
   ingredientCard.addEventListener('click',(event)=>{
     const card = event.currentTarget;
    const price = parseFloat(card.querySelector('.picture__price').textContent);
@@ -233,6 +235,35 @@ ingredientCards.forEach((ingredientCard)=>{
 
 });
 });
+
+//при нажатии на кнопку заказа в модалке добавить в корзину 
+  const resetModalState = ()=>{
+    modalState.quantity = 1;
+    modalState.size = 22;
+     modalState.extraPrice = 0;
+     modalState.ingredients=[];
+modalSizeButtons.forEach(b => b.classList.remove('active-btn'));
+const modalDefBtn = modal.querySelector('[data-size="22"]');
+modalDefBtn.classList.add('active-btn');
+ingredientCards.forEach(card => card.classList.remove('modal__card-value'));
+crustBtns.forEach(crustBtn => crustBtn.classList.remove('btn-active'));
+
+  updateModalPrice();
+    }
+modalOrderBtn.addEventListener('click',()=>{
+  function addToCart(item) {
+  cartItems.push(item);
+  const total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  cartTotal.textContent = total;
+}
+addToCart({...modalState,quantity: 1});
+  modal.classList.add('hidden');
+modal.setAttribute('aria-hidden', 'true');
+document.body.classList.remove('modal__body-active');
+resetModalState();
+});
+  
+
 //начало проигрывания видео при  нажатии на плей или пауза
 const video = document.querySelector('video');
 const videoBtn = document.querySelector('.video__btn');
@@ -258,31 +289,6 @@ btnLeft.classList.add('btn-active');
 btnRight.classList.remove('btn-active');
 modal.classList.remove('hidden');
 });
-//обновление данных при закрытии модального окна 
 
-const resetModal = ()=>{
-ingredientCards.forEach(card => card.classList.remove('modal__card-value'));
-crustBtns.forEach(btns =>btns.classList.remove('btn-active'));
-modalSizeButtons.forEach(buttons =>buttons.classList.remove('active-btn'));
 
-  modalState.size = null;
-  modalState.crust = null;
-  modalState.ingredients = [];
-  modalState.extraPrice =0;
-}
-modalClose.addEventListener('click',()=>{
-  modal.classList.add('hidden');
-  modal.setAttribute('aria-hidden','true');
-  resetModal();
-});
-modalOverlay.addEventListener('click',()=>{
-   modal.classList.add('hidden');
-   modal.setAttribute('aria-hidden','true');
-  resetModal();
-})
-//обновление цены 
-const updateModalPrice = () => {
-  const total = (modalState.basePrice + modalState.extraPrice).toFixed(2);
-  modalOrderBtn.textContent = `Grab Your Slice ${total}$`;
-};
 
