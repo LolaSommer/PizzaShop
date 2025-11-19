@@ -97,22 +97,12 @@ cards.forEach((card)=>{
 
 const order = card.querySelector('.card__order');
  //обновление цены,кол-ва, размера при нажатии на кнопку 
-    const resetCardState = ()=>{
-    pizzaState.quantity = 1;
-    pizzaState.size = 22;
-count.textContent = 1;
-sizeButtons.forEach(b => b.classList.remove('active-btn'));
-const defaultBtn = card.querySelector('[data-size="22"]');
-defaultBtn.classList.add('active-btn');
- const price = calculatePrice(pizzaState)
-    priceElement.textContent = `${price.toFixed(2)}$`
-    }
  order.addEventListener('click',()=>{ 
   const item ={...pizzaState}; 
   if(item.size && item.quantity >0){
      cartItems.push(item); 
     } 
-   resetCardState();
+   resetUI(card);
     const total = cartItems.reduce((sum,item)=>sum+item.quantity,0); 
      cartTotal.textContent = total; });
 const priceElement = card.querySelector('.price__value');
@@ -300,17 +290,6 @@ modalOrderBtn.textContent = `Grab Your Slice ${price.toFixed(2)}$`;
 });
 
 //при нажатии на кнопку заказа в модалке добавить в корзину 
-  const resetModalState = ()=>{
-    modalState.quantity = 1;
-    modalState.size = 22;
-     modalState.ingredients=[];
-modalSizeButtons.forEach(b => b.classList.remove('active-btn'));
-const modalDefBtn = modal.querySelector('[data-size="22"]');
-modalDefBtn.classList.add('active-btn');
-ingredientCards.forEach(card => card.classList.remove('modal__card-value'));
-crustBtns.forEach(crustBtn => crustBtn.classList.remove('btn-active'));
-
-    }
 modalOrderBtn.addEventListener('click',()=>{
   const price = calculatePrice(modalState);
   function addToCart(item) {
@@ -323,13 +302,43 @@ modalOrderBtn.addEventListener('click',()=>{
         price: price,
         quantity: 1
     });
+    resetUI(activeCard);
   modal.classList.add('hidden');
 modal.setAttribute('aria-hidden', 'true');
 document.body.classList.remove('modal__body-active');
 });
   
 
-
+   const resetUI = (activeCard)=>{
+    //сброс карточки
+    pizzaState.quantity = 1;
+    pizzaState.size = 22;
+    pizzaState.ingredients = [];
+const count = activeCard.querySelector('.card__count');
+const radio = activeCard.querySelectorAll('.card__btn button');
+const priceCard = activeCard.querySelector('.price__value');
+const size = activeCard.querySelector('[data-size="22"]');
+count.textContent = 1;
+size.classList.add('active-btn');
+radio.forEach(b => b.classList.remove('active-btn'));
+size.classList.add('active-btn');
+ const price = calculatePrice(pizzaState)
+    priceCard.textContent = `${price.toFixed(2)}$`;
+   //сброс модалки
+  modalState.quantity = 1;
+  modalState.size = 22;
+  modalState.ingredients=[];
+  modalState.crust = null;
+const radioModal = modal.querySelectorAll('.modal__radio button');
+const cardModal = modal.querySelectorAll('.modal__card');
+const btnModal = modal.querySelectorAll('.modal__btn button');
+const modalDefBtn = modal.querySelector('[data-size="22"]');
+modalDefBtn.classList.add('active-btn');
+radioModal.forEach(b => b.classList.remove('active-btn'));
+cardModal.forEach(card => card.classList.remove('modal__card-value'));
+btnModal.forEach(crustBtn => crustBtn.classList.remove('btn-active'));
+modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
+    }
 
 
 
