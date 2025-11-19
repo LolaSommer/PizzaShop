@@ -341,4 +341,3 @@ modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixe
     }
 
 
-
