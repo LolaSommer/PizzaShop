@@ -28,6 +28,7 @@ function updateOnScroll() {
     }
   });
   //добавление активной ссылки на пункты меню
+  if(!activeSection) return;
   const activeLink = document.querySelector(`.nav__link[href="#${activeSection.id}"]`);
   navLinks.forEach(l=>l.classList.remove('active'));
   if(activeLink){
@@ -68,7 +69,7 @@ modal.classList.remove('hidden');
   28: 12.99,
   33: 15.99,
 };
- const pizzaState = { size:22, ingredients:[], quantity:1 }
+
 const ingredientsPrices = {
 "Cheeses": 1.75,
 "Mozzarella": 1.75,
@@ -80,12 +81,12 @@ const ingredientsPrices = {
 "Salami": 2,
 "Ananas pieces": 1.75,
 }
-const calculatePrice=(state)=>{
-const base = basePrices[state.size] || 0;
-const extra = state.ingredients.reduce((sum,name) => { 
+const calculatePrice=(cardState)=>{
+const base = basePrices[cardState.size] || 0;
+const extra = cardState.ingredients.reduce((sum,name) => { 
   return sum + ingredientsPrices[name]; 
 }, 0);
-return (base + extra) * state.quantity;
+return (base + extra) * cardState.quantity;
 }
 //карточка товара
 const cards = document.querySelectorAll('.menu__card'); 
@@ -96,9 +97,16 @@ cards.forEach((card)=>{
 //кнопка оформления заказа
 
 const order = card.querySelector('.card__order');
+  const cardState = {
+    size: 22,
+    quantity: 1,
+    ingredients: []
+  };
+card._state = cardState;
+
  //обновление цены,кол-ва, размера при нажатии на кнопку 
  order.addEventListener('click',()=>{ 
-  const item ={...pizzaState}; 
+  const item ={...cardState}; 
   if(item.size && item.quantity >0){
      cartItems.push(item); 
     } 
@@ -106,28 +114,28 @@ const order = card.querySelector('.card__order');
     const total = cartItems.reduce((sum,item)=>sum+item.quantity,0); 
      cartTotal.textContent = total; });
 const priceElement = card.querySelector('.price__value');
-const price = calculatePrice(pizzaState);
+const price = calculatePrice(cardState);
 priceElement.textContent = `${price.toFixed(2)}$`;
 
  //переменные счетчик пицц + и -
   const minus = card.querySelector('.card__minus');
   const count = card.querySelector('.card__count');
-  pizzaState.quantity = +count.textContent;
+cardState.quantity = +count.textContent;
   card.addEventListener('click',(event)=>{
     event.preventDefault();
     let value = +count.textContent;
     if(event.target.classList.contains('card__plus')){
       value=value+1;
        count.textContent=value;
-     pizzaState.quantity = value;
-     const price = calculatePrice(pizzaState);
+    cardState.quantity = value;
+     const price = calculatePrice(cardState);
       priceElement.textContent = `${price.toFixed(2)}$`;
     }
     else if(event.target.classList.contains('card__minus') && value>0){
       value=value-1;
       count.textContent=value;
-      pizzaState.quantity = value;
-    const price = calculatePrice(pizzaState);
+    cardState.quantity = value;
+    const price = calculatePrice(cardState);
     priceElement.textContent = `${price.toFixed(2)}$`;
 
     }
@@ -139,15 +147,15 @@ sizeButtons.forEach((btn)=>{
 btn.addEventListener('click',(event)=>{
   sizeButtons.forEach(b=>b.classList.remove('active-btn'));
   event.currentTarget.classList.add('active-btn');
-  pizzaState.size = event.currentTarget.dataset.size;
-  pizzaState.quantity = 1;
+cardState.size = event.currentTarget.dataset.size;
+cardState.quantity = 1;
 count.textContent = 1;
-  const price = calculatePrice(pizzaState);
+  const price = calculatePrice(cardState);
 priceElement.textContent = `${price.toFixed(2)}$`;
 
 });
 })
-if (pizzaState.size && pizzaState.quantity > 0) {
+if (cardState.size && cardState.quantity > 0) {
   order.disabled = false;
 }
 });
@@ -167,14 +175,16 @@ let modalState = {
 };
 const syncModalToCard = ()=>{
   if(activeCard == null) return;
-  pizzaState.size = modalState.size;
-  pizzaState.ingredients = [...modalState.ingredients];
-  const newPrice = calculatePrice(pizzaState);
+   const cardState = activeCard._state;
+cardState.size = modalState.size;
+cardState.quantity = modalState.quantity;
+cardState.ingredients = [...modalState.ingredients];
+  const newPrice = calculatePrice(cardState);
   const priceElement = activeCard.querySelector('.price__value');
   priceElement.textContent = `${newPrice.toFixed(2)}$`;
   const sizeButtons = activeCard.querySelectorAll('.card__btn button')
   sizeButtons.forEach(btn => btn.classList.remove('active-btn'));
-const activeBtn = activeCard.querySelector(`[data-size="${pizzaState.size}"]`);
+const activeBtn = activeCard.querySelector(`[data-size="${cardState.size}"]`);
 activeBtn.classList.add('active-btn');
 }
 //кнопка ингредиенты 
@@ -227,6 +237,7 @@ ingredientCards.forEach(card => card.classList.remove('modal__card-value'))
 
 //крестик закрытия
 modalClose.addEventListener('click',(event)=>{
+  modalClose.blur();
   syncModalToCard();
   modal.classList.add('hidden');
    modal.setAttribute('aria-hidden','true');
@@ -236,6 +247,7 @@ modalClose.addEventListener('click',(event)=>{
 });
 //свободное пространство 
 modalOverlay.addEventListener('click',()=>{
+  modalClose.blur();
   syncModalToCard();
 modal.classList.add('hidden');
 document.body.classList.remove('modal__body-active');
@@ -310,36 +322,48 @@ document.body.classList.remove('modal__body-active');
 });
   
 
-   const resetUI = (activeCard)=>{
-    if(activeCard == null) return;
-    //сброс карточки
-    pizzaState.quantity = 1;
-    pizzaState.size = 22;
-    pizzaState.ingredients = [];
-const count = activeCard.querySelector('.card__count');
-const radio = activeCard.querySelectorAll('.card__btn button');
-const priceCard = activeCard.querySelector('.price__value');
-const size = activeCard.querySelector('[data-size="22"]');
-count.textContent = 1;
-size.classList.add('active-btn');
-radio.forEach(b => b.classList.remove('active-btn'));
-size.classList.add('active-btn');
- const price = calculatePrice(pizzaState)
-    priceCard.textContent = `${price.toFixed(2)}$`;
-   //сброс модалки
+const resetUI = (activeCard) => {
+  if (!activeCard) return;
+
+  // Локальное состояние карточки
+  const cardState = activeCard._state;
+  cardState.size = 22;
+  cardState.quantity = 1;
+  cardState.ingredients = [];
+
+  // Сброс UI карточки
+  const count = activeCard.querySelector('.card__count');
+  const radio = activeCard.querySelectorAll('.card__btn button');
+  const priceCard = activeCard.querySelector('.price__value');
+  const defaultSizeBtn = activeCard.querySelector('[data-size="22"]');
+
+  count.textContent = 1;
+
+  radio.forEach(b => b.classList.remove('active-btn'));
+  defaultSizeBtn.classList.add('active-btn');
+
+  const newPrice = calculatePrice(cardState);
+  priceCard.textContent = `${newPrice.toFixed(2)}$`;
+
+  // --- СБРОС МОДАЛКИ ---
   modalState.quantity = 1;
   modalState.size = 22;
-  modalState.ingredients=[];
+  modalState.ingredients = [];
   modalState.crust = null;
-const radioModal = modal.querySelectorAll('.modal__radio button');
-const cardModal = modal.querySelectorAll('.modal__card');
-const btnModal = modal.querySelectorAll('.modal__btn button');
-const modalDefBtn = modal.querySelector('[data-size="22"]');
-modalDefBtn.classList.add('active-btn');
-radioModal.forEach(b => b.classList.remove('active-btn'));
-cardModal.forEach(card => card.classList.remove('modal__card-value'));
-btnModal.forEach(crustBtn => crustBtn.classList.remove('btn-active'));
-modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
-    }
+
+  const radioModal = modal.querySelectorAll('.modal__radio button');
+  const cardModal = modal.querySelectorAll('.modal__card');
+  const btnModal = modal.querySelectorAll('.modal__btn button');
+  const modalDefBtn = modal.querySelector('[data-size="22"]');
+
+  radioModal.forEach(b => b.classList.remove('active-btn'));
+  modalDefBtn.classList.add('active-btn');
+
+  cardModal.forEach(card => card.classList.remove('modal__card-value'));
+  btnModal.forEach(crustBtn => crustBtn.classList.remove('btn-active'));
+
+  modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
+};
+
 
 

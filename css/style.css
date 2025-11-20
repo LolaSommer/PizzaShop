@@ -276,7 +276,7 @@ aside {
 .menu__title {
   position: absolute;
   color: #FFFFFF;
-  font-size: 2.625rem;
+  font-size: clamp(32px, 5vw, 48px);
   font-weight: 500;
   text-transform: uppercase;
   top: 43%;
@@ -384,13 +384,17 @@ aside {
   .footer__nav-item {
     line-height: 1.6; }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hero {
     grid-template-columns: 1fr;
     text-align: center; }
     .hero__img {
-      margin: 1.875rem auto 0 auto; }
-
+      margin: 1.875rem auto 0 auto; } }
+@media (max-width: 950px) {
+  .menu__card {
+    flex: 0 1 calc(33% - 1.5rem);
+    max-width: 100%; } }
+@media (max-width: 768px) {
   .header {
     grid-template-columns: auto auto; }
     .header__logo {
@@ -400,15 +404,21 @@ aside {
 
   .nav__bar {
     justify-content: center;
-    gap: clamp(1.25rem, 3vw, 2.5rem); }
+    gap: 1.5rem; }
 
   .menu__filter {
     justify-content: center;
     flex-wrap: wrap;
-    gap: clamp(1.25rem, 3vw, 2.5rem); }
+    gap: 1.25rem; }
 
   .about__colls {
     grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  .menu__cards {
+    gap: 1.25rem; }
+
+  .menu__card {
+    flex: 0 1 calc(50% - 1rem); } }
 @media (max-width: 480px) {
   .header {
     grid-template-columns: auto; }
@@ -418,13 +428,30 @@ aside {
 
   .nav__bar {
     flex-direction: column;
-    align-items: center; } }
-@media (max-width: 1024px) {
-  .hero {
-    grid-template-columns: 1fr;
-    text-align: center; }
-    .hero__img {
-      margin: 1.875rem auto 0 auto; } }
+    align-items: center;
+    gap: 1.5rem; }
+
+  .hero__header {
+    font-size: clamp(32px, 7vw, 48px); }
+
+  .menu__filter {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem; } }
+@media (max-width: 420px) {
+  .menu__card {
+    flex: 0 1 100%;
+    max-width: 18rem;
+    margin-inline: auto; }
+
+  .menu__cards {
+    justify-content: center; }
+
+  .menu__filter {
+    gap: 0.75rem; }
+
+  .menu__header {
+    margin-bottom: 1.5rem; } }
 .video__btn {
   position: absolute;
   top: 50%;
@@ -855,7 +882,7 @@ aside {
     font-size: 1.25rem; }
 
   .pic__header {
-    font-size: clamp(32px, 3.5vw, 48px); } }
+    font-size: clamp(32px, 5vw, 48px); } }
 @media (max-width: 480px) {
   .pic__text {
     font-size: 0.875rem; }

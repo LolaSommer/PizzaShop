@@ -144,17 +144,12 @@
         flex-wrap: wrap;
         gap:clamp(2.5rem,4vw,5rem);
         padding-inline:1.875rem;
-       
-  
-        
+            
     }
     &__card{
     flex: 0 1 14.313rem;
      box-sizing: border-box;
-     max-width: clamp(10rem,15vw,18.563rem);
-        
-        
-     
+     max-width: clamp(10rem,15vw,18.563rem);  
     }
     &__img-wrapper{
        height:clamp(5rem,8vw,10rem);
@@ -173,7 +168,7 @@
    &__title{
     position: absolute;
     color:$color-white;
-    font-size:2.625rem;
+    font-size:$fs-h2;
     font-weight: $fw-medium;
     text-transform: uppercase;
     top: 43%;
@@ -316,67 +311,105 @@
     line-height: $lh-loose;
 }
 }
-
-@media (max-width: 768px) {
-    .hero{
+@media (max-width:1024px) {
+    .hero {
         grid-template-columns: 1fr;
         text-align: center;
-        &__img{
+
+        &__img {
             margin: 1.875rem auto 0 auto;
         }
     }
-    .header{
-        grid-template-columns: auto auto;
-        &__logo{
-            justify-self: start;
-        }
-        &__btn{
-            justify-self: end;
-        }
-    }
-    .nav{
-        &__bar{
-            justify-content: center;
-            gap:clamp(1.25rem,3vw,2.5rem);
-        }
-    }
-    .menu{
-        &__filter{
-            justify-content: center;
-            flex-wrap: wrap;
-            gap:clamp(1.25rem,3vw,2.5rem);
-        }
-    }
-    .about{
-        &__colls{
-            grid-template-columns: 1fr;
-        }
+}
+
+@media (max-width:950px) {
+    .menu__card {
+        flex: 0 1 calc(33% - 1.5rem);
+        max-width: 100%;
     }
 }
-@media (max-width: 480px) {
-    .header{
+
+@media (max-width:768px) {
+    .header {
+        grid-template-columns: auto auto;
+
+        &__logo { justify-self: start; }
+        &__btn { justify-self: end; }
+    }
+
+    .nav__bar {
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .menu__filter {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+    }
+
+    .about__colls {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width:600px) {
+    .menu__cards {
+        gap: 1.25rem;
+    }
+
+    .menu__card {
+        flex: 0 1 calc(50% - 1rem);
+    }
+}
+
+@media (max-width:480px) {
+    .header {
         grid-template-columns: auto;
-        &__btn{
-            margin-top:1.25rem;
+
+        &__btn {
+            margin-top: 1.25rem;
             justify-self: center;
         }
     }
-    .nav{
-        &__bar{
-            flex-direction: column;
-            align-items: center;
-        }
+
+    .nav__bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .hero__header {
+        font-size: clamp(32px, 7vw, 48px);
+    }
+
+    .menu__filter {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 }
-@media (max-width:1024px) {
-    .hero{
-        grid-template-columns: 1fr;
-        text-align: center;
-        &__img{
-            margin: 1.875rem auto 0 auto;
-        }
+
+@media (max-width:420px) {
+    .menu__card {
+        flex: 0 1 100%;
+        max-width: 18rem;
+        margin-inline: auto;
     }
+
+    .menu__cards {
+        justify-content: center;
+    }
+    .menu__filter{
+        gap:0.75rem;
+    }
+ .menu__header {
+    margin-bottom: 1.5rem;
+  }
 }
+
+
+
 
 
 
