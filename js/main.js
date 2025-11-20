@@ -166,6 +166,7 @@ let modalState = {
   quantity:1
 };
 const syncModalToCard = ()=>{
+  if(activeCard == null) return;
   pizzaState.size = modalState.size;
   pizzaState.ingredients = [...modalState.ingredients];
   const newPrice = calculatePrice(pizzaState);
@@ -310,6 +311,7 @@ document.body.classList.remove('modal__body-active');
   
 
    const resetUI = (activeCard)=>{
+    if(activeCard == null) return;
     //сброс карточки
     pizzaState.quantity = 1;
     pizzaState.size = 22;

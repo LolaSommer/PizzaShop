@@ -24,6 +24,17 @@
     background-attachment: scroll;
     /* убираем эффект */
     transform: none !important; } }
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important; }
+
 .visually-hidden {
   position: absolute !important;
   inline-size: 1px !important;
@@ -705,6 +716,9 @@ aside {
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(2px); }
   .modal__close {
+    display: grid;
+    justify-self: end;
+    margin-bottom: 25px;
     width: 20px;
     height: 20px;
     border: none;
@@ -780,6 +794,61 @@ aside {
 
 .modal__body-active {
   overflow: hidden; }
+
+.cart__modal {
+  display: grid;
+  inset: 0 0 0 auto;
+  height: 100vh;
+  width: 500px;
+  z-index: 1000;
+  font-size: 1.125rem;
+  position: fixed; }
+  .cart__modal-title {
+    color: #FFFFFF;
+    text-align: center; }
+  .cart__modal-window {
+    background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+    color: #FFFFFF;
+    padding-inline: 30px;
+    padding-left: 100px;
+    z-index: 1;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    clip-path: polygon(0% 0%, 15% 10%, 5% 20%, 20% 30%, 10% 45%, 25% 60%, 15% 75%, 20% 90%, 5% 95%, 0% 100%, 100% 100%, 100% 0%); }
+  .cart__modal-close {
+    display: grid;
+    justify-self: end; }
+  .cart__modal-checkout {
+    color: #FFFFFF;
+    text-transform: uppercase;
+    background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%);
+    width: 250px;
+    padding-block: 15px;
+    border-radius: 50px;
+    border: #FF5924; }
+    .cart__modal-checkout:hover {
+      background: #e7cdb4;
+      color: #210A01; }
+  .cart__modal-counter {
+    display: flex;
+    justify-content: space-between;
+    padding-block: 50px;
+    padding-inline: 20px; }
+  .cart__modal-radiogroup {
+    display: flex;
+    gap: 20px; }
+  .cart__modal-summary {
+    display: flex;
+    justify-content: space-between; }
+  .cart__modal-order {
+    display: flex;
+    justify-content: center;
+    padding-block: 30px; }
+  .cart__modal-close {
+    color: #210A01;
+    background: #FF5924;
+    border: none;
+    font-size: clamp(22px, 2vw, 30px); }
 
 @media (max-width: 768px) {
   .pic__text {

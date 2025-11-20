@@ -482,10 +482,11 @@
          </div>
          </div>
         </footer>
+       
         <div class="modal modal--ingredients hidden" aria-hidden="true">
                     <div class="modal__overlay"></div>
         <div class="modal__window" role="dialog" aria-modal="true" aria-labelledby="modal__ingredients-title" >
-                   <div class="modal__line">
+                    <div class="modal__line">
                    <button class="modal__close" aria-label="close">
                    <svg class="modal__icon"><use href="img/sprite.svg#icon-close"></use></svg>
                   </button>
@@ -604,26 +605,40 @@
                  </div>
                   </div>
                 <div class="cart__modal hidden" aria-hidden="true">
-                    <div class="cart__modal-overlay"></div>
-        <div class="cart__modal-window" role="dialog" aria-modal="true" aria-labelledby="cart-title" >
-        <div class="cart__modal-header">
-          <h2>Your order</h2>
+        <div class="cart__modal-window" role="dialog" aria-modal="true" aria-labelledby="cart__modal-title" >
           <button class="cart__modal-close">x</button>
+        <div class="cart__modal-header">
+          <h2 class="cart__modal-title">Your order</h2>
           <div class="cart__modal-items">
              <!-- сюда JS вставит товары -->
           </div>
+          <div class="cart__modal-counter">
+          <div class="cart__modal-price">0<sup>$</sup></div>
+          
+          <div class="cart__modal-radiogroup">
+            <div class="cart__modal-change">change</div>
+            <div class="cart__modal-left">-</div>
+            <div class="cart__modal-count">1</div>
+            <div class="cart__modal-right">+</div>
+          </div>
+          </div>
+          
           <div class="cart__modal-extras">
             <!-- блок предложений “добавить к заказу” -->
           </div>
           <div class="cart__modal-summary">
-            <div class="cart__count">0 items</div>
-        <div class="cart__total">$0.00</div>
-        <button class="cart__checkout">Checkout</button>
-          </div>
+            <div class="cart__modal-number">0 items</div>
+        <div class="cart__modal-total">$0.00</div>
+        </div>
+        <div class="cart__modal-order">
+       <button class="cart__modal-checkout">Checkout</button>
+        </div>
+        
+          
         </div>
         </div>
                 </div>
-                
+
         <script src="js/main.js"></script>
     </body>
 </html>
