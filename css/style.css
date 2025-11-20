@@ -278,6 +278,7 @@ aside {
   color: #FFFFFF;
   font-size: clamp(32px, 5vw, 48px);
   font-weight: 500;
+  text-align: center;
   text-transform: uppercase;
   top: 43%;
   left: 50%;
@@ -426,6 +427,14 @@ aside {
       margin-top: 1.25rem;
       justify-self: center; }
 
+  .events__text {
+    max-width: 100%;
+    text-align: center;
+    padding-inline: 1rem; }
+
+  .menu__title {
+    font-size: clamp(1.25rem, 6vw, 2rem); }
+
   .nav__bar {
     flex-direction: column;
     align-items: center;
@@ -437,14 +446,24 @@ aside {
   .menu__filter {
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1rem; } }
+    gap: 1rem; }
+
+  .header {
+    grid-template-columns: 1fr 1fr; }
+
+  .header__btn {
+    justify-self: end; }
+
+  .header__cart {
+    transform: scale(0.9); } }
 @media (max-width: 420px) {
   .menu__card {
     flex: 0 1 100%;
-    max-width: 18rem;
+    max-width: 17rem;
     margin-inline: auto; }
 
   .menu__cards {
+    gap: 1rem;
     justify-content: center; }
 
   .menu__filter {
@@ -823,13 +842,41 @@ aside {
   overflow: hidden; }
 
 .cart__modal {
-  display: grid;
   inset: 0 0 0 auto;
   height: 100vh;
   width: 500px;
   z-index: 1000;
   font-size: 1.125rem;
-  position: fixed; }
+  position: fixed;
+  right: 0;
+  top: 0; }
+  .cart__modal-window {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100%; }
+  .cart__modal-top {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto; }
+  .cart__modal-bottom {
+    padding: 20px; }
+  .cart__modal-items {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    border-bottom: 1px solid #515151; }
+  .cart__modal-info {
+    padding-block: 10px;
+    line-height: 1.4; }
+  .cart__modal-details, .cart__modal-ingredients {
+    font-size: 0.875rem; }
+  .cart__modal-pic {
+    align-items: end;
+    width: 100px;
+    height: 100px; }
+  .cart__modal-pizza {
+    font-weight: 900; }
   .cart__modal-title {
     color: #FFFFFF;
     text-align: center; }
@@ -842,9 +889,6 @@ aside {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     width: 100%;
     clip-path: polygon(0% 0%, 15% 10%, 5% 20%, 20% 30%, 10% 45%, 25% 60%, 15% 75%, 20% 90%, 5% 95%, 0% 100%, 100% 100%, 100% 0%); }
-  .cart__modal-close {
-    display: grid;
-    justify-self: end; }
   .cart__modal-checkout {
     color: #FFFFFF;
     text-transform: uppercase;
@@ -859,23 +903,49 @@ aside {
   .cart__modal-counter {
     display: flex;
     justify-content: space-between;
-    padding-block: 50px;
-    padding-inline: 20px; }
+    padding-block: 20px;
+    padding-inline: 20px;
+    border-bottom: 1px solid #515151; }
   .cart__modal-radiogroup {
     display: flex;
     gap: 20px; }
   .cart__modal-summary {
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    border-top: 1px solid #515151;
+    padding-block: 10px; }
   .cart__modal-order {
     display: flex;
     justify-content: center;
     padding-block: 30px; }
   .cart__modal-close {
+    display: flex;
+    justify-content: end;
     color: #210A01;
-    background: #FF5924;
+    background: inherit;
     border: none;
-    font-size: clamp(22px, 2vw, 30px); }
+    font-size: clamp(22px, 2vw, 30px);
+    cursor: pointer; }
+  .cart__modal-change {
+    border: none;
+    background: inherit;
+    color: #FFFFFF;
+    cursor: pointer; }
+  .cart__modal-coffee, .cart__modal-capuchino, .cart__modal-soda {
+    width: 80px;
+    height: 80px;
+    cursor: pointer; }
+  .cart__modal-extras {
+    display: flex;
+    gap: 40px;
+    padding-block: 30px; }
+  .cart__modal-extrastitle {
+    padding-block: 20px; }
+  .cart__modal-priceblock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; }
 
 @media (max-width: 768px) {
   .pic__text {
@@ -883,11 +953,45 @@ aside {
 
   .pic__header {
     font-size: clamp(32px, 5vw, 48px); } }
+@media (max-width: 600px) {
+  .modal__window {
+    max-height: 90vh;
+    height: auto;
+    overflow-y: auto; }
+
+  .modal__system {
+    grid-template-columns: 1fr; }
+
+  .modal__colls-ingredients {
+    max-height: 60vh;
+    overflow-y: auto; }
+    .modal__colls-ingredients .modal__colls-ingredients {
+      background: #210A01;
+      padding: 1rem;
+      border-radius: 1rem; } }
 @media (max-width: 480px) {
   .pic__text {
     font-size: 0.875rem; }
 
   .pic__header {
     font-size: clamp(22px, 2vw, 30px); } }
+@media (max-width: 480px) {
+  .modal__window {
+    height: auto;
+    max-height: 90vh;
+    width: 90%;
+    padding: 1rem; }
+
+  .modal__system {
+    grid-template-columns: 1fr;
+    gap: 1.25rem; }
+
+  .modal__img {
+    width: 60%;
+    margin: 0 auto; }
+
+  .modal__cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem; } }
 
 /*# sourceMappingURL=style.css.map */
