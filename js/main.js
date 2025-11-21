@@ -65,9 +65,14 @@ modal.classList.remove('hidden');
 });
 //базовые цены на пиццу по размеру 
   const basePrices = {
-  22: 9.99,
-  28: 12.99,
-  33: 15.99,
+  10: 9.99,
+  12: 12.99,
+  14: 15.99,
+};
+const sizeMap = {
+  10: { inches: '10″', label: 'Small' },
+  12: { inches: '12″', label: 'Medium' },
+  14: { inches: '14″', label: 'Large' }
 };
 
 const ingredientsPrices = {
@@ -98,28 +103,24 @@ cards.forEach((card)=>{
 
 const order = card.querySelector('.card__order');
   const cardState = {
-    size: 22,
+    size: 10,
     quantity: 1,
-    ingredients: []
+    ingredients: [],
+    crust: "Traditional"
   };
 card._state = cardState;
 
  //обновление цены,кол-ва, размера при нажатии на кнопку 
  order.addEventListener('click',()=>{ 
-  const item ={...cardState}; 
-  if(item.size && item.quantity >0){
-     cartItems.push(item); 
-    } 
+  const item = createItemFromCard(card, card._state);
+  addToCart(item);
    resetUI(card);
-    const total = cartItems.reduce((sum,item)=>sum+item.quantity,0); 
-     cartTotal.textContent = total; });
-const priceElement = card.querySelector('.price__value');
-const price = calculatePrice(cardState);
-priceElement.textContent = `${price.toFixed(2)}$`;
+ });
 
  //переменные счетчик пицц + и -
   const minus = card.querySelector('.card__minus');
   const count = card.querySelector('.card__count');
+  const priceElement = card.querySelector('.price__value');
 cardState.quantity = +count.textContent;
   card.addEventListener('click',(event)=>{
     event.preventDefault();
@@ -168,8 +169,8 @@ const btnIngredients = document.querySelectorAll('.card__ingredients');
 const modalOverlay = document.querySelector('.modal__overlay');
 //объект пицца в модальном окне:размер, тесто, ингредиенты, базовая цена и экстрацена
 let modalState = {
-  size:22,
-  crust:null,
+  size:10,
+  crust:"Traditional",
   ingredients:[],
   quantity:1
 };
@@ -304,21 +305,16 @@ modalOrderBtn.textContent = `Grab Your Slice ${price.toFixed(2)}$`;
 
 //при нажатии на кнопку заказа в модалке добавить в корзину 
 modalOrderBtn.addEventListener('click',()=>{
-  const price = calculatePrice(modalState);
-  function addToCart(item) {
-  cartItems.push(item);
-  const total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  cartTotal.textContent = total;
-}
- addToCart({
-        ...modalState,
-        price: price,
-        quantity: 1
-    });
-    resetUI(activeCard);
+ const item = createItemFromCard(activeCard, modalState);
+ addToCart(item);
+
+
+
+   
   modal.classList.add('hidden');
 modal.setAttribute('aria-hidden', 'true');
 document.body.classList.remove('modal__body-active');
+ resetUI(activeCard);
 });
   
 
@@ -327,7 +323,7 @@ const resetUI = (activeCard) => {
 
   // Локальное состояние карточки
   const cardState = activeCard._state;
-  cardState.size = 22;
+  cardState.size = 10;
   cardState.quantity = 1;
   cardState.ingredients = [];
 
@@ -335,7 +331,7 @@ const resetUI = (activeCard) => {
   const count = activeCard.querySelector('.card__count');
   const radio = activeCard.querySelectorAll('.card__btn button');
   const priceCard = activeCard.querySelector('.price__value');
-  const defaultSizeBtn = activeCard.querySelector('[data-size="22"]');
+  const defaultSizeBtn = activeCard.querySelector('[data-size="10"]');
 
   count.textContent = 1;
 
@@ -347,14 +343,14 @@ const resetUI = (activeCard) => {
 
   // --- СБРОС МОДАЛКИ ---
   modalState.quantity = 1;
-  modalState.size = 22;
+  modalState.size = 10;
   modalState.ingredients = [];
   modalState.crust = null;
 
   const radioModal = modal.querySelectorAll('.modal__radio button');
   const cardModal = modal.querySelectorAll('.modal__card');
   const btnModal = modal.querySelectorAll('.modal__btn button');
-  const modalDefBtn = modal.querySelector('[data-size="22"]');
+  const modalDefBtn = modal.querySelector('[data-size="10"]');
 
   radioModal.forEach(b => b.classList.remove('active-btn'));
   modalDefBtn.classList.add('active-btn');
@@ -393,7 +389,7 @@ cartModalOverlay.addEventListener('click',()=>{
 
 
 const generateCartItem = (item)=>{
-  
+ 
 return `
 <div class="cart__modal-item">
 
@@ -407,13 +403,15 @@ return `
 
     <div class="cart__modal-info">
       <div class="cart__modal-pizza">${item.title}</div>
-      <div class="cart__modal-details">${item.size} ${item.crust}</div>
+      <div class="cart__modal-details">
+    ${sizeMap[item.size].inches} ${sizeMap[item.size].label} — ${item.crust} crust</div>
       <div class="cart__modal-ingredients">${item.ingredients.join(', ')}</div>
+
     </div>
   </div>
 
   <div class="cart__modal-counter">
-    <div class="cart__modal-price">${item.price}$</div>
+    <div class="cart__modal-price">${item.price.toFixed(2)}$</div>
     <div class="cart__modal-radiogroup">
       <button class="cart__modal-change">change</button>
       <div class="cart__modal-left">-</div>
@@ -427,19 +425,43 @@ return `
 
 };
 
-const testObject = {
-  img: "img/italianX2.webp",
-  alt: "Italian Pizza",
-  title: "Italian Pizza",
-  size: 22,
-  crust: "Traditional",
-  ingredients: ["Mozzarella", "Champignons"],
-  quantity: 1,
-  price: 9.99
+const createItemFromCard = (card,state) =>{
+const item ={
+  img:"",
+  alt:"",
+  title:"",
+  size:0,
+  crust:"",
+  ingredients:[],
+  quantity:0,
+  price:0
+}
+const imgEl = card.querySelector('img');
+item.img = imgEl.src;
+item.alt = imgEl.alt;
+item.title = card.querySelector('.card__header').textContent;
+item.size = state.size
+item.crust = state.crust
+item.quantity = state.quantity
+item.ingredients = [...state.ingredients]
+item.price = calculatePrice(state)
+return item;
+
 };
-const html = generateCartItem(testObject);
-document.querySelector('.cart__modal-items').innerHTML = html;
+const addToCart = (item)=>{
+cartItems.push(item);
+const total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  cartTotal.textContent = total;
+  renderCart();
+};
+const renderCart = () =>{
+const container = document.querySelector('.cart__modal-items');
+container.innerHTML = '';
+const totalHTML = cartItems.reduce((acc, item) => {
+    return acc + generateCartItem(item);
+}, '');
 
+container.innerHTML = totalHTML;
 
-
+};
 
