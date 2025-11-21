@@ -365,5 +365,81 @@ const resetUI = (activeCard) => {
   modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
 };
 
+//корзина 
+const cart = document.querySelector('.header__cart');
+const cartModal = document.querySelector('.cart__modal');
+const cartModalOverlay = document.querySelector('.cart__modal-overlay');
+const cartClose = document.querySelector('.cart__modal-close');
+//корзина открывается , открывается оверлей на всем свободном пространстве 
+cart.addEventListener('click',()=>{
+  cartModal.classList.remove('hidden');
+  cartModal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal__body-active');
+  cartModalOverlay.classList.remove('hidden');
+});
+//корзина закрывается по клику на крестик 
+cartClose.addEventListener('click',()=>{
+cartModal.classList.add('hidden');
+ cartModal.setAttribute('aria-hidden','true');
+ document.body.classList.remove('modal__body-active');
+});
+//корзина закрывается по клику на свобобдное пространство 
+cartModalOverlay.addEventListener('click',()=>{
+  cartModal.classList.add('hidden');
+  cartModal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal__body-active');
+  cartModalOverlay.classList.add('hidden');
+});
+
+
+const generateCartItem = (item)=>{
+  
+return `
+<div class="cart__modal-item">
+
+  <div class="cart__modal-wrapper">
+    <div class="cart__modal-pic">
+      <picture class="card__modal-pizzapic">
+    <source srcset="${item.img}" type="image/webp">
+      <img class="modal__img" src="${item.img}" alt="${item.alt}">
+      </picture>
+    </div>
+
+    <div class="cart__modal-info">
+      <div class="cart__modal-pizza">${item.title}</div>
+      <div class="cart__modal-details">${item.size} ${item.crust}</div>
+      <div class="cart__modal-ingredients">${item.ingredients.join(', ')}</div>
+    </div>
+  </div>
+
+  <div class="cart__modal-counter">
+    <div class="cart__modal-price">${item.price}$</div>
+    <div class="cart__modal-radiogroup">
+      <button class="cart__modal-change">change</button>
+      <div class="cart__modal-left">-</div>
+      <div class="cart__modal-count">${item.quantity}</div>
+      <div class="cart__modal-right">+</div>
+    </div>
+  </div>
+
+</div>
+`;
+
+};
+
+const testObject = {
+  img: "img/italianX2.webp",
+  alt: "Italian Pizza",
+  title: "Italian Pizza",
+  size: 22,
+  crust: "Traditional",
+  ingredients: ["Mozzarella", "Champignons"],
+  quantity: 1,
+  price: 9.99
+};
+const html = generateCartItem(testObject);
+document.querySelector('.cart__modal-items').innerHTML = html;
+
+
 
 
