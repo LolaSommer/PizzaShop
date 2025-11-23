@@ -49,20 +49,34 @@ video.addEventListener('click',()=>{
  video.pause();
 videoBtn.style.display = 'block';
 });
-//двойная кнопнка на герое 
-const btnRight = document.querySelector('.hero__btn-right');
-const menuSection = document.querySelector('.menu');
-const btnLeft = document.querySelector('.hero__btn-left');
-btnRight.addEventListener('click',()=>{
-  btnRight.classList.add('btn-active');
-  btnLeft.classList.remove('btn-active');
-  menuSection.scrollIntoView({behavior: 'smooth'});
-});
-btnLeft.addEventListener('click',()=>{
-btnLeft.classList.add('btn-active');
-btnRight.classList.remove('btn-active');
-modal.classList.remove('hidden');
-});
+
+//эффект волны на кнопке 
+function addRippleEffect(button) {
+  button.classList.add('ripple');
+  
+  button.addEventListener('click', function (event) {
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple-effect');
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+
+    button.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+}
+const orderButtons = document.querySelectorAll('.card__order');
+orderButtons.forEach(btn => addRippleEffect(btn));
+const checkout = document.querySelectorAll('.cart__modal-checkout');
+checkout.forEach(btn => addRippleEffect(btn));
 //базовые цены на пиццу по размеру 
   const basePrices = {
   10: 9.99,
@@ -372,6 +386,7 @@ cart.addEventListener('click',()=>{
   cartModal.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal__body-active');
   cartModalOverlay.classList.remove('hidden');
+   renderCart();
 });
 //корзина закрывается по клику на крестик 
 cartClose.addEventListener('click',()=>{
@@ -388,10 +403,10 @@ cartModalOverlay.addEventListener('click',()=>{
 });
 
 
-const generateCartItem = (item)=>{
+const generateCartItem = (item,index)=>{
  
 return `
-<div class="cart__modal-item">
+<div class="cart__modal-item" data-index="${index}">
 
   <div class="cart__modal-wrapper">
     <div class="cart__modal-pic">
@@ -417,6 +432,11 @@ return `
       <div class="cart__modal-left">-</div>
       <div class="cart__modal-count">${item.quantity}</div>
       <div class="cart__modal-right">+</div>
+      <div class="cart__modal-remove">
+  <svg class="icon-trash">
+    <use href="img/sprite.svg#icon-trash"></use>
+  </svg>
+      </div>
     </div>
   </div>
 
@@ -457,11 +477,89 @@ const total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 const renderCart = () =>{
 const container = document.querySelector('.cart__modal-items');
 container.innerHTML = '';
-const totalHTML = cartItems.reduce((acc, item) => {
-    return acc + generateCartItem(item);
+const totalHTML = cartItems.reduce((acc, item, index) => {
+    return acc + generateCartItem(item,index);
 }, '');
 
 container.innerHTML = totalHTML;
-
+total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+cartTotal.textContent = total;
+const cartTotalPrice = document.querySelector('.cart__modal-total');
+let totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+cartTotalPrice.textContent = `$${totalPrice.toFixed(2)}`;
+const numberElement = document.querySelector('.cart__modal-number');
+const word = total === 1?'item':'items';
+numberElement.textContent = `${total} ${word}`;
+const checkoutBtn = document.querySelector('.cart__modal-checkout');
+if(cartItems.length === 0){
+  checkoutBtn.disabled = true;
+  checkoutBtn.classList.add('disabled');
+}
+else{
+  checkoutBtn.disabled = false;
+  checkoutBtn.classList.remove('disabled');
+}
 };
 
+const container = document.querySelector('.cart__modal-items');
+container.addEventListener('click',(event)=>{
+ const removeBtn = event.target.closest('.cart__modal-remove');
+if(event.target.classList.contains('cart__modal-right')){
+const parent = event.target.closest('.cart__modal-item')
+const idxString = parent.dataset.index;
+const index = Number(idxString);
+const item = cartItems[index];
+item.quantity=item.quantity+1;
+item.price = calculatePrice(item);
+renderCart();
+total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+cartTotal.textContent = total;
+
+}
+
+else if (removeBtn){
+const parent = event.target.closest('.cart__modal-item');
+const idxString = parent.dataset.index;
+const index = Number(idxString);
+cartItems.splice(index, 1);
+renderCart();
+total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+cartTotal.textContent = total;
+}
+else if(event.target.classList.contains('cart__modal-left')){
+const parent = event.target.closest('.cart__modal-item')
+const idxString = parent.dataset.index;
+const index = Number(idxString);
+const item = cartItems[index];
+if(item.quantity>1){
+item.quantity=item.quantity-1;
+item.price = calculatePrice(item);
+renderCart();
+total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+cartTotal.textContent = total;
+}
+else if(item.quantity === 1){
+  cartItems = cartItems.filter((item, i) => i !== index);
+  renderCart();
+  total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+cartTotal.textContent = total;
+}
+}
+});
+
+ //двойная кнопнка на герое 
+const btnRight = document.querySelector('.hero__btn-right');
+const menuSection = document.querySelector('.menu');
+const btnLeft = document.querySelector('.hero__btn-left');
+btnRight.addEventListener('click',()=>{
+  btnRight.classList.add('btn-active');
+  btnLeft.classList.remove('btn-active');
+  menuSection.scrollIntoView({behavior: 'smooth'});
+});
+btnLeft.addEventListener('click',()=>{
+btnLeft.classList.add('btn-active');
+btnRight.classList.remove('btn-active');
+const firstIngredientsButton = document.querySelector('.card__ingredients');
+firstIngredientsButton.click();
+});
+ 

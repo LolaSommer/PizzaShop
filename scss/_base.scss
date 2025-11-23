@@ -64,3 +64,32 @@ h3{
 aside{
   padding-block:1.875rem;
 }
+/* отключает выделение текста вообще в любом интерактиве */
+button,
+button *,
+.card__positiv *,
+.card__order,
+.card__order *,
+.card__btn *,
+.card__ingredients,
+.cart__modal-item *,
+.cart__modal-item,
+.cart__modal-counter *,
+.cart__modal-radiogroup *,
+.cart__modal-price,
+.cart__modal-left,
+.cart__modal-right,
+.menu__card *,
+.menu__card {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* отключает любое выделение ::selection */
+::selection {
+    background: transparent;
+}
+
