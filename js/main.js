@@ -572,12 +572,16 @@ const parent = event.target.closest('.cart__modal-item')
 const idxString = parent.dataset.index;
 const index = Number(idxString);
 const item = cartItems[index];
+if(item.type === "extra"){
+  item.quantity=item.quantity+1;
+  item.price = item.basePrice * item.quantity;
+  renderCart();
+} else{
 item.quantity=item.quantity+1;
 item.price = calculatePrice(item);
 renderCart();
 total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-cartTotal.textContent = total;
-
+cartTotal.textContent = total;}
 }
 
 else if (removeBtn){
@@ -595,8 +599,9 @@ if(item.type === "extra"){
     });
 
   cartItems.splice(index,1);
+}else{
+cartItems.splice(index,1);
 }
-cartItems.splice(index, 1);
 renderCart();
 total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 cartTotal.textContent = total;
@@ -606,21 +611,65 @@ const parent = event.target.closest('.cart__modal-item')
 const idxString = parent.dataset.index;
 const index = Number(idxString);
 const item = cartItems[index];
-if(item.quantity>1){
-item.quantity=item.quantity-1;
-item.price = calculatePrice(item);
-renderCart();
-total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-cartTotal.textContent = total;
+if (item.type === "extra") {
+    if (item.quantity > 1) {
+        item.quantity = item.quantity - 1;
+        item.price = item.basePrice * item.quantity;
+        renderCart();
+        return;
+    }
+    const extraContainer = document.querySelector('.cart__modal-extras');
+    const extras = extraContainer.querySelectorAll('.cart__modal-extra');
+    extras.forEach(ex => {
+        if (ex.dataset.extraId === item.extraId) {
+            ex.classList.remove('hidden');
+        }
+    });
+    cartItems.splice(index, 1);
+    renderCart();
+    return;
 }
-else if(item.quantity === 1){
-  cartItems = cartItems.filter((item, i) => i !== index);
-  renderCart();
-  total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-cartTotal.textContent = total;
+if (item.quantity > 1) {
+    item.quantity -= 1;
+    item.price = calculatePrice(item);
+    renderCart();
+} else {
+    cartItems.splice(index, 1);
+    renderCart();
 }
 }
+
 });
+const createItemExtra = (extraEl)=>{
+  const itemExtra = {
+      type:"extra",
+  img:"",
+  alt:"",
+  title:"",
+  quantity:1,
+  price:0,
+  extraId:"",
+  basePrice:0
+  }
+itemExtra.price = parseFloat(extraEl.querySelector('.cart__modal-extraprice').textContent);
+const imgEl = extraEl.querySelector('img');
+itemExtra.img = imgEl.src;
+itemExtra.alt = imgEl.alt;
+itemExtra.title = extraEl.querySelector('.cart__modal-text').textContent;
+itemExtra.extraId = extraEl.dataset.extraId;
+itemExtra.basePrice = parseFloat(extraEl.querySelector('.cart__modal-extraprice').textContent)
+itemExtra.price = itemExtra.basePrice;
+return itemExtra;
+}
+const extrasContainer = document.querySelector('.cart__modal-extras');
+extrasContainer.addEventListener('click',(event)=>{
+const extra = event.target.closest('.cart__modal-extra');
+if(!extra)  return;
+const itemExtra = createItemExtra(extra);
+addToCart(itemExtra);
+extra.classList.add('hidden');
+});
+
 
  //двойная кнопнка на герое 
 const btnRight = document.querySelector('.hero__btn-right');
@@ -636,30 +685,4 @@ btnLeft.classList.add('btn-active');
 btnRight.classList.remove('btn-active');
 const firstIngredientsButton = document.querySelector('.card__ingredients');
 firstIngredientsButton.click();
-});
- 
-const extrasContainer = document.querySelector('.cart__modal-extras');
-extrasContainer.addEventListener('click',(event)=>{
-const extra = event.target.closest('.cart__modal-extra');
-if(extra){
- 
-const itemExtra ={
-  type:"extra",
-  img:"",
-  alt:"",
-  title:"",
-  quantity:1,
-  price:0,
-  extraId:""
-}
-itemExtra.price = parseFloat(extra.querySelector('.cart__modal-extraprice').textContent);
-const imgEl = extra.querySelector('img');
-itemExtra.img = imgEl.src;
-itemExtra.alt = imgEl.alt;
-itemExtra.title = extra.querySelector('.cart__modal-text').textContent;
-itemExtra.extraId = extra.dataset.extraId;
-addToCart(itemExtra);
-extra.classList.add('hidden');
-}
-
 });
