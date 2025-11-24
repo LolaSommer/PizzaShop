@@ -404,7 +404,45 @@ cartModalOverlay.addEventListener('click',()=>{
 
 
 const generateCartItem = (item,index)=>{
- 
+  if(item.type === "extra"){
+    return `<div class="cart__modal-item" data-index="${index}">
+
+  <div class="cart__modal-wrapper">
+    <div class="cart__modal-pic">
+      <picture class="card__modal-pizzapic">
+    <source srcset="${item.img}" type="image/webp">
+      <img class="modal__img" src="${item.img}" alt="${item.alt}">
+      </picture>
+    </div>
+
+    <div class="cart__modal-info">
+      <div class="cart__modal-pizza">${item.title}</div>
+      <div class="cart__modal-details">Add-on item</div>
+      <div class="cart__modal-ingredients"></div>
+
+    </div>
+  </div>
+
+  <div class="cart__modal-counter">
+    <div class="cart__modal-price">${item.price.toFixed(2)}$</div>
+    <div class="cart__modal-radiogroup">
+      <button class="cart__modal-change">change</button>
+      <div class="cart__modal-left">-</div>
+      <div class="cart__modal-count">${item.quantity}</div>
+      <div class="cart__modal-right">+</div>
+      <div class="cart__modal-remove">
+  <svg class="icon-trash">
+    <use href="img/sprite.svg#icon-trash"></use>
+  </svg>
+      </div>
+    </div>
+  </div>
+
+</div>
+`;
+
+  }
+ else{
 return `
 <div class="cart__modal-item" data-index="${index}">
 
@@ -442,6 +480,9 @@ return `
 
 </div>
 `;
+
+ }
+
 
 };
 
@@ -499,6 +540,28 @@ else{
   checkoutBtn.disabled = false;
   checkoutBtn.classList.remove('disabled');
 }
+const empty = document.querySelector('.cart__modal-empty');
+const title = document.querySelector('.cart__modal-title');
+const cartList = document.querySelector('.cart__modal-items');
+const extras = document.querySelector('.cart__modal-extras');
+const bottom = document.querySelector('.cart__modal-bottom');
+const extraTitle = document.querySelector('.cart__modal-extrastitle');
+if(cartItems.length === 0){
+  empty.classList.remove('hidden');
+  extraTitle.classList.add('hidden');
+  title.classList.add('hidden');
+  cartList.classList.add('hidden');
+  extras.classList.add('hidden');
+  bottom.classList.add('hidden');
+}else{
+   empty.classList.add('hidden');
+  title.classList.remove('hidden');
+  extraTitle.classList.remove('hidden');
+  cartList.classList.remove('hidden');
+  extras.classList.remove('hidden');
+  bottom.classList.remove('hidden');
+}
+return;
 };
 
 const container = document.querySelector('.cart__modal-items');
@@ -521,6 +584,18 @@ else if (removeBtn){
 const parent = event.target.closest('.cart__modal-item');
 const idxString = parent.dataset.index;
 const index = Number(idxString);
+const item = cartItems[index];
+if(item.type === "extra"){
+  const extraContainer = document.querySelector('.cart__modal-extras');
+  const extras = extraContainer.querySelectorAll('.cart__modal-extra');
+     extras.forEach(ex => {
+        if(ex.dataset.extraId === item.extraId){
+      ex.classList.remove('hidden');
+        }
+    });
+
+  cartItems.splice(index,1);
+}
 cartItems.splice(index, 1);
 renderCart();
 total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -563,3 +638,28 @@ const firstIngredientsButton = document.querySelector('.card__ingredients');
 firstIngredientsButton.click();
 });
  
+const extrasContainer = document.querySelector('.cart__modal-extras');
+extrasContainer.addEventListener('click',(event)=>{
+const extra = event.target.closest('.cart__modal-extra');
+if(extra){
+ 
+const itemExtra ={
+  type:"extra",
+  img:"",
+  alt:"",
+  title:"",
+  quantity:1,
+  price:0,
+  extraId:""
+}
+itemExtra.price = parseFloat(extra.querySelector('.cart__modal-extraprice').textContent);
+const imgEl = extra.querySelector('img');
+itemExtra.img = imgEl.src;
+itemExtra.alt = imgEl.alt;
+itemExtra.title = extra.querySelector('.cart__modal-text').textContent;
+itemExtra.extraId = extra.dataset.extraId;
+addToCart(itemExtra);
+extra.classList.add('hidden');
+}
+
+});

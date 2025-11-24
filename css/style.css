@@ -877,6 +877,15 @@ button *,
   position: fixed;
   right: 0;
   top: 0; }
+  .cart__modal-sad {
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase; }
+  .cart__modal-hungry {
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+    color: #210A01; }
   .cart__modal-window {
     display: grid;
     grid-template-rows: 1fr auto;
@@ -908,10 +917,6 @@ button *,
     line-height: 1.4; }
   .cart__modal-details, .cart__modal-ingredients {
     font-size: 0.875rem; }
-  .cart__modal-pic {
-    align-items: end;
-    width: 100px;
-    height: 100px; }
   .cart__modal-pizza {
     font-weight: 900; }
   .cart__modal-title {
@@ -930,7 +935,7 @@ button *,
       color: #210A01; }
   .cart__modal-wrapper {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 100px auto;
     gap: 50px;
     align-items: flex-start; }
   .cart__modal-counter {
@@ -982,6 +987,11 @@ button *,
     cursor: pointer; }
   .cart__modal-remove {
     cursor: pointer; }
+
+.cart__modal-item .modal__img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain; }
 
 .ripple {
   position: relative;

@@ -614,12 +614,18 @@
             <div class="cart__modal-header">
           <h2 class="cart__modal-title">Your order</h2>
           </div>
+          <div class="cart__modal-empty hidden">
+            <img src="img/fire.webp" alt="Empty cart">
+           <p class="cart__modal-sad">Your cart is empty</p> 
+           <p class="cart__modal-hungry">Looks like someone got hungry…</p>
+           </div>
+
           <div class="cart__modal-items">
              <!-- сюда JS вставит товары -->
           </div>
           <div class="cart__modal-extrastitle">Add to your order:</div>
           <div class="cart__modal-extras">
-            <div class="cart__modal-coffee">
+            <div class="cart__modal-extra cart__modal-coffee" data-extra-id="coffee">
               <picture>
               <source srcset="img/cofe.webp" type="image/webp">
               <img class="modal__img" src="img/cofe.webp" alt="Americano">
@@ -629,7 +635,7 @@
               <div class="cart__modal-extraprice">2<sup>$</sup></div>
               </div>
             </div>
-             <div class="cart__modal-capuchino">
+             <div class="cart__modal-extra cart__modal-capuchino" data-extra-id="capuchino">
               <picture>
               <source srcset="img/capuchino.webp" type="image/webp">
               <img class="modal__img" src="img/capuchino.webp" alt="Capuchino">
@@ -639,7 +645,7 @@
               <div class="cart__modal-extraprice">3<sup>$</sup></div>
               </div>
             </div>
-             <div class="cart__modal-soda">
+             <div class="cart__modal-extra cart__modal-soda" data-extra-id="soda">
               <picture>
               <source srcset="img/soda.webp" type="image/webp">
               <img class="modal__img" src="img/soda.webp" alt="Soda drink">
