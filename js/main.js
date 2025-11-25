@@ -509,10 +509,33 @@ item.price = calculatePrice(state)
 return item;
 
 };
-const addToCart = (item)=>{
-cartItems.push(item);
-const total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  cartTotal.textContent = total;
+function isSamePizza(item1, item2) {
+   if(item1.title !== item2.title ||
+    item1.size !== item2.size ||
+    item1.crust !== item2.crust ||
+    item1.ingredients.length !== item2.ingredients.length
+   ){
+    return false;
+   }
+   const sortedIngr1 = [...item1.ingredients].sort();
+   const sortedIngr2 = [...item2.ingredients].sort();
+   for(let i =0;i<sortedIngr1.length;i++){
+    if(sortedIngr1[i] !== sortedIngr2[i]){
+      return false;
+    }
+   }
+     return true;
+};
+const addToCart = (item) => {
+  const existingItem = cartItems.find(cartItem => 
+    isSamePizza(item, cartItem)
+  );
+  if (existingItem) {
+    existingItem.quantity += item.quantity;
+    existingItem.price = calculatePrice(existingItem);
+    return renderCart();
+  }
+  cartItems.push(item);
   renderCart();
 };
 const renderCart = () =>{
@@ -546,6 +569,16 @@ const cartList = document.querySelector('.cart__modal-items');
 const extras = document.querySelector('.cart__modal-extras');
 const bottom = document.querySelector('.cart__modal-bottom');
 const extraTitle = document.querySelector('.cart__modal-extrastitle');
+extraCards = document.querySelectorAll('.cart__modal-extra');
+const hiddenCount = [...extraCards].filter(ex => ex.classList.contains('hidden')).length;
+const totalCount = extraCards.length;
+if(hiddenCount === totalCount){
+  extraTitle.classList.add('hidden');
+  extras.classList.add('hidden');
+}else{
+  extraTitle.classList.remove('hidden');
+  extras.classList.remove('hidden');
+}
 if(cartItems.length === 0){
   empty.classList.remove('hidden');
   extraTitle.classList.add('hidden');
@@ -553,15 +586,13 @@ if(cartItems.length === 0){
   cartList.classList.add('hidden');
   extras.classList.add('hidden');
   bottom.classList.add('hidden');
+  return;
 }else{
    empty.classList.add('hidden');
   title.classList.remove('hidden');
-  extraTitle.classList.remove('hidden');
   cartList.classList.remove('hidden');
-  extras.classList.remove('hidden');
   bottom.classList.remove('hidden');
 }
-return;
 };
 
 const container = document.querySelector('.cart__modal-items');
@@ -665,6 +696,7 @@ const extrasContainer = document.querySelector('.cart__modal-extras');
 extrasContainer.addEventListener('click',(event)=>{
 const extra = event.target.closest('.cart__modal-extra');
 if(!extra)  return;
+extra.classList.add('hidden'); 
 const itemExtra = createItemExtra(extra);
 addToCart(itemExtra);
 extra.classList.add('hidden');
@@ -686,3 +718,4 @@ btnRight.classList.remove('btn-active');
 const firstIngredientsButton = document.querySelector('.card__ingredients');
 firstIngredientsButton.click();
 });
+

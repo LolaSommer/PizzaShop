@@ -613,6 +613,84 @@ cursor: pointer;
   cursor: not-allowed;
   pointer-events: none;
 }
+.acc__modal{
+  &-log{
+  display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+  overflow-y:auto;
+  overscroll-behavior: contain;
+  }
+
+  
+   &-window{
+  background: $color-btn;
+position:relative;
+color:$color-white;
+z-index: 1;
+padding:clamp(0.938rem,4vw,1.875rem);
+ max-height: 30vh;
+ height: 30vh;
+border-radius:30px;
+margin:0 auto;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  max-width: 350px; 
+  width: 100%;
+  }
+    &-overlay{
+    position:absolute;
+    inset:0;
+    z-index: 0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &-close{
+   display: grid;
+   justify-self:end;
+   margin-bottom: 25px;
+  width:20px;
+  height:20px;
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-border; 
+}
+&-post,&-google,&-apple,&-facebook{
+  width: 44px;
+  height: 44px;
+
+}
+&-img{
+  width: 44px;
+  height: 44px;
+  color:$color-card;
+}
+&-group{
+  display: flex;
+  gap:20px;
+  justify-content: center;
+  padding-block: 10px;
+}
+&-title{
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: $fs-price;
+}
+&-text{
+  text-align: center;
+  padding-block:15px;
+  font-size: $fs-body;
+}
+&-link{
+  text-decoration: none;
+  color:$color-card;
+}
+}
+  
 
 @keyframes ripple-animation {
   to {

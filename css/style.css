@@ -1009,6 +1009,69 @@ button *,
   cursor: not-allowed;
   pointer-events: none; }
 
+.acc__modal-log {
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  font-size: 1.125rem;
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain; }
+.acc__modal-window {
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  position: relative;
+  color: #FFFFFF;
+  z-index: 1;
+  padding: clamp(0.938rem, 4vw, 1.875rem);
+  max-height: 30vh;
+  height: 30vh;
+  border-radius: 30px;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  max-width: 350px;
+  width: 100%; }
+.acc__modal-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px); }
+.acc__modal-close {
+  display: grid;
+  justify-self: end;
+  margin-bottom: 25px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #FF5924; }
+.acc__modal-post, .acc__modal-google, .acc__modal-apple, .acc__modal-facebook {
+  width: 44px;
+  height: 44px; }
+.acc__modal-img {
+  width: 44px;
+  height: 44px;
+  color: #210A01; }
+.acc__modal-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding-block: 10px; }
+.acc__modal-title {
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 1.563rem; }
+.acc__modal-text {
+  text-align: center;
+  padding-block: 15px;
+  font-size: 1.125rem; }
+.acc__modal-link {
+  text-decoration: none;
+  color: #210A01; }
+
 @keyframes ripple-animation {
   to {
     transform: scale(4);
