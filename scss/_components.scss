@@ -416,6 +416,10 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
    background: $color-btn;
    color:$color-white;
 } 
+.menu__card.hidden { 
+  display: none; 
+}
+
 .modal__card-value{
    background:$color-bg-footer;
    color:$color-footer-header;
@@ -468,7 +472,7 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
     position:fixed;
     inset:0;
     z-index:900;
-    background: rgba(0,0,0,0);
+    background: rgba(0,0,0,0.35);
     
   }
   &-top{

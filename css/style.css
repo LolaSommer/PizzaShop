@@ -270,7 +270,8 @@ button *,
   text-align: center; }
 .menu__filter {
   display: flex;
-  gap: clamp(2.5rem, 4vw, 5rem);
+  justify-content: space-between;
+  padding-bottom: 20px;
   font-size: 1.25rem; }
 .menu__item {
   padding-block: 0.938rem;
@@ -278,7 +279,8 @@ button *,
   border-radius: 1.875rem;
   color: #FFFFFF;
   background: #210A01;
-  border: none; }
+  border: none;
+  cursor: pointer; }
 .menu__cards {
   display: flex;
   justify-content: center;
@@ -859,6 +861,9 @@ button *,
   background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
   color: #FFFFFF; }
 
+.menu__card.hidden {
+  display: none; }
+
 .modal__card-value {
   background: linear-gradient(180deg, #1A0B00 0%, #140800 100%);
   color: #e7cdb4;
@@ -902,7 +907,7 @@ button *,
     position: fixed;
     inset: 0;
     z-index: 900;
-    background: rgba(0, 0, 0, 0); }
+    background: rgba(0, 0, 0, 0.35); }
   .cart__modal-top {
     display: flex;
     flex-direction: column;

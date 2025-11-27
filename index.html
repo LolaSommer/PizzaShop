@@ -61,14 +61,13 @@
              <section class="menu" id="menu">
                 <h2 class="menu__header">Menu</h2>
                 <ul class="menu__filter" aria-label="Menu filter">
-                    <li><button type="button" class="menu__item">All</button></li>
-                    <li><button type="button" class="menu__item">Meat</button></li>
-                    <li><button type="button"  class="menu__item">Veggie</button></li>
-                    <li><button  type="button" class="menu__item">Seafood</button></li>
-                    <li><button  type="button" class="menu__item">Mushroom</button></li>
+                    <li><button type="button" class="menu__item btn-active" data-filter="all">All</button></li>
+                    <li><button type="button" class="menu__item" data-filter="meat">Meat</button></li>
+                    <li><button type="button"  class="menu__item" data-filter="veggie">Veggie</button></li> 
+                    <li><button  type="button" class="menu__item" data-filter="mushroom">Mushroom</button></li>
                 </ul>
                 <div class="menu__cards">
-                    <div class="menu__card" itemscope itemtype="https://schema.org/Product">
+                    <div class="menu__card" itemscope itemtype="https://schema.org/Product" data-category="veggie">
                       <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/italian.webp" type="image/webp">
@@ -99,7 +98,7 @@
                         <button type="button" class="card__order" aria-label="Add Italian Pizza to cart">Grab Your Slice</button>
                         <div class="sr-only" aria-live="polite"></div>
                     </div>
-                      <div class="menu__card" itemscope itemtype="https://schema.org/Product">
+                      <div class="menu__card" itemscope itemtype="https://schema.org/Product" data-category="meat">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/Venecia.webp" type="image/webp">
@@ -131,7 +130,7 @@
                         <button type="button" class="card__order" aria-label="Add Diavola Pizza to cart">Grab Your Slice</button>
                        <div class="sr-only" aria-live="polite"></div>
                       </div>
-                      <div class="menu__card" itemscope itemtype="https://schema.org/Product">
+                      <div class="menu__card" itemscope itemtype="https://schema.org/Product" data-category="meat">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/meat.webp" type="image/webp">
@@ -163,7 +162,7 @@
                         <button type="button" class="card__order" aria-label="Add Inferno Pizza to cart">Grab Your Slice</button>
                     <div class="sr-only" aria-live="polite"></div>
                       </div>
-                      <div class="menu__card" itemscope itemtype="https://schema.org/Product">
+                      <div class="menu__card" itemscope itemtype="https://schema.org/Product" data-category="veggie">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/cheese.webp" type="image/webp">
@@ -205,7 +204,7 @@
                     </picture>
                   </aside>
                      <div class="menu__cards">
-                        <div class="menu__card" itemscope itemtype="https://schema.org/Product">
+                        <div class="menu__card" itemscope itemtype="https://schema.org/Product" data-category="meat">
                           <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/argentina.webp" type="image/webp">
@@ -237,7 +236,7 @@
                         <button type="button" class="card__order" aria-label="Add Argentina Pizza to cart">Grab Your Slice</button>
                     <div class="sr-only" aria-live="polite"></div>
                       </div>
-                       <div class="menu__card" itemscope itemtype="https://schema.org/Product">
+                       <div class="menu__card" itemscope itemtype="https://schema.org/Product" data-category="mushroom">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/mushrooms.webp" type="image/webp">
@@ -269,7 +268,7 @@
                         <button type="button" class="card__order" aria-label="Add Forest Pizza to cart">Grab Your Slice</button>
                     <div class="sr-only" aria-live="polite"></div>
                       </div>
-                       <div class="menu__card" itemscope itemtype="https://schema.org/Product">
+                       <div class="menu__card" itemscope itemtype="https://schema.org/Product" data-category="veggie">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/tomato.webp" type="image/webp">
@@ -301,7 +300,7 @@
                         <button type="button" class="card__order" aria-label="Add Margherita Pizza to cart">Grab Your Slice</button>
                     <div class="sr-only" aria-live="polite"></div>
                       </div>
-                       <div class="menu__card" itemscope itemtype="https://schema.org/Product">
+                       <div class="menu__card" itemscope itemtype="https://schema.org/Product" data-category="veggie">
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/italianX2.webp" type="image/webp">
@@ -451,7 +450,6 @@
           <ul>
             <li><a class="footer__nav-link footer__strong " href="">Menu</a></li>
             <li><a class="footer__nav-link" href="">Show All</a></li>
-            <li><a class="footer__nav-link" href="">Seafood</a></li>
             <li><a class="footer__nav-link" href="">Vegetarian</a></li>
             <li><a class="footer__nav-link" href="">Meat Lovers</a></li>
           </ul>

@@ -243,7 +243,7 @@ modalState.ingredients = []
 modalState.size = Number(activeBtn.dataset.size);
 
    const price = calculatePrice(modalState);  
-    modalOrderBtn.textContent = `Grab Your Slice ${price.toFixed(2)}$`;
+    updateModalButtonText();
 ingredientCards.forEach(card => card.classList.remove('modal__card-value'))
 
     // Показываем модалку
@@ -283,7 +283,7 @@ modalSizeButtons.forEach((modalSizeButton)=>{
      modalSizeButton.classList.add('active-btn');
   modalState.size = event.currentTarget.dataset.size
   const price = calculatePrice(modalState);  
-modalOrderBtn.textContent = `Grab Your Slice ${price.toFixed(2)}$`;
+updateModalButtonText();
 
   })
 })
@@ -295,7 +295,8 @@ crustBtns.forEach(b=>b.classList.remove('btn-active'));
 event.currentTarget.classList.add('btn-active');
 modalState.crust = event.currentTarget.dataset.crust;
 const price = calculatePrice(modalState);
-modalOrderBtn.textContent = `Grab Your Slice ${price.toFixed(2)}$`;
+updateModalButtonText();
+
   });
 
 });
@@ -313,7 +314,7 @@ ingredientCards.forEach((ingredientCard)=>{
       modalState.ingredients.push(name);
     }
     const price = calculatePrice(modalState);
-    modalOrderBtn.textContent = `Grab Your Slice ${price.toFixed(2)}$`;
+   updateModalButtonText();
   });
 });
 
@@ -340,11 +341,12 @@ editingIndex = null;
   }else{
  const item = createItemFromCard(activeCard, modalState);
  addToCart(item);
+  resetUI(activeCard);
   } 
   modal.classList.add('hidden');
 modal.setAttribute('aria-hidden', 'true');
 document.body.classList.remove('modal__body-active');
- resetUI(activeCard);
+
 });
   
 
@@ -388,8 +390,7 @@ modalDefBtn.classList.add('active-btn');
 
 cardModal.forEach(card => card.classList.remove('modal__card-value'));
 btnModal.forEach(crustBtn => crustBtn.classList.remove('btn-active'));
-
-modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
+updateModalButtonText();
 };
 
 //корзина 
@@ -443,7 +444,7 @@ const generateCartItem = (item,index)=>{
   <div class="cart__modal-counter">
     <div class="cart__modal-price">${item.price.toFixed(2)}$</div>
     <div class="cart__modal-radiogroup">
-      <button class="cart__modal-change">change</button>
+      <button class="cart__modal-change"></button>
       <div class="cart__modal-left">-</div>
       <div class="cart__modal-count">${item.quantity}</div>
       <div class="cart__modal-right">+</div>
@@ -794,9 +795,50 @@ container.addEventListener('click', (event) => {
             card.classList.remove('modal__card-value');
         }
     });
+// 🔥 ПЕРЕДАЁМ В МОДАЛКУ НАЗВАНИЕ + КАРТИНКУ
+const modalTitle = modal.querySelector('.ingredients__title');
+modalTitle.textContent = item.title;
+
+const modalText = modal.querySelector('.modal__ingredients-text');
+modalText.textContent = ""; // временно
+
+const modalImg = modal.querySelector('.modal__img');
+modalImg.src = item.img;
+modalImg.alt = item.alt;
+
+const modalSource = modal.querySelector('.modal__img').previousElementSibling;
+modalSource.srcset = item.img;
 
     // PRICE
     const price = calculatePrice(modalState);
-    modalOrderBtn.textContent = `Grab Your Slice ${price.toFixed(2)}$`;
+    updateModalButtonText();
 });
 
+const updateModalButtonText = () =>{
+ 
+  if(editingIndex !== null){
+ modalOrderBtn.textContent = `Save Changes ${calculatePrice(modalState).toFixed(2)}$`;
+  }else{
+     modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
+  }
+}
+//меню фильтрации 
+const menuFilter = document.querySelector('.menu__filter');
+menuFilter.addEventListener('click',(event)=>{
+const btn = event.target.closest('.menu__item');
+if(!btn)return;
+const category = btn.dataset.filter;
+const btns = document.querySelectorAll('.menu__item');
+btns.forEach(l => l.classList.remove('btn-active'));
+btn.classList.add('btn-active');
+const menuCards = document.querySelectorAll('.menu__card');
+menuCards.forEach(card => {
+    if (category === "all") {
+        card.classList.remove("hidden");
+    } else if (card.dataset.category === category) {
+        card.classList.remove("hidden");
+    } else {
+        card.classList.add("hidden");
+    }
+});
+});

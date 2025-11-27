@@ -125,7 +125,8 @@
     }
     &__filter{
         display: flex;
-        gap:clamp(2.5rem,4vw,5rem);
+        justify-content: space-between;
+       padding-bottom: 20px;
         font-size: $fs-filter;
            
     }
@@ -136,6 +137,7 @@
         color:$color-white;
         background: #210A01;
         border: none;
+        cursor:pointer;
     }
     
     &__cards{
