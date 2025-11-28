@@ -483,12 +483,14 @@
        
         <div class="modal modal--ingredients hidden" aria-hidden="true">
                     <div class="modal__overlay"></div>
-        <div class="modal__window" role="dialog" aria-modal="true" aria-labelledby="modal__ingredients-title" >
+                    <div class="modal__wrapper">
                     <div class="modal__line">
                    <button class="modal__close" aria-label="close">
                    <svg class="modal__icon"><use href="img/sprite.svg#icon-close"></use></svg>
                   </button>
                   </div>
+        <div class="modal__window" role="dialog" aria-modal="true" aria-labelledby="modal__ingredients-title">
+
                   <div class="modal__system">
                     <div class="modal__colls-img">
                       <picture class="card__picture">
@@ -598,17 +600,19 @@
                            </div>
                          </div>
                   </div>
-                  
+                  </div>
                  
                  </div>
                   </div>
                   
                   <div class="cart__modal-overlay hidden"></div>
-                <div class="cart__modal hidden" aria-hidden="true">
-        <div class="cart__modal-window" role="dialog" aria-modal="true" aria-labelledby="cart__modal-title" >
-          
+                <div class="cart__modal hidden" aria-hidden="true"> 
+             
+        <div class="cart__modal-window" role="dialog" aria-modal="true" aria-labelledby="cart__modal-title"> 
           <div class="cart__modal-top">
-            <button class="cart__modal-close">x</button>
+            <button class="cart__modal-close" aria-label="close">
+                   <svg class="cart__modal-icon"><use href="img/sprite.svg#icon-close"></use></svg>
+                  </button>  
             <div class="cart__modal-header">
           <h2 class="cart__modal-title">Your order</h2>
           </div>
@@ -665,10 +669,18 @@
        <button class="cart__modal-checkout">Checkout</button>
         </div>
         </div>
+      
         </div>
+        
                 </div>
                  <div class="acc__modal-log hidden" aria-hidden="true">
                     <div class="acc__modal-overlay"></div>
+                 <div class="modal__wrapper">
+                    <div class="modal__line">
+                   <button class="modal__close" aria-label="close">
+                   <svg class="modal__icon"><use href="img/sprite.svg#icon-close"></use></svg>
+                  </button>
+                  </div>
         <div class="acc__modal-window" role="dialog" aria-modal="true" aria-labelledby="acc__modal-title" >
                 <div class="acc__modal-title">Create your account</div>
                 <div class="acc__modal-text">Sign up and make your orders blazing fast. 🔥</div>
@@ -679,7 +691,9 @@
                    <a href="#"  aria-label="facebook" class="acc__modal-facebook"><svg class="acc__modal-img" aria-hidden="true" focusable="false" ><use href="img/sprite.svg#facebook"></use></svg></a>
                 </div>
                 <div class="acc__modal-text">Already have an account? <a href="#" class="acc__modal-link">Log in.</a></div>
-
+               </div>
+               </div>
+                 </div>
         <script src="js/main.js"></script>
     </body>
 </html>

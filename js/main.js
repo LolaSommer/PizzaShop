@@ -411,6 +411,7 @@ cartClose.addEventListener('click',()=>{
 cartModal.classList.add('hidden');
  cartModal.setAttribute('aria-hidden','true');
  document.body.classList.remove('modal__body-active');
+ cartModalOverlay.classList.add('hidden');
 });
 //корзина закрывается по клику на свобобдное пространство 
 cartModalOverlay.addEventListener('click',()=>{
@@ -420,7 +421,7 @@ cartModalOverlay.addEventListener('click',()=>{
   cartModalOverlay.classList.add('hidden');
 });
 
-//добавление карточки товара пиццы в корзину
+//добавление карточки товара экстра в корзину
 const generateCartItem = (item,index)=>{
   if(item.type === "extra"){
     return `<div class="cart__modal-item" data-index="${index}">
@@ -444,7 +445,7 @@ const generateCartItem = (item,index)=>{
   <div class="cart__modal-counter">
     <div class="cart__modal-price">${item.price.toFixed(2)}$</div>
     <div class="cart__modal-radiogroup">
-      <button class="cart__modal-change"></button>
+      <button class="cart__modal-change hidden">change</button>
       <div class="cart__modal-left">-</div>
       <div class="cart__modal-count">${item.quantity}</div>
       <div class="cart__modal-right">+</div>
@@ -461,7 +462,7 @@ const generateCartItem = (item,index)=>{
 
   }
  else{
-  //добавление карточки товара экстра в корзину
+  //добавление карточки товара пиццы в корзину
 return `
 <div class="cart__modal-item" data-index="${index}">
 
@@ -744,9 +745,26 @@ firstIngredientsButton.click();
 const logIn = document.querySelector('.header__order');
 const accLog = document.querySelector('.acc__modal-log');
 const accOver = document.querySelector('.acc__modal-overlay');
+const accClose = accLog.querySelector('.modal__close')
 //открытие кнопки логин
 logIn.addEventListener('click',()=>{
 accLog.classList.remove('hidden');
+document.body.classList.add('modal__body-active');
+});
+//модалка логин закрывается по клику на крестик 
+accClose.addEventListener('click',()=>{
+accLog.classList.add('hidden');
+ accLog.setAttribute('aria-hidden','true');
+ document.body.classList.remove('modal__body-active');
+ 
+});
+//модалка закрывается по клику на свобобдное пространство 
+accOver.addEventListener('click',()=>{
+  accLog.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal__body-active');
+  accLog.classList.add('hidden');
+  
+
 });
 //кнопка изменить в модалке 
 container.addEventListener('click', (event) => {
@@ -842,3 +860,5 @@ menuCards.forEach(card => {
     }
 });
 });
+
+
