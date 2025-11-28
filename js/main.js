@@ -763,9 +763,9 @@ accOver.addEventListener('click',()=>{
   accLog.setAttribute('aria-hidden','true');
   document.body.classList.remove('modal__body-active');
   accLog.classList.add('hidden');
-  
-
 });
+
+
 //кнопка изменить в модалке 
 container.addEventListener('click', (event) => {
     const change = event.target.closest('.cart__modal-change');
@@ -860,5 +860,29 @@ menuCards.forEach(card => {
     }
 });
 });
+//окно регистрации 
+const regModal = document.querySelector('.reg__form');
+const accGroup = document.querySelector('.acc__modal-group');
+const regOver = regModal.querySelector('.reg__overlay');
+const regClose = regModal.querySelector('.modal__close');
+accGroup.addEventListener('click', (event) => {
+    const btn = event.target.closest('a');
+    if (!btn) return;
+  if(btn.classList.contains('acc__modal-post')){
+    regModal.classList.remove('hidden');
+    regModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal__body-active');
+     accLog.classList.add('hidden');
+  }
 
-
+});
+  regOver.addEventListener('click',()=>{
+  regModal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal__body-active');
+  regModal.classList.add('hidden');
+  });
+regClose.addEventListener('click',()=>{
+ regModal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal__body-active');
+  regModal.classList.add('hidden');
+});

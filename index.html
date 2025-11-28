@@ -694,6 +694,42 @@
                </div>
                </div>
                  </div>
+                 <div class="reg__form hidden" aria-hidden="true" aria-labelledby="form-title">
+                    <div class="reg__overlay"></div>
+                    <div class="modal__wrapper">
+                    <div class="modal__line">
+                   <button class="modal__close" aria-label="close">
+                   <svg class="modal__icon"><use href="img/sprite.svg#icon-close"></use></svg>
+                  </button>
+                  </div>
+                    <div class="reg__window" role="dialog" aria-modal="true" >
+                        <div class="reg__header">
+                        <h2 class="reg__title" id="form-title">To join the rewards program, we just need a few details from you.</h2>
+                        </div>
+                          <form class="reg__auto">
+                         <label class="reg__text">Name
+                        <input class="reg__input" type="text" name="name" placeholder="Enter your name"  pattern="[A-Za-zА-Яа-яЁё\s\-]+" required>
+                        </label>
+                        <label class="reg__text">Email
+                       <input class="reg__input" type="email" name="email" placeholder="Enter your email address"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                       </label>
+                       <label class="reg__text">Phone number
+                       <input class="reg__input" type="tel" name="tel" placeholder="Enter your phone number"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                       </label>
+
+                       <div class="reg__options">
+                        <label class="reg__radio"><input class="reg__modal-radio" type="radio" name="rewards program" value="agree"><span class="radio__label"></span></label>
+                       <legend class="reg__text">I agree to join the rewards program</legend>
+                        
+                       </div>
+                        <div class="cart__modal-order">
+                       <button class="cart__modal-checkout">Create Account</button>
+                       </div>
+                       </form>
+                    </div>
+                    </div>
+                    </div>
+                 
         <script src="js/main.js"></script>
     </body>
 </html>

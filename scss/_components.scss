@@ -708,21 +708,140 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
   color:$color-card;
 }
 }
-  
+.reg{
+  &__form{
+   display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+  overflow-y:auto;
+  overscroll-behavior: contain;
+  }
+   &__window{
+  background: $color-btn;
+position:relative;
+color:$color-white;
 
+max-width: 600px;
+z-index: 1;
+padding:clamp(0.938rem,4vw,1.875rem);
+border-radius:30px;
+margin:0 auto;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  }
+  &__title{
+    text-align: center;
+    font-weight: $fw-bold;
+
+  }
+    &__overlay{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &__close{
+   display: grid;
+   justify-self:end;
+   margin-bottom: 25px;
+  width:20px;
+  height:20px;
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-border; 
+}
+&__auto{
+  display: flex;
+  flex-direction: column;
+  gap:1.5rem;
+  margin-top: 1.5rem;
+ 
+}
+&__input{
+  display: block;
+  box-sizing: border-box;
+  background: inherit;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  opacity: 0.8;
+  padding-block: 20px;
+  width: 400px;
+  transition: 0.3s;
+  box-sizing: border-box;
+  padding-block: 0.75em 1em;
+  appearance: none;
+  -webkit-appearance: none;
+  &:focus{
+  outline: none;
+  border-bottom: 1px solid rgba(255,255,255,0.9);
+  opacity: 1;
+  transition: border-color .25s ease;
+        }
+}
+&__options{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap:20px;
+   background: inherit;
+  border: none;
+  padding-block: 20px;
+   margin-top: 1rem;
+}
+
+&__text{
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  font-size: $fs-body;
+  align-self: start;
+  
+}
+}
+
+
+.icon-trash{
+  width:15px;
+  height:15px;
+  color:$color-white;
+}
+//чекбокс  в форме реги
+.reg__modal-radio{
+    appearance: none;   
+  width: 18px;
+  height: 18px;
+  border: 2px solid $color-border;  
+  border-radius: 4px;      
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+
+  // галочка
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: $color-border;  
+    opacity: 0;
+    border-radius: 2px;
+    transition: 0.2s ease;
+  }
+
+  &:checked::after {
+    opacity: 1;
+  }
+
+}
 @keyframes ripple-animation {
   to {
     transform: scale(4);
     opacity: 0;
   }
 }
-.icon-trash{
-  width:15px;
-  height:15px;
-  color:$color-white;
-}
-
-
      @media (max-width: 768px) {
         .pic__text{
             font-size: $fs-filter;
