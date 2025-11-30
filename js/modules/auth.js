@@ -1,3 +1,4 @@
+export function initAuth () {
 //кнопка логин 
 const logIn = document.querySelector('.header__order');
 const accLog = document.querySelector('.acc__modal-log');
@@ -47,3 +48,5 @@ regClose.addEventListener('click',()=>{
   document.body.classList.remove('modal__body-active');
   regModal.classList.add('hidden');
 });
+
+}

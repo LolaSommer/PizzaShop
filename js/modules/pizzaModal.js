@@ -1,31 +1,21 @@
-import { 
-  modalState, 
-  activeCard, 
-  editingIndex, 
-  cartItems,
-  setActiveCard,
-  setEditingIndex,
-  setCartItems
-} from './state.js';
-import { addToCart, renderCart } from './cart.js';
-import { createItemFromCard } from './menu.js';
-export function calculatePrice(cardState) {
-  const base = basePrices[cardState.size] || 0;
-  const extra = cardState.ingredients.reduce((sum, name) => {
-    return sum + ingredientsPrices[name];
-  }, 0);
-  return (base + extra) * cardState.quantity;
-}
-//модальное окно 
+import { calculatePrice, sizeMap } from "./state.js";
+export function initPizzaModal() {
+
+   //модальное окно 
 const modal = document.querySelector('.modal');
 const modalClose = document.querySelector('.modal__close');
 const ingredientCards = document.querySelectorAll('.modal__card');
 const modalOrderBtn = document.querySelector('.modal__order-btn');
 const btnIngredients = document.querySelectorAll('.card__ingredients');
 const modalOverlay = document.querySelector('.modal__overlay');
-
+let editingIndex = null;
 //объект пицца в модальном окне:размер, тесто, ингредиенты, базовая цена и экстрацена
-
+let modalState = {
+  size:10,
+  crust:"traditional",
+  ingredients:[],
+  quantity:1
+};
 const syncModalToCard = ()=>{
   if(activeCard == null) return;
    const cardState = activeCard._state;
@@ -41,6 +31,7 @@ const activeBtn = activeCard.querySelector(`[data-size="${cardState.size}"]`);
 activeBtn.classList.add('active-btn');
 }
 //кнопка ингредиенты 
+let activeCard = null;
 btnIngredients.forEach((button) => {
 
   button.addEventListener('click', (event) => {
@@ -60,7 +51,7 @@ btnIngredients.forEach((button) => {
     modalSource.srcset = cardSource.srcset;
  modalState.size = parseInt(currentCard.querySelector('.active-btn').dataset.size)
 modalState.quantity = Number(currentCard.querySelector('.card__count').textContent)
-modalState.ingredients = []
+modalState.ingredients = [];
     // Применяем активный размер пиццы из карточки к кнопкам в модалке
     const activeBtn = currentCard.querySelector('.active-btn');
     const modalSizeButtons = modal.querySelectorAll('.modal__radio button');
@@ -154,25 +145,15 @@ ingredientCards.forEach((ingredientCard)=>{
 //при нажатии на кнопку заказа в модалке добавить в корзину 
 modalOrderBtn.addEventListener('click',()=>{
   if(editingIndex !== null){
-const oldItem = cartItems[editingIndex];
-    const newItem = {
-      ...oldItem,                        
-      size: modalState.size,
-      quantity: modalState.quantity,
-      crust: modalState.crust,
-      ingredients: [...modalState.ingredients],
-      price: calculatePrice(modalState),
+if (editingIndex !== null) {
+    window._editedItem = {
+        index: editingIndex,
+        modalState: { ...modalState }
     };
-   cartItems = [
-      ...cartItems.slice(0, editingIndex),
-      newItem,
-      ...cartItems.slice(editingIndex + 1),
-    ];
-renderCart();
-editingIndex = null;
+}
+
   }else{
- const item = createItemFromCard(activeCard, modalState);
- addToCart(item);
+  window._modalStateForCart = { activeCard, modalState: { ...modalState } };
   resetUI(activeCard);
   } 
   modal.classList.add('hidden');
@@ -224,60 +205,60 @@ cardModal.forEach(card => card.classList.remove('modal__card-value'));
 btnModal.forEach(crustBtn => crustBtn.classList.remove('btn-active'));
 updateModalButtonText();
 };
+const updateModalButtonText = () =>{
+ 
+  if(editingIndex !== null){
+ modalOrderBtn.textContent = `Save Changes ${calculatePrice(modalState).toFixed(2)}$`;
+  }else{
+     modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
+  }
+}
 //кнопка изменить в модалке 
-const container = document.querySelector('.cart__modal-items');
-container.addEventListener('click', (event) => {
-    const change = event.target.closest('.cart__modal-change');
-    if (!change) return;
 
-    activeCard = null;
+document.addEventListener("click", () => {
+    if (!window._editItem) return;
 
-    const parent = event.target.closest('.cart__modal-item');
-    const idxString = parent.dataset.index;
-    const index = Number(idxString);
-    const item = cartItems[index];
+    const { item, index } = window._editItem;
 
     editingIndex = index;
 
-    // Открываем модалку
+    // открываем модалку
     modal.classList.remove('hidden');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal__body-active');
 
-    // Полный сброс состояния модалки
+    // подставляем данные
     modalState.size = item.size;
     modalState.quantity = item.quantity;
     modalState.crust = item.crust;
     modalState.ingredients = [...item.ingredients];
+    // Синхронизация DOM ингредиентов с modalState
+const ingCards = modal.querySelectorAll('.modal__card');
+ingCards.forEach(card => {
+    const ing = card.dataset.ing;
+    if (modalState.ingredients.includes(ing)) {
+        card.classList.add('modal__card-value');
+    } else {
+        card.classList.remove('modal__card-value');
+    }
+});
+// 🔥 Синхронизация SIZE-кнопок
+const sizeButtons = modal.querySelectorAll('.modal__radio button');
+sizeButtons.forEach(btn => btn.classList.remove('active-btn'));
 
-    // SIZE кнопки
-    const sizeButtons = modal.querySelectorAll('.modal__radio button');
-    sizeButtons.forEach(btn => btn.classList.remove('active-btn'));
-    const activeBtn = modal.querySelector(`.modal__radio button[data-size="${modalState.size}"]`);
-    if (activeBtn) activeBtn.classList.add('active-btn');
+const activeSizeBtn = modal.querySelector(`.modal__radio button[data-size="${modalState.size}"]`);
+if (activeSizeBtn) activeSizeBtn.classList.add('active-btn');
+// CRUST — синхронизация кнопок
+const crustButtons = modal.querySelectorAll('.modal__btn button');
+crustButtons.forEach(btn => btn.classList.remove('btn-active'));
 
-    // CRUST кнопки
-    const crustBtns = modal.querySelectorAll('.modal__btn button');
-    crustBtns.forEach(btn => btn.classList.remove('btn-active'));
-    const activeCrustBtn = modal.querySelector(`.modal__btn button[data-crust="${modalState.crust}"]`);
-    if (activeCrustBtn) activeCrustBtn.classList.add('btn-active');
+const correctCrust = modal.querySelector(`.modal__btn button[data-crust="${modalState.crust}"]`);
+if (correctCrust) correctCrust.classList.add('btn-active');
 
-    // INGREDIENTS
-    const ingCards = modal.querySelectorAll('.modal__card');
-    ingCards.forEach(card => {
-        const ing = card.dataset.ing;
-        if (modalState.ingredients.includes(ing)) {
-            card.classList.add('modal__card-value');
-        } else {
-            card.classList.remove('modal__card-value');
-        }
-    });
-// 🔥 ПЕРЕДАЁМ В МОДАЛКУ НАЗВАНИЕ + КАРТИНКУ
+
+    // Обновляем UI модалки: название, картинку, текст
 const modalTitle = modal.querySelector('.ingredients__title');
 modalTitle.textContent = item.title;
-
-const modalText = modal.querySelector('.modal__ingredients-text');
-modalText.textContent = ""; // временно
 
 const modalImg = modal.querySelector('.modal__img');
 modalImg.src = item.img;
@@ -286,17 +267,15 @@ modalImg.alt = item.alt;
 const modalSource = modal.querySelector('.modal__img').previousElementSibling;
 modalSource.srcset = item.img;
 
-    // PRICE
-    const price = calculatePrice(modalState);
+const modalText = modal.querySelector('.modal__ingredients-text');
+modalText.textContent = "";
+
+
+    // UI
     updateModalButtonText();
+
+    window._editItem = null;
 });
 
-const updateModalButtonText = () =>{
- 
-  if(editingIndex !== null){
- modalOrderBtn.textContent = `Save Changes ${calculatePrice(modalState).toFixed(2)}$`;
-  }else{
-     modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
-  }
 }
 

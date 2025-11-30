@@ -939,6 +939,16 @@ input:-webkit-autofill:focus {
   font-size: clamp(22px, 2vw, 30px);
   text-align: center;
   padding-block: 25px; }
+.social__apple-img {
+  transform: translateY(-2px);
+  color: #210A01; }
+.social__google-img {
+  transform: translateY(1px); }
+.social__facebook-img {
+  transform: translateY(-2px); }
+.social__apple-img, .social__google-img, .social__facebook-img {
+  width: 44px;
+  height: 44px; }
 
 .universal__modal {
   display: grid;

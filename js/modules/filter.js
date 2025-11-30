@@ -1,4 +1,5 @@
-//меню фильтрации 
+export function initFilter() {
+   //меню фильтрации 
 const menuFilter = document.querySelector('.menu__filter');
 menuFilter.addEventListener('click',(event)=>{
 const btn = event.target.closest('.menu__item');
@@ -17,4 +18,6 @@ menuCards.forEach(card => {
         card.classList.add("hidden");
     }
 });
-});
+}); 
+}
+

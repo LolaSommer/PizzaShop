@@ -1,20 +1,16 @@
-// === БАЗОВЫЕ ДАННЫЕ ПИЦЦ ===
-
-// базовые цены на размеры
-export const basePrices = {
+//базовые цены на пиццу по размеру 
+  export const basePrices = {
   10: 9.99,
   12: 12.99,
   14: 15.99,
 };
-
-// размеры и метки
+//базовые размеры пиццы
 export const sizeMap = {
   10: { inches: '10″', label: 'Small' },
   12: { inches: '12″', label: 'Medium' },
   14: { inches: '14″', label: 'Large' }
 };
-
-// цены ингредиентов
+//ингредиенты и цены в модалке
 export const ingredientsPrices = {
   "cheeses": 1.75,
   "mozzarella": 1.75,
@@ -27,33 +23,12 @@ export const ingredientsPrices = {
   "ananas pieces": 1.75
 };
 
-
-// === СОСТОЯНИЕ МОДАЛКИ ПИЦЦЫ ===
-export const modalState = {
-  size: 10,
-  crust: "traditional",
-  ingredients: [],
-  quantity: 1,
-};
-
-
-// === СОСТОЯНИЕ КОРЗИНЫ ===
-export let cartItems = [];        
-export let editingIndex = null;   
-export let activeCard = null;    
-
-
-// === СЕТТЕРЫ ДЛЯ ИЗМЕНЯЕМЫХ ПЕРЕМЕННЫХ ===
-export function setCartItems(newValue) {
-  cartItems = newValue;
+//функция изменения цены 
+export const calculatePrice=(cardState)=>{
+const base = basePrices[cardState.size] || 0;
+const extra = cardState.ingredients.reduce((sum,name) => { 
+  return sum + ingredientsPrices[name]; 
+}, 0);
+return (base + extra) * cardState.quantity;
 }
-
-export function setEditingIndex(val) {
-  editingIndex = val;
-}
-
-export function setActiveCard(val) {
-  activeCard = val;
-}
-
 

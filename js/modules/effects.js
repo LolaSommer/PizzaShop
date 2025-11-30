@@ -1,4 +1,5 @@
-//эффект волны на кнопке 
+export function initEffects() {
+  //эффект волны на кнопке 
 function addRippleEffect(button) {
   button.classList.add('ripple');
   
@@ -24,5 +25,6 @@ function addRippleEffect(button) {
 const orderButtons = document.querySelectorAll('.card__order');
 orderButtons.forEach(btn => addRippleEffect(btn));
 const checkout = document.querySelectorAll('.cart__modal-checkout');
-checkout.forEach(btn => addRippleEffect(btn));
+checkout.forEach(btn => addRippleEffect(btn));  
+}
 

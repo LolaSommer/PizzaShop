@@ -1,4 +1,5 @@
-//переменные секции и ссылки меню
+export function initNavigation() {
+   //переменные секции и ссылки меню
 const navLinks = document.querySelectorAll('.nav__link');
 const sections = document.querySelectorAll('section');
 //обработчик на ссылки меню по клику 
@@ -36,4 +37,7 @@ function updateOnScroll() {
 
   }
 }
+
 window.addEventListener('scroll', updateOnScroll);
+}
+

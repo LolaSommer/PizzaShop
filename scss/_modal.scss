@@ -373,6 +373,20 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
   text-align: center;
   padding-block: 25px;
 }
+&__apple-img{
+  transform: translateY(-2px);
+  color:$color-card;
+}
+&__google-img {
+  transform: translateY(1px);
+}
+&__facebook-img{
+    transform: translateY(-2px);
+}
+&__apple-img,&__google-img,&__facebook-img{
+  width: 44px;
+  height: 44px;
+}
 }
 //модальная форма авторизации после регистрации 
 .universal{
