@@ -1,0 +1,465 @@
+//модальное окно для пиццы с ингредиентами
+.modal{
+  display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+  overflow-y:auto;
+  overscroll-behavior: contain;
+   &__window{
+position:relative;
+background:$color-bg;
+color:$color-white;
+z-index: 1;
+padding:clamp(0.938rem,4vw,1.875rem);
+ max-height: 80vh;
+ height: 80vh;
+border-radius:30px;
+margin:0 auto;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  max-width: 960px; 
+  width: 100%;
+  }
+  &__cards{
+   display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  padding: 16px 0;
+  }
+    &__overlay{
+    position:absolute;
+    inset:0;
+    z-index: 0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &__wrapper{
+    position:relative;
+  }
+  &__close{
+   display: grid;
+   position:absolute;
+   justify-self:end;
+   margin-bottom: 25px;
+  border:none;
+  top:-15px;
+  right:-50px;
+  background:transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-border;
+  }
+&__system{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   height: 100%;
+   overflow: hidden;
+}
+&__icon{
+  width:25px;
+  height:25px;
+  fill:currentColor;
+}
+&__colls-ingredients{
+   overflow-y: auto;
+   padding-left: 1rem;
+}
+&__ingredients-text{
+   font-size: $fs-body;
+   line-height: $lh-loose;
+   margin: 0;
+}
+&__btn{
+  margin-block: 20px;
+
+}
+&__ingredients-title{
+   text-align: center;
+}
+&__btn-group{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap:0.5rem;
+ 
+}
+&__colls-img{
+   display: flex;
+   align-items: center;
+   padding-block:1.875rem;
+}
+&__img{
+   width:clamp(15rem,20vw,25.625rem)
+}
+&__card{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap:0.25rem;
+   cursor: pointer;
+  transition:transform .3s ease, box-shadow .3s ease;
+  &:hover{
+   background:$color-bg-footer;
+   color:$color-footer-header;
+   border-radius: 1.25rem;
+   border:1px solid $color-border;
+  }
+}
+&__order{
+   display: flex;
+   justify-content: center;
+   margin-block:1.875rem;
+}
+&__price{
+   margin: 0;
+}
+  }
+//модальное окно авторизация 
+.acc__modal{
+  &-log{
+  display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+  overflow-y:auto;
+  overscroll-behavior: contain;
+  }
+
+  
+   &-window{
+  background: $color-btn;
+position:relative;
+color:$color-white;
+z-index: 1;
+padding:clamp(0.938rem,4vw,1.875rem);
+ max-height: 30vh;
+ height: 30vh;
+border-radius:30px;
+margin:0 auto;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  max-width: 350px; 
+  width: 100%;
+  }
+    &-overlay{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &-close{
+   display: grid;
+   justify-self:end;
+   margin-bottom: 25px;
+  width:20px;
+  height:20px;
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-border; 
+}
+&-post,&-google,&-apple,&-facebook{
+  width: 44px;
+  height: 44px;
+
+}
+&-img{
+  width: 44px;
+  height: 44px;
+  color:$color-card;
+}
+&-group{
+  display: flex;
+  gap:20px;
+  justify-content: center;
+  padding-block: 10px;
+}
+&-title{
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: $fs-price;
+}
+&-text{
+  text-align: center;
+  padding-block:15px;
+  font-size: $fs-body;
+}
+&-link{
+  text-decoration: none;
+  color:$color-card;
+}
+}
+//модальное окно форма регистрации 
+.reg{
+  &__form{
+   display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+  overflow-y:auto;
+  overscroll-behavior: contain;
+  }
+   &__window{
+  background: $color-btn;
+position:relative;
+color:$color-white;
+
+max-width: 600px;
+z-index: 1;
+padding:clamp(0.938rem,4vw,1.875rem);
+border-radius:30px;
+margin:0 auto;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  }
+  &__title{
+    text-align: center;
+    font-weight: $fw-bold;
+
+  }
+    &__overlay{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &__close{
+   display: grid;
+   justify-self:end;
+   margin-bottom: 25px;
+  width:20px;
+  height:20px;
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-border; 
+}
+&__auto{
+  display: flex;
+  flex-direction: column;
+  gap:1.5rem;
+  margin-top: 1.5rem;
+ 
+}
+&__input{
+  display: block;
+  background: inherit;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  opacity: 0.8;
+  padding-block: 20px;
+  width: 400px;
+  transition: 0.3s;
+  box-sizing: border-box;
+  padding-block: 0.75em 1em;
+  appearance: none;
+  -webkit-appearance: none;
+  &:focus{
+  outline: none;
+  border-bottom: 1px solid rgba(255,255,255,0.9);
+  opacity: 1;
+  transition: border-color .25s ease;
+        }
+}
+&__options{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap:20px;
+   background: inherit;
+  border: none;
+  padding-block: 20px;
+   margin-top: 1rem;
+}
+
+&__text{
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  font-size: $fs-body;
+  align-self: start;
+  
+}
+}
+//чекбокс  в форме реги
+.reg__modal-radio{
+    appearance: none;   
+  width: 18px;
+  height: 18px;
+  border: 2px solid $color-border;  
+  border-radius: 4px;      
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+
+  // галочка
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: $color-border;  
+    opacity: 0;
+    border-radius: 2px;
+    transition: 0.2s ease;
+  }
+
+  &:checked::after {
+    opacity: 1;
+  }
+}
+//модалка форма авторизация через соц сети 
+.social{
+  &__modal{
+  display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+  }
+   &__window{
+  background: $color-btn;
+position:relative;
+color:$color-white;
+z-index: 1;
+padding:clamp(0.938rem,4vw,1.875rem);
+border-radius:30px;
+margin:0 auto;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+ height: 25vh;
+ width: 250px;
+  }
+    &__overlay{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &__close{
+   display: grid;
+   justify-self:end;
+   margin-bottom: 25px;
+  width:20px;
+  height:20px;
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-border; 
+}
+&__icon{
+  width:20px;
+  height:20px;
+}
+&__line{
+  position: relative;
+}
+&__group{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+ gap:20px;
+ padding-block: 30px;
+}
+&__title{
+  font-size: $fs-h3;
+  text-align: center;
+  padding-block: 25px;
+}
+}
+//модальная форма авторизации после регистрации 
+.universal{
+    &__modal{
+  display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+  }
+   &__window{
+  background: $color-btn;
+position:relative;
+color:$color-white;
+z-index: 1;
+padding:clamp(0.938rem,4vw,1.875rem);
+ max-height: 50vh;
+ height: 50vh;
+border-radius:30px;
+margin: 15px;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  max-width: 450px; 
+  width: 100%;
+  }
+    &__overlay{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &__close{
+   display: grid;
+   justify-self:end;
+   width:20px;
+  height:20px;
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-border; 
+}
+&__line{
+  position: relative;
+}
+&__icon{
+  width:20px;
+  height:20px;
+}
+&__form{
+  display: flex;
+  flex-direction: column;
+}
+&__input,&__text{
+  display: flex;
+  flex-direction: column;
+  background: inherit;
+  border: none;
+  padding-block: 15px;
+}
+&__input{
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  opacity: 0.8;
+  padding-block: 20px;
+  transition: 0.3s;
+  box-sizing: border-box;
+  padding-block: 0.75em 1em;
+  appearance: none;
+  -webkit-appearance: none;
+  &:focus{
+  outline: none;
+  border-bottom: 1px solid rgba(255,255,255,0.9);
+  opacity: 1;
+  transition: border-color .25s ease;
+        }
+}
+&__password{
+  font-size: 15px;
+  transition: .2s;
+  color:gray;
+    &:hover {
+    color: rgba(255,255,255,0.85);
+  }
+}
+&__link{
+text-decoration: none;
+}
+
+}

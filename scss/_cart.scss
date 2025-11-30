@@ -1,0 +1,177 @@
+//корзина 
+.cart__modal{
+    inset: 0 0 0 auto;
+    height: 100vh;
+    width: 500px;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  right: 0;
+  top:0;
+   &-sad{
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  &-hungry{
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+    color:$color-card;
+  }
+  &-icon{
+  width:25px;
+  height:25px;
+  fill:currentColor;
+  display: flex;
+  
+  }
+  
+   &-close{
+  display: flex;
+  justify-content: end;
+   color:$color-card;
+   background: inherit;
+   border:none;
+   cursor: pointer;
+
+ }
+  &-window{
+   display:grid;
+    grid-template-rows: 1fr auto;
+    height: 100%;
+    background:$color-btn;
+color:$color-white;
+padding-inline: 30px;
+padding-left: 100px;
+z-index: 1;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+  width: 100%;
+     clip-path: polygon(
+    0% 0%,
+    15% 10%, 5% 20%, 20% 30%, 
+    10% 45%, 25% 60%, 15% 75%, 
+    20% 90%, 5% 95%, 0% 100%,
+    100% 100%, 100% 0%
+  );
+  }
+  &-overlay{
+    position:fixed;
+    inset:0;
+    z-index:900;
+    background: rgba(0,0,0,0.35);
+    
+  }
+  &-top{
+   display: flex;
+   flex-direction: column;
+   padding:20px;
+   overflow-y: auto;
+  }
+  &-bottom{
+   padding:20px;  
+}
+
+  &-items{
+   
+   border-bottom: 1px solid $color-footer;
+  
+  }
+  &-info{
+   padding-block: 10px;
+   line-height: $lh-normal;
+  }
+  &-details,&-ingredients{
+   font-size: $fs-small;
+  }
+ 
+  &-pizza{
+   font-weight:$fw-black;
+  }
+   &-title{
+      color:$color-white;
+      text-align: center;
+   }
+  &-checkout{
+   color:$color-white;
+   text-transform: uppercase;
+   background: $color-bg;
+   width:250px;
+   padding-block: 15px;
+   border-radius: 50px;
+   border: $color-border;
+   &:hover{
+      background: $color-footer-header;
+      color:$color-card;
+   }
+  }
+  &-wrapper{
+    display: grid;
+    grid-template-columns: 100px auto;
+    gap:50px;
+    align-items: flex-start;
+  }
+  &-counter{
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 10px;
+  padding-block: 20px;
+  padding-inline: 20px;
+
+  }
+  &-radiogroup{
+   display: flex;
+   gap:20px;
+  }
+  &-summary{
+   display: flex;
+   justify-content: space-between;
+   border-top: 1px solid $color-footer;
+   padding-block: 10px;
+   
+  }
+ &-order{
+   display: flex;
+   justify-content: center;
+   padding-block: 30px;
+ }
+
+ &-change{
+border:none;
+background:inherit;
+color:$color-white;
+cursor: pointer;
+ }
+ &-coffee,&-capuchino,&-soda{
+   width: 80px;
+   height: 80px;
+   cursor:pointer;
+ }
+ &-extras{
+   display: flex;
+   gap:40px;
+   padding-block: 30px;
+  
+   
+ }
+ &-extrastitle{
+   padding-block: 20px;
+
+ }
+ &-priceblock{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap:10px;
+   
+ }
+ &-left,&-right{
+  cursor: pointer;
+ }
+ &-remove{
+  cursor: pointer;
+ }
+
+}

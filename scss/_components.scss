@@ -1,3 +1,4 @@
+ //кнопка на видео 
  .video__btn{
     position: absolute;
     top: 50%; 
@@ -25,7 +26,7 @@
      .text__strong{
         font-weight: $fw-black;
      }
-     
+     //две кнопки на герое закажи сейчас/меню
    .hero__btn{
         position: relative;
         display: flex;
@@ -51,7 +52,6 @@
         color:$color-white;
         
     }
-
         }
         &-right{
             flex:1;
@@ -70,16 +70,13 @@
 
         }
     }
-     .btn-active{
-        background: $color-btn;
-        color:$color-white;
-        transition: all 0.3s ease;
-     }
+    //текст на карточке пиццы
      .card__text{
         color:$color-white;
         font-size: $fs-small;
         text-align:start;
      }
+     //кнопки на карточке пиццы 
      .card__btn{
         display: flex;
         gap:clamp(0.625rem,2vw,1.563rem);
@@ -101,6 +98,7 @@
     }
         }
      }
+     //кнопка ингредиенты 
      .card__ingredients{
       border-radius:1.875rem;
       width: clamp(7rem,10vw,12.125rem);
@@ -115,6 +113,7 @@
         color:$color-white;
     }
      }
+     //кнопка заказа в карточке пиццы 
      .card__order{
       border-radius:1.875rem;
       width: clamp(7rem,10vw,12.125rem);
@@ -131,6 +130,7 @@
         transform: translateY(-3px) scale(1.05);
     }
      }
+     //кнопка заказа в модальном окне 
        .modal__order-btn{
       border-radius:1.875rem;
       width: clamp(7rem,10vw,12.125rem);
@@ -147,6 +147,7 @@
         transform: translateY(-3px) scale(1.05);
     }
      }
+     //кнопки плюс и минус
      .card__minus,.card__plus{
             border-radius:3.125rem;
             width:1.438rem;
@@ -178,10 +179,12 @@
        
       }
      }
+     //счетчик пицц
      .card__count{
         color:$color-text;
 
      }
+     //цена 
      .product-card__price{
         color:$color-white;
         padding-top:1.063rem;
@@ -192,7 +195,7 @@
      .card__positiv{
         padding-top:1.25rem;
      }
-
+     
      .pic__text{
         color:$color-white;
         font-weight: $fw-medium;
@@ -244,28 +247,12 @@
       border-radius:3.125rem;
       padding-block:1.25rem;
      }
-     .nav__link.active{
-      border-bottom: 2px solid #ff3d00;
-      transition: 0.3s ease;
-     }
-
-   .card__minus[disabled]{
-   cursor:default;
-   opacity: 0.5;
-   pointer-events: none;
-   transition: opacity .3s;
-}
-.card__minus[disabled]:hover,
-.card__minus[disabled]:active {
-  background: inherit;
-  transform: none;
-}
-    
+//корзина значок 
 .cart {
   position: relative;
   display: inline-block;
 }
-
+//значок над корзиной с колличеством товара 
 .cart__total {
   position: absolute;
   top: -6px;
@@ -280,132 +267,28 @@
   text-align: center;
   line-height: 1;
 }
-.active-btn{
-   background: $color-btn;
-   color:$color-white;
-}
 
-
+//для спрятанных элементов
 .hidden{
  display: none !important;
 }
-.modal{
-  display:grid;
-  place-items:center;
-  z-index:1000;
-  font-size: $fs-body;
-  position: fixed;
-  inset:0;
-  overflow-y:auto;
-  overscroll-behavior: contain;
-   &__window{
-position:relative;
-background:$color-bg;
-color:$color-white;
-z-index: 1;
-padding:clamp(0.938rem,4vw,1.875rem);
- max-height: 80vh;
- height: 80vh;
-border-radius:30px;
-margin:0 auto;
-box-shadow: 0 8px 24px rgba(0,0,0,.3);
-  max-width: 960px; 
-  width: 100%;
-  }
-  &__cards{
-   display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
-  padding: 16px 0;
-  }
-    &__overlay{
-    position:absolute;
-    inset:0;
-    z-index: 0;
-    background: rgba(0,0,0,.6);
-    backdrop-filter: blur(2px);
-  }
-  &__wrapper{
-    position:relative;
-  }
-  &__close{
-   display: grid;
-   position:absolute;
-   justify-self:end;
-   margin-bottom: 25px;
-  border:none;
-  top:-15px;
-  right:-50px;
-  background:transparent;
-  cursor:pointer;
-  padding: 0.5rem;
-  color:$color-border;
-  }
-&__system{
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   height: 100%;
-   overflow: hidden;
+//для заблокипованных элементов 
+   .card__minus[disabled]{
+   cursor:default;
+   opacity: 0.5;
+   pointer-events: none;
+   transition: opacity .3s;
 }
-&__icon{
-  width:25px;
-  height:25px;
-  fill:currentColor;
+.card__minus[disabled]:hover,
+.card__minus[disabled]:active {
+  background: inherit;
+  transform: none;
 }
-&__colls-ingredients{
-   overflow-y: auto;
-   padding-left: 1rem;
-}
-&__ingredients-text{
-   font-size: $fs-body;
-   line-height: $lh-loose;
-   margin: 0;
-}
-&__btn{
-  margin-block: 20px;
-
-}
-&__ingredients-title{
-   text-align: center;
-}
-&__btn-group{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap:0.5rem;
- 
-}
-&__colls-img{
-   display: flex;
-   align-items: center;
-   padding-block:1.875rem;
-}
-&__img{
-   width:clamp(15rem,20vw,25.625rem)
-}
-&__card{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap:0.25rem;
-   cursor: pointer;
-  transition:transform .3s ease, box-shadow .3s ease;
-  &:hover{
-   background:$color-bg-footer;
-   color:$color-footer-header;
-   border-radius: 1.25rem;
-   border:1px solid $color-border;
-  }
-}
-&__order{
-   display: flex;
-   justify-content: center;
-   margin-block:1.875rem;
-}
-&__price{
-   margin: 0;
-}
-  }
+//стили для активации с помощью JS 
+ .nav__link.active{
+      border-bottom: 2px solid #ff3d00;
+      transition: 0.3s ease;
+     }
 .modal__card-active{
    background:$color-bg-footer;
    color:$color-footer-header;
@@ -415,7 +298,12 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
 .btn-active{
    background: $color-btn;
    color:$color-white;
+   transition: all 0.3s ease;
 } 
+.active-btn{
+   background: $color-btn;
+   color:$color-white;
+}
 .menu__card.hidden { 
   display: none; 
 }
@@ -429,190 +317,12 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
 .modal__body-active{
    overflow: hidden;
 }
-
-.cart__modal{
-    inset: 0 0 0 auto;
-    height: 100vh;
-    width: 500px;
-  z-index:1000;
-  font-size: $fs-body;
-  position: fixed;
-  right: 0;
-  top:0;
-   &-sad{
-    display: flex;
-    justify-content: center;
-    text-transform: uppercase;
-  }
-
-  &-hungry{
-    display: flex;
-    justify-content: center;
-    font-style: italic;
-    color:$color-card;
-  }
-  &-icon{
-  width:25px;
-  height:25px;
-  fill:currentColor;
-  display: flex;
-  
-  }
-  
-   &-close{
-  display: flex;
-  justify-content: end;
-   color:$color-card;
-   background: inherit;
-   border:none;
-   cursor: pointer;
-
- }
-  &-window{
-   display:grid;
-    grid-template-rows: 1fr auto;
-    height: 100%;
-    background:$color-btn;
-color:$color-white;
-padding-inline: 30px;
-padding-left: 100px;
-z-index: 1;
-box-shadow: 0 8px 24px rgba(0,0,0,.3);
-  width: 100%;
-     clip-path: polygon(
-    0% 0%,
-    15% 10%, 5% 20%, 20% 30%, 
-    10% 45%, 25% 60%, 15% 75%, 
-    20% 90%, 5% 95%, 0% 100%,
-    100% 100%, 100% 0%
-  );
-  }
-  &-overlay{
-    position:fixed;
-    inset:0;
-    z-index:900;
-    background: rgba(0,0,0,0.35);
-    
-  }
-  &-top{
-   display: flex;
-   flex-direction: column;
-   padding:20px;
-   overflow-y: auto;
-  }
-  &-bottom{
-   padding:20px;  
-}
-
-  &-items{
-   
-   border-bottom: 1px solid $color-footer;
-  
-  }
-  &-info{
-   padding-block: 10px;
-   line-height: $lh-normal;
-  }
-  &-details,&-ingredients{
-   font-size: $fs-small;
-  }
- 
-  &-pizza{
-   font-weight:$fw-black;
-  }
-   &-title{
-      color:$color-white;
-      text-align: center;
-   }
-  &-checkout{
-   color:$color-white;
-   text-transform: uppercase;
-   background: $color-bg;
-   width:250px;
-   padding-block: 15px;
-   border-radius: 50px;
-   border: $color-border;
-   &:hover{
-      background: $color-footer-header;
-      color:$color-card;
-   }
-  }
-  &-wrapper{
-    display: grid;
-    grid-template-columns: 100px auto;
-    gap:50px;
-    align-items: flex-start;
-  }
-  &-counter{
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
-  align-items: center;
-  gap: 10px;
-  padding-block: 20px;
-  padding-inline: 20px;
-
-  }
-  &-radiogroup{
-   display: flex;
-   gap:20px;
-  }
-  &-summary{
-   display: flex;
-   justify-content: space-between;
-   border-top: 1px solid $color-footer;
-   padding-block: 10px;
-   
-  }
- &-order{
-   display: flex;
-   justify-content: center;
-   padding-block: 30px;
- }
-
- &-change{
-border:none;
-background:inherit;
-color:$color-white;
-cursor: pointer;
- }
- &-coffee,&-capuchino,&-soda{
-   width: 80px;
-   height: 80px;
-   cursor:pointer;
- }
- &-extras{
-   display: flex;
-   gap:40px;
-   padding-block: 30px;
-  
-   
- }
- &-extrastitle{
-   padding-block: 20px;
-
- }
- &-priceblock{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap:10px;
-   
- }
- &-left,&-right{
-  cursor: pointer;
- }
- &-remove{
-  cursor: pointer;
- }
-
-}
-
 .cart__modal-item .modal__img {
     width: 80px;
     height: 80px;
     object-fit: contain;
 }
-
+//эффект пульсации на кнопке
 .ripple {
   position: relative;
   overflow: hidden;
@@ -626,216 +336,20 @@ cursor: pointer;
 
   animation: ripple-animation 0.6s linear;
 }
+//неактивность кнопок 
 .disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
-.acc__modal{
-  &-log{
-  display:grid;
-  place-items:center;
-  z-index:1000;
-  font-size: $fs-body;
-  position: fixed;
-  inset:0;
-  overflow-y:auto;
-  overscroll-behavior: contain;
-  }
 
-  
-   &-window{
-  background: $color-btn;
-position:relative;
-color:$color-white;
-z-index: 1;
-padding:clamp(0.938rem,4vw,1.875rem);
- max-height: 30vh;
- height: 30vh;
-border-radius:30px;
-margin:0 auto;
-box-shadow: 0 8px 24px rgba(0,0,0,.3);
-  max-width: 350px; 
-  width: 100%;
-  }
-    &-overlay{
-    position:absolute;
-    inset:0;
-    z-index:0;
-    background: rgba(0,0,0,.6);
-    backdrop-filter: blur(2px);
-  }
-  &-close{
-   display: grid;
-   justify-self:end;
-   margin-bottom: 25px;
-  width:20px;
-  height:20px;
-  border:none;
-  background: transparent;
-  cursor:pointer;
-  padding: 0.5rem;
-  color:$color-border; 
-}
-&-post,&-google,&-apple,&-facebook{
-  width: 44px;
-  height: 44px;
-
-}
-&-img{
-  width: 44px;
-  height: 44px;
-  color:$color-card;
-}
-&-group{
-  display: flex;
-  gap:20px;
-  justify-content: center;
-  padding-block: 10px;
-}
-&-title{
-  text-align: center;
-  padding-bottom: 20px;
-  font-size: $fs-price;
-}
-&-text{
-  text-align: center;
-  padding-block:15px;
-  font-size: $fs-body;
-}
-&-link{
-  text-decoration: none;
-  color:$color-card;
-}
-}
-.reg{
-  &__form{
-   display:grid;
-  place-items:center;
-  z-index:1000;
-  font-size: $fs-body;
-  position: fixed;
-  inset:0;
-  overflow-y:auto;
-  overscroll-behavior: contain;
-  }
-   &__window{
-  background: $color-btn;
-position:relative;
-color:$color-white;
-
-max-width: 600px;
-z-index: 1;
-padding:clamp(0.938rem,4vw,1.875rem);
-border-radius:30px;
-margin:0 auto;
-box-shadow: 0 8px 24px rgba(0,0,0,.3);
-  }
-  &__title{
-    text-align: center;
-    font-weight: $fw-bold;
-
-  }
-    &__overlay{
-    position:absolute;
-    inset:0;
-    z-index:0;
-    background: rgba(0,0,0,.6);
-    backdrop-filter: blur(2px);
-  }
-  &__close{
-   display: grid;
-   justify-self:end;
-   margin-bottom: 25px;
-  width:20px;
-  height:20px;
-  border:none;
-  background: transparent;
-  cursor:pointer;
-  padding: 0.5rem;
-  color:$color-border; 
-}
-&__auto{
-  display: flex;
-  flex-direction: column;
-  gap:1.5rem;
-  margin-top: 1.5rem;
- 
-}
-&__input{
-  display: block;
-  box-sizing: border-box;
-  background: inherit;
-  border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-  opacity: 0.8;
-  padding-block: 20px;
-  width: 400px;
-  transition: 0.3s;
-  box-sizing: border-box;
-  padding-block: 0.75em 1em;
-  appearance: none;
-  -webkit-appearance: none;
-  &:focus{
-  outline: none;
-  border-bottom: 1px solid rgba(255,255,255,0.9);
-  opacity: 1;
-  transition: border-color .25s ease;
-        }
-}
-&__options{
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap:20px;
-   background: inherit;
-  border: none;
-  padding-block: 20px;
-   margin-top: 1rem;
-}
-
-&__text{
-  display: flex;
-  flex-direction: column;
-  text-transform: uppercase;
-  font-size: $fs-body;
-  align-self: start;
-  
-}
-}
-
-
+//иконка мусорки в корзине
 .icon-trash{
   width:15px;
   height:15px;
   color:$color-white;
 }
-//чекбокс  в форме реги
-.reg__modal-radio{
-    appearance: none;   
-  width: 18px;
-  height: 18px;
-  border: 2px solid $color-border;  
-  border-radius: 4px;      
-  background: transparent;
-  cursor: pointer;
-  position: relative;
-
-  // галочка
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 3px;
-    background: $color-border;  
-    opacity: 0;
-    border-radius: 2px;
-    transition: 0.2s ease;
-  }
-
-  &:checked::after {
-    opacity: 1;
-  }
-
-}
+//пульсация кнопки 
 @keyframes ripple-animation {
   to {
     transform: scale(4);
@@ -850,6 +364,7 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
             font-size: $fs-h2;
         }
      }
+     //адаптив 
 @media (max-width: 600px) {
   .modal__window {
     max-height: 90vh;   
