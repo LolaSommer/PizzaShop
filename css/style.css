@@ -1324,6 +1324,34 @@ input:-webkit-autofill:focus {
   height: 15px;
   color: #FFFFFF; }
 
+.account-popup {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 9999;
+  margin-top: 10px; }
+  .account-popup__wrapper {
+    position: relative; }
+  .account-popup__inner {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+    max-width: 250px;
+    height: auto;
+    justify-content: center;
+    border-radius: 30px; }
+  .account-popup__email, .account-popup__name {
+    color: #FFFFFF;
+    font-size: 1.125rem;
+    padding-block: 20px;
+    text-align: start;
+    padding-inline: 20px; }
+  .account-popup__btn {
+    max-width: 150px; }
+
+.account-btn {
+  padding-block: 15px; }
+
 @keyframes ripple-animation {
   to {
     transform: scale(4);

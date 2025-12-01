@@ -1,4 +1,5 @@
 import { calculatePrice, sizeMap } from "./state.js";
+import { toggleBodyLock } from "./modal-lock.js";
 export function initPizzaModal() {
 
    //модальное окно 
@@ -8,6 +9,7 @@ const ingredientCards = document.querySelectorAll('.modal__card');
 const modalOrderBtn = document.querySelector('.modal__order-btn');
 const btnIngredients = document.querySelectorAll('.card__ingredients');
 const modalOverlay = document.querySelector('.modal__overlay');
+const cartModal = document.querySelector('.cart__modal');
 let editingIndex = null;
 //объект пицца в модальном окне:размер, тесто, ингредиенты, базовая цена и экстрацена
 let modalState = {
@@ -72,7 +74,7 @@ ingredientCards.forEach(card => card.classList.remove('modal__card-value'))
     // Показываем модалку
     modal.classList.remove('hidden');
     modal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal__body-active');
+    toggleBodyLock();
    
 
   });
@@ -84,8 +86,11 @@ modalClose.addEventListener('click',(event)=>{
   syncModalToCard();
   modal.classList.add('hidden');
    modal.setAttribute('aria-hidden','true');
-   document.body.classList.remove('modal__body-active');
- 
+   toggleBodyLock();
+ if (!cartModal.classList.contains('hidden')) {
+    toggleBodyLock();
+}
+
 
 });
 //свободное пространство 
@@ -93,8 +98,10 @@ modalOverlay.addEventListener('click',()=>{
   modalClose.blur();
   syncModalToCard();
 modal.classList.add('hidden');
-document.body.classList.remove('modal__body-active');
-
+toggleBodyLock();
+if (!cartModal.classList.contains('hidden')) {
+    toggleBodyLock();
+}
 
 });
 
@@ -158,8 +165,10 @@ if (editingIndex !== null) {
   } 
   modal.classList.add('hidden');
 modal.setAttribute('aria-hidden', 'true');
-document.body.classList.remove('modal__body-active');
-
+toggleBodyLock();
+ if (!cartModal.classList.contains('hidden')) {
+    toggleBodyLock();
+  }
 });
   
 
@@ -225,8 +234,7 @@ document.addEventListener("click", () => {
     // открываем модалку
     modal.classList.remove('hidden');
     modal.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal__body-active');
-
+    toggleBodyLock();
     // подставляем данные
     modalState.size = item.size;
     modalState.quantity = item.quantity;

@@ -25,6 +25,18 @@
             </nav>
             <div class="header__btn">
             <button  type="button"  aria-label="Log in to your account" class="header__order">Log in</button>
+            <div class="account-popup__wrapper">
+            <button class="header__order account-btn hidden">My Account</button>
+            <div class="account-popup hidden">
+               <div class="account-popup__inner">
+               <div class="account-popup__name">Login:</div>
+               <div class="account-popup__email">Email: </div>
+              <div class="cart__modal-order">
+                       <button type="button" class="cart__modal-checkout account-popup__btn">Log Out</button>
+                       </div>
+              </div>
+              </div>
+              </div>
             <div class="cart">
             <button type="button" class="header__cart"><svg class="header__cart-icon" aria-label="Open shopping cart"><use href="img/sprite.svg#cart-icon"></use></svg></button>
             <span class="cart__total" aria-live="polite" aria-atomic="true">0</span>
@@ -481,7 +493,7 @@
          </div>
         </footer>
        
-        <div class="modal modal--ingredients hidden" aria-hidden="true">
+        <div class="modal modal-open modal--ingredients hidden" aria-hidden="true">
                     <div class="modal__overlay"></div>
                     <div class="modal__wrapper">
                     <div class="modal__line">
@@ -606,7 +618,7 @@
                   </div>
                   
                   <div class="cart__modal-overlay hidden"></div>
-                <div class="cart__modal hidden" aria-hidden="true"> 
+                <div class="modal-open cart__modal hidden" aria-hidden="true"> 
              
         <div class="cart__modal-window" role="dialog" aria-modal="true" aria-labelledby="cart__modal-title"> 
           <div class="cart__modal-top">
@@ -673,7 +685,7 @@
         </div>
         
                 </div>
-                 <div class="acc__modal-log hidden" aria-hidden="true">
+                 <div class="modal-open acc__modal-log hidden" aria-hidden="true">
                     <div class="acc__modal-overlay"></div>
                  <div class="modal__wrapper">
                     <div class="modal__line">
@@ -694,7 +706,7 @@
                </div>
                </div>
                  </div>
-                 <div class="reg__form hidden" aria-hidden="true" aria-labelledby="form-title">
+                 <div class="modal-open reg__form hidden" aria-hidden="true" aria-labelledby="form-title">
                     <div class="reg__overlay"></div>
                     <div class="modal__wrapper">
                     <div class="modal__line">
@@ -708,13 +720,13 @@
                         </div>
                           <form class="reg__auto">
                          <label class="reg__text">Name
-                        <input class="reg__input" type="text" name="name" placeholder="Enter your name"  pattern="[A-Za-zА-Яа-яЁё\s\-]+" required>
+                        <input class="reg__input" type="text" name="name" placeholder="Enter your name" pattern="^[A-Za-z\s'-]+$" required>
                         </label>
                         <label class="reg__text">Email
-                       <input class="reg__input" type="email" name="email" placeholder="Enter your email address"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                       <input class="reg__input" type="email" name="email" placeholder="Enter your email address" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                        </label>
                        <label class="reg__text">Phone number
-                       <input class="reg__input" type="tel" name="tel" placeholder="Enter your phone number"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                       <input class="reg__input" type="tel" name="tel" placeholder="Enter your phone number" pattern="^\+?[0-9\s()-]{7,20}$" required>
                        </label>
 
                        <div class="reg__options">
@@ -723,13 +735,13 @@
                         
                        </div>
                         <div class="cart__modal-order">
-                       <button class="cart__modal-checkout">Create Account</button>
+                       <button type="button" class="cart__modal-checkout reg-btn">Create Account</button>
                        </div>
                        </form>
                     </div>
                     </div>
                     </div>
-                    <div class="social__modal hidden">
+                    <div class="modal-open social__modal hidden">
                       <div class="social__overlay"></div>
                       <div class="social__line">
                       <button class="social__close" aria-label="close">
@@ -750,7 +762,7 @@
                     </div>
                      </div>
 
-                     <div class="universal__modal hidden">
+                     <div class="modal-open universal__modal hidden">
                       <div class="universal__overlay"></div>
                          <div class="universal__line">
                       <button class="universal__close" aria-label="close">
@@ -760,16 +772,16 @@
                         <h3 class="universal__title">Don’t have an account? Sign up</h3>
                         <form class="universal__form">
                         <label class="universal__text">Email
-                       <input class="universal__input" type="email" name="email" placeholder="Enter your email address"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                       <input class="universal__input" type="email" name="email" placeholder="Enter your email address"  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$" required>
                        </label>
                        <label class="universal__text">Password
-                        <input class="universal__input" type="password" name="password" minlength="8" required>
+                        <input class="universal__input" type="password" name="password" pattern=".{8,}" required>
                         <a href="" class="universal__link"><p class="universal__password">Forgot password?</p></a>
                        </label>
                        
                       </form>
                         <div class="cart__modal-order">
-                       <button class="cart__modal-checkout">Log In</button>
+                       <button type="button" class="cart__modal-checkout universal__btn">Log In</button>
                        </div>
                       </div>
                     </div>

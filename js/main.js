@@ -6,7 +6,7 @@ import { initMenu } from "./modules/menu.js";
 import { initPizzaModal } from "./modules/pizzaModal.js";
 import { initCart } from "./modules/cart.js";
 import { initAuth } from "./modules/auth.js";
-
+import "./modules/modal-lock.js";
 document.addEventListener("DOMContentLoaded", () => {
     initNavigation();
     initHero();

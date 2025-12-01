@@ -1,4 +1,5 @@
 import { calculatePrice, sizeMap } from "./state.js";
+import { toggleBodyLock } from "./modal-lock.js";
 let cartItems = [];
 const cartTotal = document.querySelector('.cart__total');
 const cart = document.querySelector('.header__cart');
@@ -227,23 +228,25 @@ document.addEventListener("click", (event) => {
 cart.addEventListener('click',()=>{
   cartModal.classList.remove('hidden');
   cartModal.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('modal__body-active');
   cartModalOverlay.classList.remove('hidden');
    renderCart();
+   toggleBodyLock();
 });
+
+
 //корзина закрывается по клику на крестик 
 cartClose.addEventListener('click',()=>{
 cartModal.classList.add('hidden');
  cartModal.setAttribute('aria-hidden','true');
- document.body.classList.remove('modal__body-active');
  cartModalOverlay.classList.add('hidden');
+ toggleBodyLock();
 });
 //корзина закрывается по клику на свобобдное пространство 
 cartModalOverlay.addEventListener('click',()=>{
   cartModal.classList.add('hidden');
   cartModal.setAttribute('aria-hidden','true');
-  document.body.classList.remove('modal__body-active');
   cartModalOverlay.classList.add('hidden');
+  toggleBodyLock();
 });
 
 

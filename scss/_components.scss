@@ -349,6 +349,40 @@
   height:15px;
   color:$color-white;
 }
+//попап с профилем клиента 
+.account-popup{
+  position: absolute;
+  top:100%;
+  right:0;
+  z-index: 9999;
+  margin-top: 10px;
+  &__wrapper{
+    position:relative;
+  }
+  &__inner{
+display: flex;
+flex-direction: column;
+background: $color-btn;
+max-width: 250px;
+height: auto;
+justify-content: center;
+border-radius: 30px;
+  }
+  &__email,&__name{
+    color:$color-white;
+    font-size: $fs-body;
+    padding-block: 20px;
+    text-align: start;
+    padding-inline: 20px;
+  }
+  &__btn{
+    max-width: 150px;
+  }
+
+}
+.account-btn {
+  padding-block: 15px;
+}
 //пульсация кнопки 
 @keyframes ripple-animation {
   to {
