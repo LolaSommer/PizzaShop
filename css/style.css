@@ -898,6 +898,9 @@ input:-webkit-autofill:focus {
   position: fixed;
   inset: 0; }
 .social__window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
   position: relative;
   color: #FFFFFF;
@@ -931,8 +934,9 @@ input:-webkit-autofill:focus {
 .social__line {
   position: relative; }
 .social__group {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
   padding-block: 30px; }
 .social__title {
@@ -1022,6 +1026,59 @@ input:-webkit-autofill:focus {
     color: rgba(255, 255, 255, 0.85); }
 .universal__link {
   text-decoration: none; }
+
+.thankyou__modal {
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  font-size: 1.125rem;
+  position: fixed;
+  inset: 0; }
+.thankyou__window {
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  position: relative;
+  color: #FFFFFF;
+  z-index: 1;
+  padding: clamp(0.938rem, 4vw, 1.875rem);
+  height: auto;
+  border-radius: 30px;
+  margin: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  max-width: 450px;
+  width: 100%; }
+.thankyou__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px); }
+.thankyou__close {
+  display: grid;
+  justify-self: end;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #FF5924; }
+.thankyou__line {
+  position: relative; }
+.thankyou__icon {
+  width: 20px;
+  height: 20px; }
+.thankyou__button {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+.thankyou__btn {
+  border: none;
+  border-radius: 20px;
+  background: #210A01;
+  color: #FFFFFF;
+  padding: 10px; }
+.thankyou__title, .thankyou__text {
+  text-align: center; }
 
 .video__btn {
   position: absolute;
@@ -1336,12 +1393,12 @@ input:-webkit-autofill:focus {
     display: flex;
     flex-direction: column;
     background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
-    max-width: 250px;
+    max-width: 300px;
     height: auto;
     justify-content: center;
     border-radius: 30px; }
   .account-popup__email, .account-popup__name {
-    color: #FFFFFF;
+    color: #210A01;
     font-size: 1.125rem;
     padding-block: 20px;
     text-align: start;

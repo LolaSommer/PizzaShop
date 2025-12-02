@@ -1,101 +1,164 @@
 import { toggleBodyLock } from "./modal-lock.js";
+  // =============== STATE ===============
+const currentUser = {
+  name: '',
+  email: '',
+  provider: ''
+};
 export function initAuth () {
-//кнопка логин 
+// =============== SELECTORS ===============
 const logIn = document.querySelector('.header__order');
 const accountBtn = document.querySelector('.account-btn');
 const accLog = document.querySelector('.acc__modal-log');
 const accOver = document.querySelector('.acc__modal-overlay');
-const accClose = accLog.querySelector('.modal__close')
+const accClose = accLog.querySelector('.modal__close');
+const regModal = document.querySelector('.reg__form');
+const accGroup = document.querySelector('.acc__modal-group');
+const regOver = regModal.querySelector('.reg__overlay');
+const regClose = regModal.querySelector('.modal__close');
+const universal = document.querySelector('.universal__modal');
+const checkOut = document.querySelector('.reg-btn');
+const universalClose = document.querySelector('.universal__close');
+const universalOver = document.querySelector('.universal__overlay');
+const universalBtn = document.querySelector('.universal__btn');
+const popup = document.querySelector('.account-popup');
+const logoutBtn = document.querySelector('.account-popup__btn');
+const alreadyAcc = document.querySelector('.acc__modal-link');
+const socialGroup = document.querySelector('.social__group');
+const socialApple = document.querySelector('.social__apple'); 
+const socialGoogle = document.querySelector('.social__google'); 
+const socialFacebook = document.querySelector('.social__facebook');
+const socialModalBtn = document.querySelector('.acc__modal-group');
+const socialModal = document.querySelector('.social__modal');
+const socialCloseBtn = document.querySelector('.social__close');
+const socialOverClose = document.querySelector('.social__overlay');
+
+// =============== UTILS ===============
+function logoutAcc(){
+currentUser.name = '';
+currentUser.email = '';
+currentUser.provider = '';
+logIn.classList.remove('hidden');
+accountBtn.classList.add('hidden');
+popup.classList.add('hidden');
+popup.setAttribute('aria-hidden', 'true');
+}
+function showOnlySocial(btn) {
+    socialGoogle.style.display = 'none';
+    socialApple.style.display = 'none';
+    socialFacebook.style.display = 'none';
+    btn.style.display = 'block';
+}
+// =============== OPEN FUNCTIONS ===============
+function regModalOpen() {
+  regModal.classList.remove('hidden');
+  regModal.setAttribute('aria-hidden', 'false');
+}
+function openAccLog() {
+accLog.classList.remove('hidden');
+accLog.setAttribute('aria-hidden', 'false');
+}
+function openUniversal() {
+  universal.classList.remove('hidden');
+  universal.setAttribute('aria-hidden', 'false'); 
+}
+function socModalopen (){
+socialModal.classList.remove('hidden');
+socialModal.setAttribute('aria-hidden', 'false');
+}
+// =============== CLOSE FUNCTIONS ===============
+function closeAccLog() {
+  accLog.classList.add('hidden');
+  accLog.setAttribute('aria-hidden', 'true');
+}
+function socModalClose() {
+socialModal.classList.add('hidden');
+socialModal.setAttribute('aria-hidden', 'true');
+}
+function regModalClose() {
+regModal.setAttribute('aria-hidden','true');
+regModal.classList.add('hidden');
+}
+function closeUniversal() {
+  universal.classList.add('hidden');
+  universal.setAttribute('aria-hidden', 'true'); 
+}
+function switchAcc (){
+  logIn.classList.add('hidden'); 
+  accountBtn.classList.remove('hidden');
+}
+// =============== EVENT LISTENERS ===============
 //открытие кнопки логин
 logIn.addEventListener('click',()=>{
-accLog.classList.remove('hidden');
+openAccLog();
 toggleBodyLock();
 });
 //модалка логин закрывается по клику на крестик 
 accClose.addEventListener('click',()=>{
-accLog.classList.add('hidden');
- accLog.setAttribute('aria-hidden','true');
+ closeAccLog();
  toggleBodyLock();
  
 });
 //модалка закрывается по клику на свобобдное пространство 
 accOver.addEventListener('click',()=>{
-  accLog.setAttribute('aria-hidden','true');
-  accLog.classList.add('hidden');
+  closeAccLog();
   toggleBodyLock();
 });
 //окно регистрации 
-const regModal = document.querySelector('.reg__form');
-const accGroup = document.querySelector('.acc__modal-group');
-const regOver = regModal.querySelector('.reg__overlay');
-const regClose = regModal.querySelector('.modal__close');
 accGroup.addEventListener('click', (event) => {
     const btn = event.target.closest('a');
     if (!btn) return;
   if(btn.classList.contains('acc__modal-post')){
-    regModal.classList.remove('hidden');
-    regModal.setAttribute('aria-hidden', 'false');
-     accLog.classList.add('hidden');
+    regModalOpen();
+     closeAccLog();
      toggleBodyLock();
   }
-
 });
   regOver.addEventListener('click',()=>{
-  regModal.setAttribute('aria-hidden','true');
-  regModal.classList.add('hidden');
+  regModalClose();
   toggleBodyLock();
   });
 regClose.addEventListener('click',()=>{
- regModal.setAttribute('aria-hidden','true');
-  regModal.classList.add('hidden');
+ regModalClose();
   toggleBodyLock();
 });
-//универсальная модалка авторизации 
-const universal = document.querySelector('.universal__modal');
-const checkOut = document.querySelector('.reg-btn');
 
 checkOut.addEventListener('click', () => {
       // Закрываем регистрацию
-    regModal.classList.add('hidden');
-    regModal.setAttribute('aria-hidden', 'true');
+    regModalClose();
     toggleBodyLock();
       // Открываем универсальную
-    universal.classList.remove('hidden');
-    universal.setAttribute('aria-hidden', 'false'); 
+    openUniversal();
     const registrationEmail = regModal.querySelector('input[type="email"]');
     const universalEmail = universal.querySelector('input[type="email"]');
      universalEmail.value = registrationEmail.value;
+     const registrationName = regModal.querySelector('input[name="name"]');
+    currentUser.name = registrationName.value;
+    currentUser.email = registrationEmail.value;
+    currentUser.provider = 'manual';
 });
 //закрытие универсальной по крестику 
-const universalClose = document.querySelector('.universal__close');
 universalClose.addEventListener('click',()=>{
-  universal.classList.add('hidden');
-  universal.setAttribute('aria-hidden', 'true'); 
+  closeUniversal();
   toggleBodyLock();
 });
 //закрытие универсальной по оверлею
-const universalOver = document.querySelector('.universal__overlay');
 universalOver.addEventListener('click',()=>{
-  universal.classList.add('hidden');
-  universal.setAttribute('aria-hidden', 'true'); 
+  closeUniversal();
   toggleBodyLock();
 });
-//закрытие окна авторизации после нажатия на кнопку логин
-function switchAcc (){
-  logIn.classList.add('hidden'); 
-  accountBtn.classList.remove('hidden');
-}
-const universalBtn = document.querySelector('.universal__btn');
 universalBtn.addEventListener('click',(event)=>{
-universal.classList.add('hidden');
-universal.setAttribute('aria-hidden', 'true'); 
+closeUniversal(); 
 toggleBodyLock();
 switchAcc();
 });
 //сделать попап видимым
-const popup = document.querySelector('.account-popup');
 accountBtn.addEventListener('click',(event)=>{
 event.stopPropagation();
+const popupName = popup.querySelector('.account-popup__name');
+const popupEmail = popup.querySelector('.account-popup__email');
+popupName.textContent = `Login: ${currentUser.name}`;
+popupEmail.textContent = `Email: ${currentUser.email}`;
 popup.classList.remove('hidden');
 popup.setAttribute('aria-hidden', 'false'); 
 });
@@ -105,6 +168,77 @@ document.addEventListener('click', (event) => {
 
   if (!clickedInside) {
     popup.classList.add('hidden');
+    popup.setAttribute('aria-hidden', 'true'); 
   }
+});
+logoutBtn.addEventListener('click',()=>{
+logoutAcc();
+});
+
+alreadyAcc.addEventListener('click',()=>{
+openUniversal();
+closeAccLog();
+    const fakeEmail = 'existing.user@example.com';
+    const universalEmail = universal.querySelector('input[type="email"]');
+    universalEmail.value = fakeEmail;
+    currentUser.email = universalEmail.value;
+    currentUser.name = 'Existing User';   
+    currentUser.provider = 'manual';
+    switchAcc();
+});
+socialModalBtn.addEventListener('click',(event)=>{
+const btn = event.target.closest('a');
+if(!btn) return;
+if(btn.classList.contains('acc__modal-google')){
+  closeAccLog();
+  socModalopen();
+  showOnlySocial(socialGoogle);
+}
+else if(btn.classList.contains('acc__modal-apple')){
+  closeAccLog();
+  socModalopen();
+ showOnlySocial(socialApple);
+
+}
+else if(btn.classList.contains('acc__modal-facebook')){
+  closeAccLog();
+  socModalopen();
+  showOnlySocial(socialFacebook);
+
+}
+});
+socialCloseBtn.addEventListener('click',()=>{
+socModalClose();
+});
+socialOverClose.addEventListener('click',()=>{
+socModalClose();
+});
+socialGroup.addEventListener('click', (event) => {
+    const btn = event.target.closest('a');
+    if (!btn) return;
+    if (btn.classList.contains('social__google')) {
+currentUser.name = "Google User";
+currentUser.email = "google.user@example.com";
+currentUser.provider = "google";
+socModalClose();
+toggleBodyLock(); 
+switchAcc();
+}
+else if (btn.classList.contains('social__apple')) {
+currentUser.name = "Apple User";
+currentUser.email = "apple.user@example.com";
+currentUser.provider = "apple";
+socModalClose();
+toggleBodyLock(); 
+switchAcc();
+}
+else if (btn.classList.contains('social__facebook')) {
+currentUser.name = "Facebook User";
+currentUser.email = "facebook.user@example.com";
+currentUser.provider = "facebook";
+socModalClose();
+toggleBodyLock(); 
+switchAcc();
+}
 });
 };
