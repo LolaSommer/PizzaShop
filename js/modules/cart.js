@@ -1,11 +1,47 @@
 import { calculatePrice, sizeMap } from "./state.js";
 import { toggleBodyLock } from "./modal-lock.js";
+import { openUniversal } from "./auth.js";
 let cartItems = [];
 const cartTotal = document.querySelector('.cart__total');
 const cart = document.querySelector('.header__cart');
 const cartModal = document.querySelector('.cart__modal');
 const cartModalOverlay = document.querySelector('.cart__modal-overlay');
 const cartClose = document.querySelector('.cart__modal-close');
+const checkTotal = document.querySelector('.cart__modal-checkout');
+const thanks = document.querySelector('.thankyou__modal');
+const accBtn = document.querySelector('.account-btn');
+const thanksClose = document.querySelector('.thankyou__close');
+const thanksOver = document.querySelector('.thankyou__overlay');
+export function clearCart() {
+cartItems = [];
+renderCart();
+  const extras = document.querySelectorAll('.cart__modal-extra')
+    extras.forEach(ex => {
+        ex.classList.remove('hidden');
+    });
+}
+function thanksCloseAll() {
+thanks.classList.add('hidden');
+thanks.setAttribute('aria-hidden', 'true');
+};
+thanksClose.addEventListener('click',()=>{
+thanksCloseAll();
+toggleBodyLock();
+});
+thanksOver.addEventListener('click', ()=>{
+thanksCloseAll();
+toggleBodyLock();
+});
+function cartModalOpen() { 
+  cartModal.classList.remove('hidden'); 
+  cartModal.setAttribute('aria-hidden', 'false'); 
+  cartModalOverlay.classList.remove('hidden'); 
+} 
+function cartModalClose() {
+   cartModal.classList.add('hidden');
+    cartModal.setAttribute('aria-hidden','true'); 
+  cartModalOverlay.classList.add('hidden'); 
+}
 
 function isSamePizza(item1, item2) {
     if (
@@ -110,6 +146,7 @@ return `
 };
 
 const renderCart = () =>{
+
 const container = document.querySelector('.cart__modal-items');
 container.innerHTML = '';
 const totalHTML = cartItems.reduce((acc, item, index) => {
@@ -118,13 +155,32 @@ const totalHTML = cartItems.reduce((acc, item, index) => {
  const total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
     cartTotal.textContent = total;
 container.innerHTML = totalHTML;
+const checkoutBtn = document.querySelector('.cart__modal-checkout');
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+if(accBtn.classList.contains('hidden')){
+window._fromCheckout = true;
+cartModalClose();
+openUniversal();
+toggleBodyLock();
+
+}else{
+  cartModalClose();
+  thanks.classList.remove('hidden');
+   thanks.setAttribute('aria-hidden', 'false');
+  toggleBodyLock();
+  clearCart();
+}
+    });
+};
 const cartTotalPrice = document.querySelector('.cart__modal-total');
 let totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
 cartTotalPrice.textContent = `$${totalPrice.toFixed(2)}`;
 const numberElement = document.querySelector('.cart__modal-number');
 const word = total === 1?'item':'items';
 numberElement.textContent = `${total} ${word}`;
-const checkoutBtn = document.querySelector('.cart__modal-checkout');
+
+
 if(cartItems.length === 0){
   checkoutBtn.disabled = true;
   checkoutBtn.classList.add('disabled');
@@ -163,7 +219,7 @@ if(cartItems.length === 0){
   cartList.classList.remove('hidden');
   bottom.classList.remove('hidden');
 }
-};
+}
 //добавление товара экстра в корзину
 export function addToCart (item) {
   const existingItem = cartItems.find(cartItem => 
@@ -226,26 +282,19 @@ document.addEventListener("click", (event) => {
 
 //корзина открывается , открывается оверлей на всем свободном пространстве 
 cart.addEventListener('click',()=>{
-  cartModal.classList.remove('hidden');
-  cartModal.setAttribute('aria-hidden', 'false');
-  cartModalOverlay.classList.remove('hidden');
+  cartModalOpen();
    renderCart();
    toggleBodyLock();
 });
 
-
 //корзина закрывается по клику на крестик 
 cartClose.addEventListener('click',()=>{
-cartModal.classList.add('hidden');
- cartModal.setAttribute('aria-hidden','true');
- cartModalOverlay.classList.add('hidden');
+cartModalClose();
  toggleBodyLock();
 });
 //корзина закрывается по клику на свобобдное пространство 
 cartModalOverlay.addEventListener('click',()=>{
-  cartModal.classList.add('hidden');
-  cartModal.setAttribute('aria-hidden','true');
-  cartModalOverlay.classList.add('hidden');
+  cartModalClose();
   toggleBodyLock();
 });
 
@@ -408,5 +457,5 @@ document.addEventListener("click", () => {
     window._editedItem = null;
 });
 
-}
+};
 

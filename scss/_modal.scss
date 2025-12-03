@@ -287,6 +287,24 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
   align-self: start;
   
 }
+&-btn{
+  display: grid;
+  justify-self: center;
+   max-width: 150px;
+    border-radius: 30px;
+    background: $color-card;
+    color:$color-white;
+    padding-block: 10px;
+    padding-inline: 20px;
+    cursor:pointer;
+    border:none;
+     translate:  transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-footer-header;
+        color:$color-card;
+}
+
+}
 }
 //чекбокс  в форме реги
 .reg__modal-radio{
@@ -478,6 +496,23 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
 }
 &__link{
 text-decoration: none;
+}
+&__btn{
+  display: grid;
+  justify-self: center;
+    max-width: 150px;
+    border-radius: 30px;
+    background: $color-card;
+    color:$color-white;
+    padding-block: 10px;
+    padding-inline: 20px;
+    cursor:pointer;
+    border:none;
+     translate:  transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-footer-header;
+        color:$color-card;
+  }
 }
 
 }

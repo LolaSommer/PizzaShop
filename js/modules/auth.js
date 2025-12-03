@@ -1,10 +1,17 @@
 import { toggleBodyLock } from "./modal-lock.js";
+import { clearCart } from "./cart.js";
   // =============== STATE ===============
 const currentUser = {
   name: '',
   email: '',
   provider: ''
 };
+let universal;
+let universalBtn;
+export function openUniversal() {
+  universal.classList.remove('hidden');
+  universal.setAttribute('aria-hidden', 'false'); 
+}
 export function initAuth () {
 // =============== SELECTORS ===============
 const logIn = document.querySelector('.header__order');
@@ -16,11 +23,11 @@ const regModal = document.querySelector('.reg__form');
 const accGroup = document.querySelector('.acc__modal-group');
 const regOver = regModal.querySelector('.reg__overlay');
 const regClose = regModal.querySelector('.modal__close');
-const universal = document.querySelector('.universal__modal');
 const checkOut = document.querySelector('.reg-btn');
+universal = document.querySelector('.universal__modal');
 const universalClose = document.querySelector('.universal__close');
 const universalOver = document.querySelector('.universal__overlay');
-const universalBtn = document.querySelector('.universal__btn');
+universalBtn = document.querySelector('.universal__btn');
 const popup = document.querySelector('.account-popup');
 const logoutBtn = document.querySelector('.account-popup__btn');
 const alreadyAcc = document.querySelector('.acc__modal-link');
@@ -32,6 +39,9 @@ const socialModalBtn = document.querySelector('.acc__modal-group');
 const socialModal = document.querySelector('.social__modal');
 const socialCloseBtn = document.querySelector('.social__close');
 const socialOverClose = document.querySelector('.social__overlay');
+const thanks = document.querySelector('.thankyou__modal');
+const thanksClose = document.querySelector('.thankyou__close');
+const thanksOverlay = document.querySelector('.thankyou__overlay');
 
 // =============== UTILS ===============
 function logoutAcc(){
@@ -58,14 +68,16 @@ function openAccLog() {
 accLog.classList.remove('hidden');
 accLog.setAttribute('aria-hidden', 'false');
 }
-function openUniversal() {
-  universal.classList.remove('hidden');
-  universal.setAttribute('aria-hidden', 'false'); 
-}
 function socModalopen (){
 socialModal.classList.remove('hidden');
 socialModal.setAttribute('aria-hidden', 'false');
 }
+function showThankYou() {
+    thanks.classList.remove('hidden');
+    thanks.setAttribute('aria-hidden','false');
+    toggleBodyLock();
+}
+
 // =============== CLOSE FUNCTIONS ===============
 function closeAccLog() {
   accLog.classList.add('hidden');
@@ -148,9 +160,17 @@ universalOver.addEventListener('click',()=>{
   toggleBodyLock();
 });
 universalBtn.addEventListener('click',(event)=>{
-closeUniversal(); 
+  closeUniversal();
 toggleBodyLock();
 switchAcc();
+if (window._fromCheckout) {
+    clearCart();
+    showThankYou();
+    window._fromCheckout = false
+}
+currentUser.email = universalEmail.value;
+currentUser.name = "Manual User";
+currentUser.provider = "manual";
 });
 //сделать попап видимым
 accountBtn.addEventListener('click',(event)=>{
@@ -241,4 +261,34 @@ toggleBodyLock();
 switchAcc();
 }
 });
+//сделать кнопку неактивной без заполнения полей
+const inputName = document.querySelector('[name="name"]');
+const regEmail = regModal.querySelector('input[type="email"]');
+const universalEmail = universal.querySelector('input[type="email"]');
+const inputTel  = document.querySelector('input[type="tel"]');
+const inputPassword = document.querySelector('input[type="password"]');
+regModal.addEventListener('input',()=>{
+    const isValid = regEmail.validity.valid &&
+                    inputName.validity.valid &&
+                    inputTel.validity.valid;
+
+    
+if(isValid){
+  checkOut.disabled = false;
+}else{
+  checkOut.disabled = true;
+}
+});
+universal.addEventListener('input',()=>{
+    const isValid = universalEmail.validity.valid &&
+                    inputPassword.validity.valid;
+
+    
+if(isValid){
+  universalBtn.disabled = false;
+}else{
+  universalBtn.disabled = true;
+}
+});
+
 };

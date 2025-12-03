@@ -32,7 +32,7 @@
                <div class="account-popup__name">Login:</div>
                <div class="account-popup__email">Email: </div>
               <div class="cart__modal-order">
-                       <button type="button" class="cart__modal-checkout account-popup__btn">Log Out</button>
+                       <button type="button" class="account-popup__btn">Log Out</button>
                        </div>
               </div>
               </div>
@@ -720,13 +720,13 @@
                         </div>
                           <form class="reg__auto">
                          <label class="reg__text">Name
-                        <input class="reg__input" type="text" name="name" placeholder="Enter your name" pattern="^[A-Za-z\s'-]+$" required>
+                        <input class="reg__input" type="text" name="name" placeholder="Enter your name" pattern="[A-Za-zА-Яа-я '\-]{2,}" required>
                         </label>
                         <label class="reg__text">Email
-                       <input class="reg__input" type="email" name="email" placeholder="Enter your email address" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                       <input class="reg__input" type="email" name="email" placeholder="Enter your email address" pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" required>
                        </label>
                        <label class="reg__text">Phone number
-                       <input class="reg__input" type="tel" name="tel" placeholder="Enter your phone number" pattern="^\+?[0-9\s()-]{7,20}$" required>
+                       <input class="reg__input" type="tel" name="tel" placeholder="Enter your phone number" pattern="^\+?[0-9\s\-]{7,15}$" required>
                        </label>
 
                        <div class="reg__options">
@@ -734,8 +734,8 @@
                        <legend class="reg__text">I agree to join the rewards program</legend>
                         
                        </div>
-                        <div class="cart__modal-order">
-                       <button type="button" class="cart__modal-checkout reg-btn">Create Account</button>
+                        <div class="reg__btn">
+                       <button type="button" class="reg-btn" disabled>Create Account</button>
                        </div>
                        </form>
                     </div>
@@ -772,7 +772,7 @@
                         <h3 class="universal__title">Don’t have an account? Sign up</h3>
                         <form class="universal__form">
                         <label class="universal__text">Email
-                       <input class="universal__input" type="email" name="email" placeholder="Enter your email address"  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$" required>
+                       <input class="universal__input" type="email" name="email" placeholder="Enter your email address"  pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" required>
                        </label>
                        <label class="universal__text">Password
                         <input class="universal__input" type="password" name="password" pattern=".{8,}" required>
@@ -780,8 +780,8 @@
                        </label>
                        
                       </form>
-                        <div class="cart__modal-order">
-                       <button type="button" class="cart__modal-checkout universal__btn">Log In</button>
+                        <div class="universal-btn">
+                       <button type="button" class="universal__btn" disabled>Log In</button>
                        </div>
                       </div>
                     </div>

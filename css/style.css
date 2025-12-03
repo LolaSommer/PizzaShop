@@ -869,6 +869,21 @@ input:-webkit-autofill:focus {
   text-transform: uppercase;
   font-size: 1.125rem;
   align-self: start; }
+.reg-btn {
+  display: grid;
+  justify-self: center;
+  max-width: 150px;
+  border-radius: 30px;
+  background: #210A01;
+  color: #FFFFFF;
+  padding-block: 10px;
+  padding-inline: 20px;
+  cursor: pointer;
+  border: none;
+  translate: transform .3s ease, box-shadow .3s ease; }
+  .reg-btn:hover {
+    background: #e7cdb4;
+    color: #210A01; }
 
 .reg__modal-radio {
   appearance: none;
@@ -1026,6 +1041,21 @@ input:-webkit-autofill:focus {
     color: rgba(255, 255, 255, 0.85); }
 .universal__link {
   text-decoration: none; }
+.universal__btn {
+  display: grid;
+  justify-self: center;
+  max-width: 150px;
+  border-radius: 30px;
+  background: #210A01;
+  color: #FFFFFF;
+  padding-block: 10px;
+  padding-inline: 20px;
+  cursor: pointer;
+  border: none;
+  translate: transform .3s ease, box-shadow .3s ease; }
+  .universal__btn:hover {
+    background: #e7cdb4;
+    color: #210A01; }
 
 .thankyou__modal {
   display: grid;
@@ -1374,7 +1404,24 @@ input:-webkit-autofill:focus {
 .disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  pointer-events: none; }
+  pointer-events: none;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none; }
+
+.reg-btn:disabled {
+  opacity: .6;
+  pointer-events: none;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none; }
+
+.universal__btn:disabled {
+  opacity: .6;
+  pointer-events: none;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none; }
 
 .icon-trash {
   width: 15px;
@@ -1388,12 +1435,13 @@ input:-webkit-autofill:focus {
   z-index: 9999;
   margin-top: 10px; }
   .account-popup__wrapper {
-    position: relative; }
+    position: relative;
+    display: inline-block; }
   .account-popup__inner {
     display: flex;
     flex-direction: column;
     background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
-    max-width: 300px;
+    max-width: 270px;
     height: auto;
     justify-content: center;
     border-radius: 30px; }
@@ -1404,10 +1452,22 @@ input:-webkit-autofill:focus {
     text-align: start;
     padding-inline: 20px; }
   .account-popup__btn {
-    max-width: 150px; }
+    max-width: 150px;
+    border-radius: 30px;
+    background: #210A01;
+    color: #FFFFFF;
+    padding-block: 10px;
+    padding-inline: 20px;
+    cursor: pointer;
+    border: none;
+    translate: transform .3s ease, box-shadow .3s ease; }
+    .account-popup__btn:hover {
+      background: #e7cdb4;
+      color: #210A01; }
 
 .account-btn {
-  padding-block: 15px; }
+  padding-block: 15px;
+  position: relative; }
 
 @keyframes ripple-animation {
   to {
