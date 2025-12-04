@@ -12,6 +12,10 @@ const thanks = document.querySelector('.thankyou__modal');
 const accBtn = document.querySelector('.account-btn');
 const thanksClose = document.querySelector('.thankyou__close');
 const thanksOver = document.querySelector('.thankyou__overlay');
+export function getCartTotal(){
+const total = cartItems.reduce((acc, item) => acc + item.price, 0);
+return total;
+}
 export function clearCart() {
 cartItems = [];
 renderCart();
@@ -20,6 +24,9 @@ renderCart();
         ex.classList.remove('hidden');
     });
 }
+export function getRawTotal() {
+  return cartItems.reduce((sum, item) => sum + item.price, 0);
+};
 function thanksCloseAll() {
 thanks.classList.add('hidden');
 thanks.setAttribute('aria-hidden', 'true');
@@ -32,6 +39,11 @@ thanksOver.addEventListener('click', ()=>{
 thanksCloseAll();
 toggleBodyLock();
 });
+const thanksBtn = document.querySelector('.thankyou__btn');
+thanksBtn.addEventListener('click', ()=>{
+  thanksCloseAll();
+  toggleBodyLock();
+})
 function cartModalOpen() { 
   cartModal.classList.remove('hidden'); 
   cartModal.setAttribute('aria-hidden', 'false'); 
@@ -156,23 +168,7 @@ const totalHTML = cartItems.reduce((acc, item, index) => {
     cartTotal.textContent = total;
 container.innerHTML = totalHTML;
 const checkoutBtn = document.querySelector('.cart__modal-checkout');
-if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', () => {
-if(accBtn.classList.contains('hidden')){
-window._fromCheckout = true;
-cartModalClose();
-openUniversal();
-toggleBodyLock();
 
-}else{
-  cartModalClose();
-  thanks.classList.remove('hidden');
-   thanks.setAttribute('aria-hidden', 'false');
-  toggleBodyLock();
-  clearCart();
-}
-    });
-};
 const cartTotalPrice = document.querySelector('.cart__modal-total');
 let totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
 cartTotalPrice.textContent = `$${totalPrice.toFixed(2)}`;
@@ -235,6 +231,34 @@ export function addToCart (item) {
 };
 export function initCart() {
       let total = 0;
+cartModal.addEventListener("click", (event) => {
+    const btn = event.target.closest(".cart__modal-checkout");
+    if (!btn) return;
+
+    // 👇 вот твоя сумма
+    const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+
+    if (accBtn.classList.contains('hidden')) {
+        window._fromCheckout = true;
+        window._checkoutTotal = total;  // ← сохраняем сумму
+        cartModalClose();
+        openUniversal();
+        toggleBodyLock();
+    } else {
+        cartModalClose();
+        thanks.classList.remove('hidden');
+        thanks.setAttribute('aria-hidden', 'false');
+
+        const priceEl = document.querySelector('.thankyou__price');
+        priceEl.textContent = `$${total.toFixed(2)}`;
+
+        toggleBodyLock();
+        clearCart();
+    }
+});
+
+
+
   const modalOrderBtn = document.querySelector('.modal__order-btn');
 
   modalOrderBtn.addEventListener('click', () => {
@@ -274,6 +298,7 @@ document.addEventListener("click", (event) => {
         ingredients: [...state.ingredients],
         quantity: state.quantity,
         price: calculatePrice(state),
+        
     };
 
     addToCart(item);
@@ -302,6 +327,7 @@ cartModalOverlay.addEventListener('click',()=>{
 //подтягивание контента из карточки в корзину
 const createItemFromCard = (card,state) =>{
 const item ={
+  type:"pizza",
   img:"",
   alt:"",
   title:"",

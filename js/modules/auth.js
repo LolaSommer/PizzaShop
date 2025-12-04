@@ -1,6 +1,7 @@
 import { toggleBodyLock } from "./modal-lock.js";
 import { clearCart } from "./cart.js";
-  // =============== STATE ===============
+import { getRawTotal } from "./cart.js";
+  //=============== STATE ===============
 const currentUser = {
   name: '',
   email: '',
@@ -75,7 +76,6 @@ socialModal.setAttribute('aria-hidden', 'false');
 function showThankYou() {
     thanks.classList.remove('hidden');
     thanks.setAttribute('aria-hidden','false');
-    toggleBodyLock();
 }
 
 // =============== CLOSE FUNCTIONS ===============
@@ -99,6 +99,7 @@ function switchAcc (){
   logIn.classList.add('hidden'); 
   accountBtn.classList.remove('hidden');
 }
+
 // =============== EVENT LISTENERS ===============
 //открытие кнопки логин
 logIn.addEventListener('click',()=>{
@@ -164,10 +165,14 @@ universalBtn.addEventListener('click',(event)=>{
 toggleBodyLock();
 switchAcc();
 if (window._fromCheckout) {
-    clearCart();
+    const price = window._checkoutTotal;
+    const priceEl = document.querySelector('.thankyou__price'); 
+    priceEl.textContent = `$${price.toFixed(2)}`;
     showThankYou();
-    window._fromCheckout = false
+    clearCart();
+    window._fromCheckout = false;
 }
+
 currentUser.email = universalEmail.value;
 currentUser.name = "Manual User";
 currentUser.provider = "manual";
