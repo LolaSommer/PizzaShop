@@ -56,6 +56,7 @@
             Your browser does not support the video tag.
             </video>
             <button type="button" aria-label="Play video" class="video__btn"></button>
+            <button type="button" aria-label="play video" class="video__btn-small play hidden"></button>
             </div>
             <div class="hero__btn">
                 <button class="hero__btn-left" type="button">Order Now</button>
@@ -443,34 +444,33 @@
              <div class="footer__logo"><svg aria-hidden="true" focusable="false" class="footer__logo-img"><use href="img/sprite.svg#logo-icon"></use></svg></div>
             <div class="footer__nav-item">
           <ul>
-            <li><a class="footer__nav-link footer__strong" href="">Home</a></li>
-            <li><a class="footer__nav-link"  href="">Order Now</a></li>
-            <li><a class="footer__nav-link"  href="">About Us</a></li>
-            <li><a class="footer__nav-link"  href="">Events</a></li>
-            <li><a class="footer__nav-link"  href="">Menu</a></li>
+            <li><a class="footer__nav-link footer__strong" data-scroll="hero">Home</a></li>
+            <li><a class="footer__nav-link" data-scroll="menu">Order Now</a></li>
+            <li><a class="footer__nav-link" data-scroll="about">About Us</a></li>
+            <li><a class="footer__nav-link" data-scroll="events">Events</a></li>
           </ul>
           </div>
            <div class="footer__nav-item">
           <ul>
-            <li><a class="footer__nav-link footer__strong"  href="">Events</a></li>
-            <li><a class="footer__nav-link" href="">Free Coffee</a></li>
-            <li><a class="footer__nav-link" href="">Two the Price of One</a></li>
-            <li><a class="footer__nav-link"  href="">Kitchen Tour</a></li>
+            <li><a class="footer__nav-link footer__strong" data-scroll="events">Events</a></li>
+            <li><a class="footer__nav-link" data-scroll="events">Free Coffee</a></li>
+            <li><a class="footer__nav-link" data-scroll="events">Two the Price of One</a></li>
+            <li><a class="footer__nav-link" data-scroll="events">Kitchen Tour</a></li>
           </ul>
            </div>
             <div class="footer__nav-item">
           <ul>
-            <li><a class="footer__nav-link footer__strong " href="">Menu</a></li>
-            <li><a class="footer__nav-link" href="">Show All</a></li>
-            <li><a class="footer__nav-link" href="">Vegetarian</a></li>
-            <li><a class="footer__nav-link" href="">Meat Lovers</a></li>
+            <li><a class="footer__nav-link footer__strong" data-scroll="menu">Menu</a></li>
+            <li><a class="footer__nav-link" data-scroll="menu">Show All</a></li>
+            <li><a class="footer__nav-link" data-scroll="veg">Vegetarian</a></li>
+            <li><a class="footer__nav-link" data-scroll="meat">Meat Lovers</a></li>
           </ul>
             </div>
              <div class="footer__nav-item">
           <ul>
-            <li><a class="footer__nav-link footer__strong" href="">About Us</a></li>
-            <li><a class="footer__nav-link" href="">Our Story</a></li>
-            <li><a class="footer__nav-link" href="">Why Choose Us?</a></li>
+            <li><a class="footer__nav-link footer__strong">About Us</a></li>
+            <li><a class="footer__nav-link" data-scroll="about">Our Story</a></li>
+            <li><a class="footer__nav-link" data-scroll="events">Why Choose Us?</a></li>
           </ul>
              </div>
             
@@ -484,9 +484,9 @@
          </p>
          </div>
          <div class="footer__social">
-         <a href="#"  aria-label="Instagram" class="footer__icon"><svg class="footer__img" aria-hidden="true" focusable="false" ><use href="img/sprite.svg#icon-inst"></use></svg></a>
-         <a href="#" aria-label="Twitter" class="footer__icon"><svg class="footer__img" aria-hidden="true" focusable="false"><use href="img/sprite.svg#icon-twitter"></use></svg></a>
-         <a href="#" aria-label="Facebook" class="footer__icon"><svg class="footer__img" aria-hidden="true" focusable="false"><use href="img/sprite.svg#icon-fb"></use></svg></a>
+         <a href="#"  aria-label="Instagram" class="footer__icon" data-type="instagram"><svg class="footer__img" aria-hidden="true" focusable="false" ><use href="img/sprite.svg#icon-inst"></use></svg></a>
+         <a href="#" aria-label="Twitter" class="footer__icon" data-type="twitter"><svg class="footer__img" aria-hidden="true" focusable="false"><use href="img/sprite.svg#icon-twitter"></use></svg></a>
+         <a href="#" aria-label="Facebook" class="footer__icon" data-type="facebook"><svg class="footer__img" aria-hidden="true" focusable="false"><use href="img/sprite.svg#icon-fb"></use></svg></a>
          </div>
          </div>
          </div>
@@ -801,6 +801,27 @@
                 </div>
                 </div>
                 </div>
+
+                <div class="modal-open net__modal hidden">
+                      <div class="net__overlay"></div>
+                      <div class="net__line">
+                      <button class="net__close" aria-label="close">
+                      <svg class="net__icon"><use href="img/sprite.svg#icon-close"></use></svg>
+                      </button>
+                      <div class="net__window">
+                        <div class="net__title">Follow us on <span class="net__span"></span></div>
+      
+                           <div class="net__group">
+                   <a href="#"  aria-label="X" class="net__item" data-type="twitter"><svg class="net__x-img" aria-hidden="true" focusable="false" ><use xlink:href="img/sprite.svg#X"></use></svg></a>
+                   <a href="#"  aria-label="instagram" class="net__item" data-type="instagram"><svg class="net__instagram-img" aria-hidden="true" focusable="false" ><use xlink:href="img/sprite.svg#inst"></use></svg></a>
+                <a href="#"  aria-label="facebook" class="net__item" data-type="facebook"><svg class="net__facebook-img" aria-hidden="true" focusable="false" ><use xlink:href="img/sprite.svg#facebook-net"></use></svg></a>
+              </div>
+              <div class="net__copied hidden">Copied!</div>
+                      
+                       
+                      </div>
+                    </div>
+                     </div>
         <script src="js/main.js" type="module"></script>
     </body>
 </html>

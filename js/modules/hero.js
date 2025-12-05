@@ -20,13 +20,24 @@ firstIngredientsButton.click();
 //начало проигрывания видео при  нажатии на плей или пауза
 const video = document.querySelector('video');
 const videoBtn = document.querySelector('.video__btn');
+const videoBtnSmall = document.querySelector('.video__btn-small');
 videoBtn.addEventListener('click',()=>{
   video.play();
   videoBtn.style.display = 'none';
+  videoBtnSmall.classList.remove('hidden');
 });
-video.addEventListener('click',()=>{
- video.pause();
-videoBtn.style.display = 'block';
-});
+videoBtnSmall.addEventListener('click',()=>{
+if(video.paused === true){
+  video.play();
+  videoBtnSmall.classList.add('play');
+  videoBtnSmall.classList.remove('is-paused');
+   
+}else if(video.paused === false){
+  videoBtnSmall.classList.add('is-paused');
+  videoBtnSmall.classList.remove('play');
+  video.pause();
 }
+
+});
+};
 

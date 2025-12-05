@@ -26,5 +26,6 @@ const orderButtons = document.querySelectorAll('.card__order');
 orderButtons.forEach(btn => addRippleEffect(btn));
 const checkout = document.querySelectorAll('.cart__modal-checkout');
 checkout.forEach(btn => addRippleEffect(btn));  
+
 }
 

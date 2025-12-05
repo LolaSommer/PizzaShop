@@ -6,6 +6,7 @@ import { initMenu } from "./modules/menu.js";
 import { initPizzaModal } from "./modules/pizzaModal.js";
 import { initCart } from "./modules/cart.js";
 import { initAuth } from "./modules/auth.js";
+import {initFooter} from  "./modules/footer.js";
 import "./modules/modal-lock.js";
 document.addEventListener("DOMContentLoaded", () => {
     initNavigation();
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initPizzaModal();
     initCart();
     initAuth();
+    initFooter();
 });
 
 

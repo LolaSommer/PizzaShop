@@ -580,3 +580,101 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
   text-align: center;
 }
 }
+
+//follow us 
+.net{
+  &__modal{
+  display:grid;
+  place-items:center;
+  z-index:1000;
+  font-size: $fs-body;
+  position: fixed;
+  inset:0;
+  }
+   &__window{
+     display: flex;
+    flex-direction: column;
+    align-items: center;
+  background: $color-btn;
+position:relative;
+color:$color-white;
+z-index: 1;
+padding:clamp(0.938rem,4vw,1.875rem);
+border-radius:30px;
+margin:0 auto;
+box-shadow: 0 8px 24px rgba(0,0,0,.3);
+ height: 25vh;
+width: 250px;
+  }
+    &__overlay{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(2px);
+  }
+  &__close{
+   display: grid;
+   justify-self:end;
+   margin-bottom: 25px;
+  width:20px;
+  height:20px;
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  padding: 0.5rem;
+  color:$color-border; 
+}
+&__icon{
+  width:20px;
+  height:20px;
+}
+&__line{
+  position: relative;
+}
+&__group{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+ gap:20px;
+ padding-top: 10px;
+}
+&__title{
+  font-size: $fs-price;
+  text-align: center;
+  padding-block: 15px;
+}
+&__x-img{
+  transform: translateY(-2px);
+  color:$color-card;
+}
+&__instagram-img {
+  color:$color-card;
+  transform: translateY(1px);
+}
+&__facebook-img{
+    transform: translateY(-2px);
+    color:$color-card;
+}
+&__x-img,&__instagram-img,&__facebook-img{
+  width: 45px;
+  height: 45px;
+    fill: currentColor;
+  stroke: currentColor;
+   translate:  transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        color:$color-footer-header;
+  }
+}
+&__copied {
+  margin-top: 10px;
+  font-size: 18px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  &.show {
+    opacity: 1;
+  }
+}
+
+}

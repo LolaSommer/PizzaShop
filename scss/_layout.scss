@@ -150,7 +150,10 @@
     &__card{
     flex: 0 1 14.313rem;
      box-sizing: border-box;
-     max-width: clamp(10rem,15vw,18.563rem);  
+     max-width: clamp(10rem,15vw,18.563rem); 
+    opacity: 1;
+    transform: scale(1);
+     transition: opacity .25s ease, transform .25s ease; 
     }
     &__img-wrapper{
        height:clamp(5rem,8vw,10rem);
@@ -178,6 +181,11 @@
     transform: translate(-50%, -50%);
    }
     }
+    .menu__card.fade-out {
+  opacity: 0;
+  transform: scale(0.97);
+  pointer-events: none;
+}
     .events{
         &__colls-1,&__colls-2,&__colls-3{
             display: flex;
