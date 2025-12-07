@@ -2,6 +2,20 @@ import { calculatePrice, sizeMap } from "./state.js";
 import { toggleBodyLock } from "./modal-lock.js";
 import { openUniversal } from "./auth.js";
 let cartItems = [];
+function saveCartToLocal() {
+  const cartItemsString = JSON.stringify(cartItems);
+  localStorage.setItem('cart',cartItemsString);
+}
+function loadCartFromLocal() {
+const storedCart = localStorage.getItem('cart');
+if(storedCart === null){
+  return;
+}else{
+  const data = JSON.parse(storedCart);
+  cartItems = data;
+  renderCart();
+}
+}
 const cartTotal = document.querySelector('.cart__total');
 const cart = document.querySelector('.header__cart');
 const cartModal = document.querySelector('.cart__modal');
@@ -19,6 +33,7 @@ return total;
 export function clearCart() {
 cartItems = [];
 renderCart();
+localStorage.removeItem("cart");  
   const extras = document.querySelectorAll('.cart__modal-extra')
     extras.forEach(ex => {
         ex.classList.remove('hidden');
@@ -224,23 +239,27 @@ export function addToCart (item) {
   if (existingItem) {
     existingItem.quantity += item.quantity;
     existingItem.price = calculatePrice(existingItem);
-    return renderCart();
+    renderCart();
+    saveCartToLocal();
+    return;
   }
   cartItems.push(item);
   renderCart();
+  saveCartToLocal();
 };
 export function initCart() {
+  loadCartFromLocal();
       let total = 0;
 cartModal.addEventListener("click", (event) => {
     const btn = event.target.closest(".cart__modal-checkout");
     if (!btn) return;
 
-    // 👇 вот твоя сумма
+    
     const total = cartItems.reduce((sum, item) => sum + item.price, 0);
 
     if (accBtn.classList.contains('hidden')) {
         window._fromCheckout = true;
-        window._checkoutTotal = total;  // ← сохраняем сумму
+        window._checkoutTotal = total;  
         cartModalClose();
         openUniversal();
         toggleBodyLock();
@@ -266,7 +285,7 @@ cartModal.addEventListener("click", (event) => {
 
     const { activeCard, modalState } = window._modalStateForCart;
 
-    // теперь создаём item здесь
+    
     const item = {
         img: activeCard.querySelector('img').src,
         alt: activeCard.querySelector('img').alt,
@@ -280,7 +299,7 @@ cartModal.addEventListener("click", (event) => {
 
     addToCart(item);
 
-    window._modalStateForCart = null; // очищаем временное хранилище
+    window._modalStateForCart = null; 
 });
 document.addEventListener("click", (event) => {
     const btn = event.target.closest(".card__order");
@@ -334,7 +353,7 @@ const item ={
   size:0,
   crust:"",
   ingredients:[],
-  quantity:0,
+  quantity:state.quantity,
   price:0
 }
 const imgEl = card.querySelector('img');
@@ -361,6 +380,7 @@ if(item.type === "extra"){
   item.quantity=item.quantity+1;
   item.price = item.basePrice * item.quantity;
   renderCart();
+  saveCartToLocal();
 } else{
 item.quantity=item.quantity+1;
 item.price = calculatePrice(item);
@@ -387,6 +407,7 @@ if(item.type === "extra"){
 cartItems.splice(index,1);
 }
 renderCart();
+saveCartToLocal();
 }
 else if(event.target.classList.contains('cart__modal-left')){
 const parent = event.target.closest('.cart__modal-item')
@@ -418,6 +439,7 @@ if (item.quantity > 1) {
 } else {
     cartItems.splice(index, 1);
     renderCart();
+    saveCartToLocal();
 }
 }
 
@@ -480,6 +502,7 @@ document.addEventListener("click", () => {
     cartItems[index] = newItem;
 
     renderCart();
+    saveCartToLocal();
     window._editedItem = null;
 });
 
