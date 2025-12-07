@@ -1609,6 +1609,23 @@ input:-webkit-autofill:focus {
   padding-block: 15px;
   position: relative; }
 
+.menu__skeletons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px; }
+
+.menu__skeleton-card {
+  height: 300px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #333 0%, #444 50%, #333 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite; }
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0; }
+  100% {
+    background-position: -200% 0; } }
 @keyframes ripple-animation {
   to {
     transform: scale(4);

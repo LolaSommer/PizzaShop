@@ -1,7 +1,16 @@
 import { calculatePrice, sizeMap } from "./state.js";
 import { toggleBodyLock } from "./modal-lock.js";
-export function initPizzaModal() {
+import { updateCartItem } from "./cart.js";
+let pendingEdit = null;
 
+export const startEditMode = (item, index) => {
+    pendingEdit = { item, index };
+};
+
+export function initPizzaModal() {
+/* =======================
+    SELECTORS
+======================= */ 
    //модальное окно 
 const modal = document.querySelector('.modal');
 const modalClose = document.querySelector('.modal__close');
@@ -10,7 +19,12 @@ const modalOrderBtn = document.querySelector('.modal__order-btn');
 const btnIngredients = document.querySelectorAll('.card__ingredients');
 const modalOverlay = document.querySelector('.modal__overlay');
 const cartModal = document.querySelector('.cart__modal');
+const modalSizeButtons = modal.querySelectorAll('.modal__radio button');
+const crustBtns = modal.querySelectorAll('.modal__btn button');
+const modalCount = modal.querySelector('.modal__count');
+/* ===== STATE ===== */
 let editingIndex = null;
+let activeCard = null;
 //объект пицца в модальном окне:размер, тесто, ингредиенты, базовая цена и экстрацена
 let modalState = {
   size:10,
@@ -18,6 +32,30 @@ let modalState = {
   ingredients:[],
   quantity:1
 };
+/* ===== UI HELPERS ===== */
+const updateModalButtonText = () =>{
+ 
+  if(editingIndex !== null){
+ modalOrderBtn.textContent = `Save Changes ${calculatePrice(modalState).toFixed(2)}$`;
+  }else{
+     modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
+  }
+}
+const resetUI = () => {
+
+    // сброс ингредиентов
+    ingredientCards.forEach(card => card.classList.remove('modal__card-value'));
+
+    // сброс размеров
+    modalSizeButtons.forEach(btn => btn.classList.remove('active-btn'));
+
+    // сброс корок
+    crustBtns.forEach(btn => btn.classList.remove('btn-active'));
+
+    // сброс количества в модалке
+    if (modalCount) modalCount.textContent = 1;
+};
+
 const syncModalToCard = ()=>{
   if(activeCard == null) return;
    const cardState = activeCard._state;
@@ -32,51 +70,137 @@ cardState.ingredients = [...modalState.ingredients];
 const activeBtn = activeCard.querySelector(`[data-size="${cardState.size}"]`);
 activeBtn.classList.add('active-btn');
 }
-//кнопка ингредиенты 
-let activeCard = null;
-btnIngredients.forEach((button) => {
+const setModalSize = (size) => {
+    modalState.size = size;
 
-  button.addEventListener('click', (event) => {
-    const currentCard = button.closest('.menu__card');
-     activeCard = currentCard;
-    // Обновление контента в модалке
-    const cardTitle = currentCard.querySelector('.card__header');
-    const modalTitle = modal.querySelector('.ingredients__title');
-    modalTitle.textContent = cardTitle.textContent;
+    modalSizeButtons.forEach(btn => {
+        btn.classList.toggle('active-btn', btn.dataset.size === String(size));
+    });
 
-    const cardText = currentCard.querySelector('.card__text');
-    const modalText = modal.querySelector('.modal__ingredients-text');
-    modalText.textContent = cardText.textContent;
-
-    const cardSource = currentCard.querySelector('source');
-    const modalSource = modal.querySelector('.modal__img').previousElementSibling;
-    modalSource.srcset = cardSource.srcset;
- modalState.size = parseInt(currentCard.querySelector('.active-btn').dataset.size)
-modalState.quantity = Number(currentCard.querySelector('.card__count').textContent)
-modalState.ingredients = [];
-    // Применяем активный размер пиццы из карточки к кнопкам в модалке
-    const activeBtn = currentCard.querySelector('.active-btn');
-    const modalSizeButtons = modal.querySelectorAll('.modal__radio button');
-    modalSizeButtons.forEach(btn => btn.classList.remove('active-btn'));
-    if (activeBtn) {
-      modalSizeButtons.forEach((modalBtn) => {
-        if (modalBtn.dataset.size === activeBtn.dataset.size) {
-          modalBtn.classList.add('active-btn');
-        }
-      });
-    }
-modalState.size = Number(activeBtn.dataset.size);
-
-   const price = calculatePrice(modalState);  
+    calculatePrice(modalState);
     updateModalButtonText();
-ingredientCards.forEach(card => card.classList.remove('modal__card-value'))
+};
+const toggleIngredient = (name) => {
+  if (modalState.ingredients.includes(name)) {
+    modalState.ingredients = modalState.ingredients.filter(item => item !== name);
+  } 
+  else {
+    modalState.ingredients.push(name);
+  }
+};
+const updateIngredientCardUI = (card, name) => {
+  if (modalState.ingredients.includes(name)) {
+    card.classList.add('modal__card-value');
+  } else {
+    card.classList.remove('modal__card-value');
+  }
+};
+const setModalCrust = (crust) => {
+    modalState.crust = crust;
+    crustBtns.forEach(btn => {
+        btn.classList.toggle('btn-active', btn.dataset.crust === crust);
+    });
+    calculatePrice(modalState);
+    updateModalButtonText();
+};
+const fillModalUIFromCard = (card) => {
+    // title
+    const title = card.querySelector('.card__header').textContent;
+    modal.querySelector('.ingredients__title').textContent = title;
 
-    // Показываем модалку
+    // description
+    const text = card.querySelector('.card__text').textContent;
+    modal.querySelector('.modal__ingredients-text').textContent = text;
+
+    // image (source + img)
+    const cardSource = card.querySelector('source');
+    const modalPictureSource = modal.querySelector('.modal__img').previousElementSibling;
+    modalPictureSource.srcset = cardSource.srcset;
+
+    const modalImg = modal.querySelector('.modal__img');
+    modalImg.src = card.querySelector('img').src;
+    modalImg.alt = card.querySelector('img').alt;
+
+    // reset ingredient UI
+    ingredientCards.forEach(c => c.classList.remove('modal__card-value'));
+};
+const openModal = () => {
     modal.classList.remove('hidden');
     modal.setAttribute('aria-hidden', 'false');
     toggleBodyLock();
-   
+};
+const closeModal = () => {
+modal.classList.add('hidden');
+modal.setAttribute('aria-hidden', 'true');
+toggleBodyLock();
+}
+const openModalFromCard = (currentCard) => {
+    loadStateFromCard(currentCard);      // state из карточки
+    fillModalUIFromCard(currentCard);    // title, img, text
+    updateModalUIFromState();            // size, crust, ingredients, price
+    openModal();                         // открыть окно
+};
 
+const fillModalUIFromItem = (item) => {
+    modal.querySelector('.ingredients__title').textContent = item.title;
+
+    const modalImg = modal.querySelector('.modal__img');
+    modalImg.src = item.img;
+    modalImg.alt = item.alt;
+
+    const modalSource = modalImg.previousElementSibling;
+    modalSource.srcset = item.img;
+
+    // Синхронизация ингредиентов
+    ingredientCards.forEach(card => {
+        const ing = card.dataset.ing;
+        updateIngredientCardUI(card, ing);
+    });
+};
+const updateModalUIFromState = () => {
+    // size
+    setModalSize(modalState.size);
+    // crust
+    setModalCrust(modalState.crust);
+    // ingredients
+    ingredientCards.forEach(card => {
+        const ing = card.dataset.ing;
+        updateIngredientCardUI(card, ing);
+    });
+    // price + text
+    updateModalButtonText();
+};
+//LOGIK//
+const loadStateFromCard = (card) => {
+    // размер
+    const sizeBtn = card.querySelector('.active-btn');
+    modalState.size = Number(sizeBtn.dataset.size);
+    // количество
+    modalState.quantity = Number(card.querySelector('.card__count').textContent);
+    // ингредиенты — при открытии из карточки их нет
+    modalState.ingredients = [];
+    // корка (если всегда по умолчанию)
+    modalState.crust = "traditional";
+};
+const loadStateFromItem = (item) => {
+    modalState.size = item.size;
+    modalState.quantity = item.quantity;
+    modalState.crust = item.crust;
+    modalState.ingredients = [...item.ingredients];
+};
+const openModalFromItem = (item, index) => {
+    editingIndex = index;
+    loadStateFromItem(item);     
+    fillModalUIFromItem(item);
+    updateModalUIFromState();
+    openModal();                     
+};
+//кнопка ингредиенты 
+btnIngredients.forEach((button) => {
+  button.addEventListener('click', () => {
+    const currentCard = button.closest('.menu__card');
+    activeCard = currentCard;
+    openModalFromCard(currentCard);
   });
 });
 
@@ -84,9 +208,7 @@ ingredientCards.forEach(card => card.classList.remove('modal__card-value'))
 modalClose.addEventListener('click',(event)=>{
   modalClose.blur();
   syncModalToCard();
-  modal.classList.add('hidden');
-   modal.setAttribute('aria-hidden','true');
-   toggleBodyLock();
+ closeModal();
  if (!cartModal.classList.contains('hidden')) {
     toggleBodyLock();
 }
@@ -97,7 +219,7 @@ modalClose.addEventListener('click',(event)=>{
 modalOverlay.addEventListener('click',()=>{
   modalClose.blur();
   syncModalToCard();
-modal.classList.add('hidden');
+closeModal();
 toggleBodyLock();
 if (!cartModal.classList.contains('hidden')) {
     toggleBodyLock();
@@ -106,183 +228,70 @@ if (!cartModal.classList.contains('hidden')) {
 });
 
 //радио кнопки в модалке
-const modalSizeButtons = modal.querySelectorAll('.modal__radio button');
-modalSizeButtons.forEach((modalSizeButton)=>{
-  modalSizeButton.addEventListener('click',(event)=>{
-    modalSizeButtons.forEach(btn => btn.classList.remove('active-btn'));
-     modalSizeButton.classList.add('active-btn');
-  modalState.size = event.currentTarget.dataset.size
-  const price = calculatePrice(modalState);  
-updateModalButtonText();
-
-  })
-})
-//выбор корочки ,теста 
-const crustBtns = modal.querySelectorAll('.modal__btn button');
-crustBtns.forEach((crustBtn)=>{
-  crustBtn.addEventListener('click',(event)=>{
-crustBtns.forEach(b=>b.classList.remove('btn-active'));
-event.currentTarget.classList.add('btn-active');
-modalState.crust = event.currentTarget.dataset.crust;
-const price = calculatePrice(modalState);
-updateModalButtonText();
-
-  });
-
+modalSizeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        setModalSize(btn.dataset.size);
+    });
 });
+
+//выбор корочки ,теста 
+crustBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        setModalCrust(btn.dataset.crust);
+    });
+});
+
 //кнопки ингредиентов 
 ingredientCards.forEach((ingredientCard)=>{ 
   ingredientCard.addEventListener('click',(event)=>{
     const card = event.currentTarget;
-    const name = card.dataset.ing;   // <<< ВАЖНО: берём data-ing, а не text
-
-    if (card.classList.contains('modal__card-value')) {
-      card.classList.remove('modal__card-value'); 
-      modalState.ingredients = modalState.ingredients.filter(item => item !== name);
-    } else { 
-      card.classList.add('modal__card-value'); 
-      modalState.ingredients.push(name);
-    }
-    const price = calculatePrice(modalState);
-   updateModalButtonText();
+    const name = card.dataset.ing;
+    toggleIngredient(name);
+    updateIngredientCardUI(card, name);
+    updateModalButtonText();
   });
 });
 
-
 //при нажатии на кнопку заказа в модалке добавить в корзину 
-modalOrderBtn.addEventListener('click',()=>{
-  if(editingIndex !== null){
-if (editingIndex !== null) {
-    window._editedItem = {
-        index: editingIndex,
-        modalState: { ...modalState }
+modalOrderBtn.addEventListener('click', () => {
+
+  // 🔥 1. Режим редактирования
+  if (editingIndex !== null) {
+        const newItem = {
+        ...pendingEdit.item,
+        size: modalState.size,
+        quantity: modalState.quantity,
+        crust: modalState.crust,
+        ingredients: [...modalState.ingredients],
+        price: calculatePrice(modalState)
     };
-}
 
-  }else{
-  window._modalStateForCart = { activeCard, modalState: { ...modalState } };
-  resetUI(activeCard);
-  } 
-  modal.classList.add('hidden');
-modal.setAttribute('aria-hidden', 'true');
-toggleBodyLock();
- if (!cartModal.classList.contains('hidden')) {
+    updateCartItem(editingIndex, newItem);
+    editingIndex = null;
+
+  }
+
+  else {
+    window._modalStateForCart = { activeCard, modalState: { ...modalState } };
+    resetUI();
+  }
+
+  // 🔥 3. Закрываем модалку
+ closeModal();
+
+  if (!cartModal.classList.contains('hidden')) {
     toggleBodyLock();
   }
 });
-  
 
-const resetUI = (activeCard) => {
-    if (editingIndex !== null) {
-    return;
-  }
- if (activeCard) {
-    // сброс для карточки меню
-    const cardState = activeCard._state;
-    cardState.size = 10;
-    cardState.quantity = 1;
-    cardState.ingredients = [];
-
-    const count = activeCard.querySelector('.card__count');
-    const radio = activeCard.querySelectorAll('.card__btn button');
-    const priceCard = activeCard.querySelector('.price__value');
-    const defaultSizeBtn = activeCard.querySelector('[data-size="10"]');
-
-    count.textContent = 1;
-    radio.forEach(b => b.classList.remove('active-btn'));
-    defaultSizeBtn.classList.add('active-btn');
-
-    const newPrice = calculatePrice(cardState);
-    priceCard.textContent = `${newPrice.toFixed(2)}$`;
-}
-
-// сброс модалки
-modalState.quantity = 1;
-modalState.size = 10;
-modalState.ingredients = [];
-modalState.crust = "traditional";
-
-const radioModal = modal.querySelectorAll('.modal__radio button');
-const cardModal = modal.querySelectorAll('.modal__card');
-const btnModal = modal.querySelectorAll('.modal__btn button');
-const modalDefBtn = modal.querySelector('[data-size="10"]');
-
-radioModal.forEach(b => b.classList.remove('active-btn'));
-modalDefBtn.classList.add('active-btn');
-
-cardModal.forEach(card => card.classList.remove('modal__card-value'));
-btnModal.forEach(crustBtn => crustBtn.classList.remove('btn-active'));
-updateModalButtonText();
-};
-const updateModalButtonText = () =>{
- 
-  if(editingIndex !== null){
- modalOrderBtn.textContent = `Save Changes ${calculatePrice(modalState).toFixed(2)}$`;
-  }else{
-     modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
-  }
-}
 //кнопка изменить в модалке 
+document.addEventListener("click", (event) => {
+    if (!pendingEdit) return;
+    const changeBtn = event.target.closest('.cart__modal-change');
+    if (!changeBtn) return;
 
-document.addEventListener("click", () => {
-    if (!window._editItem) return;
-
-    const { item, index } = window._editItem;
-
-    editingIndex = index;
-
-    // открываем модалку
-    modal.classList.remove('hidden');
-    modal.setAttribute('aria-hidden', 'false');
-    toggleBodyLock();
-    // подставляем данные
-    modalState.size = item.size;
-    modalState.quantity = item.quantity;
-    modalState.crust = item.crust;
-    modalState.ingredients = [...item.ingredients];
-    // Синхронизация DOM ингредиентов с modalState
-const ingCards = modal.querySelectorAll('.modal__card');
-ingCards.forEach(card => {
-    const ing = card.dataset.ing;
-    if (modalState.ingredients.includes(ing)) {
-        card.classList.add('modal__card-value');
-    } else {
-        card.classList.remove('modal__card-value');
-    }
-});
-// 🔥 Синхронизация SIZE-кнопок
-const sizeButtons = modal.querySelectorAll('.modal__radio button');
-sizeButtons.forEach(btn => btn.classList.remove('active-btn'));
-
-const activeSizeBtn = modal.querySelector(`.modal__radio button[data-size="${modalState.size}"]`);
-if (activeSizeBtn) activeSizeBtn.classList.add('active-btn');
-// CRUST — синхронизация кнопок
-const crustButtons = modal.querySelectorAll('.modal__btn button');
-crustButtons.forEach(btn => btn.classList.remove('btn-active'));
-
-const correctCrust = modal.querySelector(`.modal__btn button[data-crust="${modalState.crust}"]`);
-if (correctCrust) correctCrust.classList.add('btn-active');
-
-
-    // Обновляем UI модалки: название, картинку, текст
-const modalTitle = modal.querySelector('.ingredients__title');
-modalTitle.textContent = item.title;
-
-const modalImg = modal.querySelector('.modal__img');
-modalImg.src = item.img;
-modalImg.alt = item.alt;
-
-const modalSource = modal.querySelector('.modal__img').previousElementSibling;
-modalSource.srcset = item.img;
-
-const modalText = modal.querySelector('.modal__ingredients-text');
-modalText.textContent = "";
-
-
-    // UI
-    updateModalButtonText();
-
-    window._editItem = null;
+    const { item, index } = pendingEdit;
+    openModalFromItem(item, index);
 });
 
 }

@@ -79,12 +79,18 @@
                     <li><button type="button"  class="menu__item" data-filter="veggie">Veggie</button></li> 
                     <li><button  type="button" class="menu__item" data-filter="mushroom">Mushroom</button></li>
                 </ul>
+                <div class="menu__skeletons hidden">
+                <div class="menu__skeleton-card"></div>
+                <div class="menu__skeleton-card"></div>
+                <div class="menu__skeleton-card"></div>
+                <div class="menu__skeleton-card"></div>
+                </div>
                 <div class="menu__cards">
                     <div class="menu__card" itemscope itemtype="https://schema.org/Product" data-category="veggie">
                       <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/italian.webp" type="image/webp">
-                         <img src="img/italian.webp" alt="Italian pizza with tomato sauce, mozzarella, oregano and basil">
+                         <img src="img/italian.webp" alt="Italian pizza with tomato sauce, mozzarella, oregano and basil" loading="lazy">
                          </picture>
                          </div>
                          <h3 itemprop="name" class="card__header">Italian</h3>
@@ -115,7 +121,7 @@
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/Venecia.webp" type="image/webp">
-                         <img src="img/Venecia.webp" alt="Diavola pizza with tomato sauce, mozzarella, spicy salami and chili">
+                         <img src="img/Venecia.webp" alt="Diavola pizza with tomato sauce, mozzarella, spicy salami and chili" loading="lazy">
                          </picture>
                         </div>
                          <h3 itemprop="name" class="card__header">Diavola</h3>
@@ -147,7 +153,7 @@
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/meat.webp" type="image/webp">
-                         <img src="img/meat.webp" alt="Inferno pizza with pepperoni, bacon, ham, mozzarella and tomato sauce">
+                         <img src="img/meat.webp" alt="Inferno pizza with pepperoni, bacon, ham, mozzarella and tomato sauce" loading="lazy">
                          </picture>
                          </div>
                          <h3 itemprop="name" class="card__header">Inferno</h3>
@@ -179,7 +185,7 @@
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/cheese.webp" type="image/webp">
-                         <img src="img/cheese.webp" alt="Formaggio pizza with mozzarella, gorgonzola, parmesan and cheddar">
+                         <img src="img/cheese.webp" alt="Formaggio pizza with mozzarella, gorgonzola, parmesan and cheddar" loading="lazy">
                          </picture>
                         </div>
                          <h3 itemprop="name" class="card__header">Formaggio</h3>
@@ -213,7 +219,7 @@
                     <h2 class="menu__title">Our Most Popular Pizzas</h2>
                      <picture>
                      <source srcset="img/mostpopular.webp" type="image/webp">
-                    <img src="img/mostpopular.webp" alt="" aria-hidden="true">
+                    <img src="img/mostpopular.webp" alt="" loading="lazy" aria-hidden="true">
                     </picture>
                   </aside>
                      <div class="menu__cards">
@@ -221,7 +227,7 @@
                           <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/argentina.webp" type="image/webp">
-                         <img src="img/argentina.webp" alt="Argentina pizza with spicy chorizo, roasted peppers, red onion and mozzarella">
+                         <img src="img/argentina.webp" alt="Argentina pizza with spicy chorizo, roasted peppers, red onion and mozzarella" loading="lazy">
                          </picture>
                           </div>
                          <h3 itemprop="name" class="card__header">Argentina</h3>
@@ -253,7 +259,7 @@
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/mushrooms.webp" type="image/webp">
-                         <img src="img/mushrooms.webp" alt="Forest pizza with mushrooms, caramelized onions, mozzarella and garlic butter">
+                         <img src="img/mushrooms.webp" alt="Forest pizza with mushrooms, caramelized onions, mozzarella and garlic butter" loading="lazy">
                          </picture>
                         </div>
                          <h3 itemprop="name" class="card__header">Forest</h3>
@@ -285,7 +291,7 @@
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/tomato.webp" type="image/webp">
-                         <img src="img/tomato.webp" alt="Margherita pizza with tomato sauce, fresh mozzarella, cherry tomatoes and basil">
+                         <img src="img/tomato.webp" alt="Margherita pizza with tomato sauce, fresh mozzarella, cherry tomatoes and basil" loading="lazy">
                          </picture>
                         </div>
                          <h3 itemprop="name" class="card__header">Margherita</h3>
@@ -317,7 +323,7 @@
                         <div class="menu__img-wrapper">
                          <picture class="card__picture">
                          <source srcset="img/italianX2.webp" type="image/webp">
-                         <img src="img/italianX2.webp" alt="Double pizza with double mozzarella, double crust and tomato sauce">
+                         <img src="img/italianX2.webp" alt="Double pizza with double mozzarella, double crust and tomato sauce" loading="lazy">
                          </picture>
                        </div>
                          <h3 itemprop="name" class="card__header">Double</h3>
@@ -529,7 +535,7 @@
                           <div class="modal__card" data-ing="cheeses">
                             <picture class="modal__picture">
                          <source srcset="img/chedar.webp" type="image/webp">
-                         <img src="img/chedar.webp" alt="Cheddar and Parmesan grated cheese">
+                         <img src="img/chedar.webp" alt="Cheddar and Parmesan grated cheese" loading="lazy">
                          </picture>
                          <p class="picture__text">Cheeses</p>
                          <p class="picture__price">1.75<sup>$</sup></p>
@@ -538,7 +544,7 @@
                           <div class="modal__card" data-ing="mozzarella">
                             <picture class="modal__picture">
                          <source srcset="img/mozzarella.webp" type="image/webp">
-                         <img src="img/mozzarella.webp" alt="Fresh mozzarella cheese balls">
+                         <img src="img/mozzarella.webp" alt="Fresh mozzarella cheese balls" loading="lazy">
                          </picture>
                          <p class="picture__text">Mozzarella</p>
                          <p class="picture__price">1.75<sup>$</sup></p>
@@ -547,7 +553,7 @@
                             <div class="modal__card" data-ing="chicken pieces">
                             <picture class="modal__picture">
                          <source srcset="img/gefl.webp" type="image/webp">
-                         <img src="img/gefl.webp" alt="Grilled chicken pieces">
+                         <img src="img/gefl.webp" alt="Grilled chicken pieces" loading="lazy">
                          </picture>
                          <p class="picture__text">Chicken pieces</p>
                          <p class="picture__price">2<sup>$</sup></p>
@@ -556,7 +562,7 @@
                             <div class="modal__card" data-ing="bacon">
                             <picture class="modal__picture">
                          <source srcset="img/bacon.webp" type="image/webp">
-                         <img src="img/bacon.webp" alt="Crispy bacon strips">
+                         <img src="img/bacon.webp" alt="Crispy bacon strips" loading="lazy">
                          </picture>
                          <p class="picture__text">Bacon</p>
                          <p class="picture__price">1.8<sup>$</sup></p>
@@ -565,7 +571,7 @@
                             <div class="modal__card" data-ing="jalapeño">
                             <picture class="modal__picture">
                          <source srcset="img/halapenio.webp" type="image/webp">
-                         <img src="img/halapenio.webp" alt="Spicy jalapeño slices">
+                         <img src="img/halapenio.webp" alt="Spicy jalapeño slices" loading="lazy">
                          </picture>
                          <p class="picture__text">Jalapeño</p>
                          <p class="picture__price">1.5<sup>$</sup></p>
@@ -574,7 +580,7 @@
                             <div class="modal__card" data-ing="champignons">
                             <picture class="modal__picture">
                          <source srcset="img/pilze.webp" type="image/webp">
-                         <img src="img/pilze.webp" alt="Fresh champignon mushrooms">
+                         <img src="img/pilze.webp" alt="Fresh champignon mushrooms" loading="lazy">
                          </picture>
                          <p class="picture__text">Champignons</p>
                          <p class="picture__price">1.5<sup>$</sup></p>
@@ -583,7 +589,7 @@
                             <div class="modal__card" data-ing="cucumber slices">
                             <picture class="modal__picture">
                          <source srcset="img/gurken.webp" type="image/webp">
-                         <img src="img/gurken.webp" alt="Pickled cucumber slices">
+                         <img src="img/gurken.webp" alt="Pickled cucumber slices" loading="lazy">
                          </picture>
                          <p class="picture__text">Cucumber slices</p>
                          <p class="picture__price">1.6<sup>$</sup></p>
@@ -592,7 +598,7 @@
                             <div class="modal__card" data-ing="salami">
                             <picture class="modal__picture">
                          <source srcset="img/salami.webp" type="image/webp">
-                         <img src="img/salami.webp" alt="Sliced spicy salami">
+                         <img src="img/salami.webp" alt="Sliced spicy salami" loading="lazy">
                          </picture>
                          <p class="picture__text">Salami</p>
                          <p class="picture__price">2<sup>$</sup></p>
@@ -600,7 +606,7 @@
                           <div class="modal__card" data-ing="ananas pieces">
                             <picture class="modal__picture">
                          <source srcset="img/ananas.webp" type="image/webp">
-                         <img src="img/ananas.webp" alt="Ananas juicy pieces">
+                         <img src="img/ananas.webp" alt="Ananas juicy pieces" loading="lazy">
                          </picture>
                          <p class="picture__text">Ananas pieces</p>
                          <p class="picture__price">1.75<sup>$</sup></p>
@@ -629,7 +635,7 @@
           <h2 class="cart__modal-title">Your order</h2>
           </div>
           <div class="cart__modal-empty hidden">
-            <img src="img/fire.webp" alt="Empty cart">
+            <img src="img/fire.webp" alt="Empty cart" loading="lazy">
            <p class="cart__modal-sad">Your cart is empty</p> 
            <p class="cart__modal-hungry">Looks like someone got hungry…</p>
            </div>
@@ -642,7 +648,7 @@
             <div class="cart__modal-extra cart__modal-coffee" data-extra-id="coffee">
               <picture>
               <source srcset="img/cofe.webp" type="image/webp">
-              <img class="modal__img" src="img/cofe.webp" alt="Americano">
+              <img class="modal__img" src="img/cofe.webp" alt="Americano" loading="lazy">
               </picture>
               <div class="cart__modal-priceblock">
               <div class="cart__modal-text">Americano</div>
@@ -652,7 +658,7 @@
              <div class="cart__modal-extra cart__modal-capuchino" data-extra-id="capuchino">
               <picture>
               <source srcset="img/capuchino.webp" type="image/webp">
-              <img class="modal__img" src="img/capuchino.webp" alt="Capuchino">
+              <img class="modal__img" src="img/capuchino.webp" alt="Capuchino" loading="lazy">
               </picture>
               <div class="cart__modal-priceblock">
               <div class="cart__modal-text">Capuchino</div>
@@ -662,7 +668,7 @@
              <div class="cart__modal-extra cart__modal-soda" data-extra-id="soda">
               <picture>
               <source srcset="img/soda.webp" type="image/webp">
-              <img class="modal__img" src="img/soda.webp" alt="Soda drink">
+              <img class="modal__img" src="img/soda.webp" alt="Soda drink" loading="lazy">
               </picture>
               <div class="cart__modal-priceblock">
               <div class="cart__modal-text">Soda</div>

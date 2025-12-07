@@ -29,3 +29,4 @@ checkout.forEach(btn => addRippleEffect(btn));
 
 }
 
+

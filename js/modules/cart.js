@@ -1,6 +1,7 @@
 import { calculatePrice, sizeMap } from "./state.js";
 import { toggleBodyLock } from "./modal-lock.js";
 import { openUniversal } from "./auth.js";
+import { startEditMode } from "./pizzaModal.js";
 let cartItems = [];
 function saveCartToLocal() {
   const cartItemsString = JSON.stringify(cartItems);
@@ -247,6 +248,12 @@ export function addToCart (item) {
   renderCart();
   saveCartToLocal();
 };
+export function updateCartItem(index, newItem) {
+    cartItems[index] = newItem;
+    renderCart();
+    saveCartToLocal();
+}
+
 export function initCart() {
   loadCartFromLocal();
       let total = 0;
@@ -276,31 +283,6 @@ cartModal.addEventListener("click", (event) => {
     }
 });
 
-
-
-  const modalOrderBtn = document.querySelector('.modal__order-btn');
-
-  modalOrderBtn.addEventListener('click', () => {
-    if (!window._modalStateForCart) return;
-
-    const { activeCard, modalState } = window._modalStateForCart;
-
-    
-    const item = {
-        img: activeCard.querySelector('img').src,
-        alt: activeCard.querySelector('img').alt,
-        title: activeCard.querySelector('.card__header').textContent,
-        size: modalState.size,
-        crust: modalState.crust,
-        ingredients: [...modalState.ingredients],
-        quantity: modalState.quantity,
-        price: calculatePrice(modalState)
-    };
-
-    addToCart(item);
-
-    window._modalStateForCart = null; 
-});
 document.addEventListener("click", (event) => {
     const btn = event.target.closest(".card__order");
     if (!btn) return;
@@ -373,6 +355,7 @@ container.addEventListener('click',(event)=>{
  const removeBtn = event.target.closest('.cart__modal-remove');
 if(event.target.classList.contains('cart__modal-right')){
 const parent = event.target.closest('.cart__modal-item')
+        if (!parent) return;   
 const idxString = parent.dataset.index;
 const index = Number(idxString);
 const item = cartItems[index];
@@ -390,6 +373,7 @@ renderCart();
 
 else if (removeBtn){
 const parent = event.target.closest('.cart__modal-item');
+        if (!parent) return;   
 const idxString = parent.dataset.index;
 const index = Number(idxString);
 const item = cartItems[index];
@@ -410,7 +394,8 @@ renderCart();
 saveCartToLocal();
 }
 else if(event.target.classList.contains('cart__modal-left')){
-const parent = event.target.closest('.cart__modal-item')
+const parent = event.target.closest('.cart__modal-item');
+        if (!parent) return;   
 const idxString = parent.dataset.index;
 const index = Number(idxString);
 const item = cartItems[index];
@@ -472,39 +457,16 @@ if(!extra)  return;
 extra.classList.add('hidden'); 
 const itemExtra = createItemExtra(extra);
 addToCart(itemExtra);
-extra.classList.add('hidden');
 });
 container.addEventListener('click', (event) => {
-const change = event.target.closest('.cart__modal-change');
-if (change) {
-    const parent = event.target.closest('.cart__modal-item');
-    const index = Number(parent.dataset.index);
-    const item = cartItems[index];
-
-    window._editItem = { item, index };
-}
+    const change = event.target.closest('.cart__modal-change');
+    if (change) {
+        const parent = event.target.closest('.cart__modal-item');
+                if (!parent) return;   
+        const index = Number(parent.dataset.index);
+        const item = cartItems[index];
+        startEditMode(item, index);
+    }
 });
-document.addEventListener("click", () => {
-    if (!window._editedItem) return;
-
-    const { index, modalState } = window._editedItem;
-    const oldItem = cartItems[index];
-
-    const newItem = {
-        ...oldItem,
-        size: modalState.size,
-        quantity: modalState.quantity,
-        crust: modalState.crust,
-        ingredients: [...modalState.ingredients],
-        price: calculatePrice(modalState)
-    };
-
-    cartItems[index] = newItem;
-
-    renderCart();
-    saveCartToLocal();
-    window._editedItem = null;
-});
-
 };
 
