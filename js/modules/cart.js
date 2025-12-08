@@ -282,28 +282,14 @@ cartModal.addEventListener("click", (event) => {
         clearCart();
     }
 });
-
 document.addEventListener("click", (event) => {
-    const btn = event.target.closest(".card__order");
+    const btn = event.target.closest(".modal__order-btn");
     if (!btn) return;
-    if (!window._menuStateForCart) return;
 
-    const { card, state } = window._menuStateForCart;
+    if (!window._createdItemForCart) return;
 
-    const item = {
-        img: card.querySelector("img").src,
-        alt: card.querySelector("img").alt,
-        title: card.querySelector(".card__header").textContent,
-        size: state.size,
-        crust: state.crust,
-        ingredients: [...state.ingredients],
-        quantity: state.quantity,
-        price: calculatePrice(state),
-        
-    };
-
-    addToCart(item);
-    window._menuStateForCart = null;
+    addToCart(window._createdItemForCart);
+    window._createdItemForCart = null;
 });
 
 //корзина открывается , открывается оверлей на всем свободном пространстве 
@@ -326,30 +312,7 @@ cartModalOverlay.addEventListener('click',()=>{
 
 
 //подтягивание контента из карточки в корзину
-const createItemFromCard = (card,state) =>{
-const item ={
-  type:"pizza",
-  img:"",
-  alt:"",
-  title:"",
-  size:0,
-  crust:"",
-  ingredients:[],
-  quantity:state.quantity,
-  price:0
-}
-const imgEl = card.querySelector('img');
-item.img = imgEl.src;
-item.alt = imgEl.alt;
-item.title = card.querySelector('.card__header').textContent;
-item.size = state.size
-item.crust = state.crust
-item.quantity = state.quantity
-item.ingredients = [...state.ingredients]
-item.price = calculatePrice(state)
-return item;
 
-};
 const container = document.querySelector('.cart__modal-items');
 container.addEventListener('click',(event)=>{
  const removeBtn = event.target.closest('.cart__modal-remove');
