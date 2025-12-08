@@ -267,33 +267,45 @@ switchAcc();
 }
 });
 //сделать кнопку неактивной без заполнения полей
-const inputName = document.querySelector('[name="name"]');
-const regEmail = regModal.querySelector('input[type="email"]');
-const universalEmail = universal.querySelector('input[type="email"]');
-const inputTel  = document.querySelector('input[type="tel"]');
-const inputPassword = document.querySelector('input[type="password"]');
-regModal.addEventListener('input',()=>{
-    const isValid = regEmail.validity.valid &&
-                    inputName.validity.valid &&
-                    inputTel.validity.valid;
+const regForm = document.querySelector('.reg__auto');
+const regName = regForm.querySelector('input[name="name"]');
+const Emailreg = regForm.querySelector('input[name="email"]');
+const regTel = regForm.querySelector('input[type="tel"]');
+const regPassword = regForm.querySelector('input[name="password"]');
+const regConfirm = regForm.querySelector('input[name="confirm-password"]');
+const regBtn = regForm.querySelector('.reg-btn');
+function handleRegValidation() {
+    const nameValid = regName.validity.valid;
+    const emailValid = Emailreg.validity.valid;
+    const telValid = regTel.validity.valid;
+    const passValid = regPassword.validity.valid;
+    const confirmValid = regConfirm.validity.valid;
+    const passwordsMatch = regPassword.value === regConfirm.value;
 
-    
-if(isValid){
-  checkOut.disabled = false;
-}else{
-  checkOut.disabled = true;
-}
-});
-universal.addEventListener('input',()=>{
-    const isValid = universalEmail.validity.valid &&
-                    inputPassword.validity.valid;
+    const isValid =
+        nameValid &&
+        emailValid &&
+        telValid &&
+        passValid &&
+        confirmValid &&
+        passwordsMatch;
 
-    
-if(isValid){
-  universalBtn.disabled = false;
-}else{
-  universalBtn.disabled = true;
+    regBtn.disabled = !isValid;
 }
-});
+regForm.addEventListener('input', handleRegValidation);
+
+const loginForm = document.querySelector('.universal__form');
+const loginEmail = loginForm.querySelector('input[name="email"]');
+const loginPassword = loginForm.querySelector('input[name="password"]');
+const loginBtn = document.querySelector('.universal__btn');
+function handleLoginValidation() {
+    const emailValid = loginEmail.validity.valid;
+    const passValid = loginPassword.validity.valid;
+
+    const isValid = emailValid && passValid;
+
+    loginBtn.disabled = !isValid;
+}
+loginForm.addEventListener('input', handleLoginValidation);
 
 };

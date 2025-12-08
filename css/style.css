@@ -864,8 +864,9 @@ input:-webkit-autofill:focus {
     opacity: 1;
     transition: border-color .25s ease; }
 .reg__options {
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
   background: inherit;
   border: none;
   padding-block: 20px;
@@ -891,7 +892,8 @@ input:-webkit-autofill:focus {
     color: #210A01; }
 
 .reg__modal-radio {
-  margin-top: 18px;
+  margin-top: 22px;
+  margin-right: 15px;
   appearance: none;
   width: 18px;
   height: 18px;
