@@ -700,7 +700,7 @@
                   </button>
                   </div>
         <div class="acc__modal-window" role="dialog" aria-modal="true" aria-labelledby="acc__modal-title" >
-                <div class="acc__modal-title">Create your account</div>
+                <div class="acc__modal-title" id="acc__modal-title">Create your account</div>
                 <div class="acc__modal-text">Sign up and make your orders blazing fast. 🔥</div>
                 <div class="acc__modal-group">
                    <a href="#"  aria-label="email" class="acc__modal-post"><svg class="acc__modal-img" aria-hidden="true" focusable="false" ><use href="img/sprite.svg#email"></use></svg></a>
@@ -712,7 +712,7 @@
                </div>
                </div>
                  </div>
-                 <div class="modal-open reg__form hidden" aria-hidden="true" aria-labelledby="form-title">
+                 <div class="modal-open reg__form hidden" role="dialog" aria-hidden="true" aria-labelledby="form-title">
                     <div class="reg__overlay"></div>
                     <div class="modal__wrapper">
                     <div class="modal__line">
@@ -736,9 +736,9 @@
                        </label>
 
                        <div class="reg__options">
-                        <label class="reg__radio"><input class="reg__modal-radio" type="radio" name="rewards program" value="agree"><span class="radio__label"></span></label>
-                       <legend class="reg__text">I agree to join the rewards program</legend>
-                        
+                         <label class="reg__radio"><input class="reg__modal-radio" type="radio" name="rewards program" value="agree"><span class="radio__label"></span></label>
+                       <p class="reg__text">I agree to join the rewards program</p>
+                       
                        </div>
                         <div class="reg__btn">
                        <button type="button" class="reg-btn" disabled>Create Account</button>
@@ -782,7 +782,7 @@
                        </label>
                        <label class="universal__text">Password
                         <input class="universal__input" type="password" name="password" pattern=".{8,}" required>
-                        <a href="" class="universal__link"><p class="universal__password">Forgot password?</p></a>
+                        <a href="" class="universal__link">Forgot password?</a>
                        </label>
                        
                       </form>

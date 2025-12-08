@@ -864,16 +864,13 @@ input:-webkit-autofill:focus {
     opacity: 1;
     transition: border-color .25s ease; }
 .reg__options {
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
   gap: 20px;
   background: inherit;
   border: none;
   padding-block: 20px;
   margin-top: 1rem; }
 .reg__text {
-  display: flex;
-  flex-direction: column;
   text-transform: uppercase;
   font-size: 1.125rem;
   align-self: start; }
@@ -894,6 +891,7 @@ input:-webkit-autofill:focus {
     color: #210A01; }
 
 .reg__modal-radio {
+  margin-top: 18px;
   appearance: none;
   width: 18px;
   height: 18px;
@@ -1041,14 +1039,15 @@ input:-webkit-autofill:focus {
     border-bottom: 1px solid rgba(255, 255, 255, 0.9);
     opacity: 1;
     transition: border-color .25s ease; }
-.universal__password {
+.universal__link {
+  text-decoration: none;
   font-size: 15px;
   transition: .2s;
   color: gray; }
-  .universal__password:hover {
+  .universal__link:hover {
     color: rgba(255, 255, 255, 0.85); }
-.universal__link {
-  text-decoration: none; }
+.universal__text {
+  padding-block: 20px; }
 .universal__btn {
   display: grid;
   justify-self: center;
@@ -1056,7 +1055,7 @@ input:-webkit-autofill:focus {
   border-radius: 30px;
   background: #210A01;
   color: #FFFFFF;
-  padding-block: 10px;
+  padding-block: 15px;
   padding-inline: 20px;
   cursor: pointer;
   border: none;

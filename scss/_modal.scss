@@ -270,8 +270,7 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
         }
 }
 &__options{
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
   gap:20px;
    background: inherit;
   border: none;
@@ -280,8 +279,6 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
 }
 
 &__text{
-  display: flex;
-  flex-direction: column;
   text-transform: uppercase;
   font-size: $fs-body;
   align-self: start;
@@ -308,7 +305,8 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
 }
 //чекбокс  в форме реги
 .reg__modal-radio{
-    appearance: none;   
+  margin-top: 18px;
+  appearance: none;   
   width: 18px;
   height: 18px;
   border: 2px solid $color-border;  
@@ -486,16 +484,17 @@ box-shadow: 0 8px 24px rgba(0,0,0,.3);
   transition: border-color .25s ease;
         }
 }
-&__password{
-  font-size: 15px;
+&__link{
+text-decoration: none;
+font-size: 15px;
   transition: .2s;
   color:gray;
     &:hover {
     color: rgba(255,255,255,0.85);
   }
 }
-&__link{
-text-decoration: none;
+&__text{
+  padding-block: 20px;
 }
 &__btn{
   display: grid;
@@ -504,7 +503,7 @@ text-decoration: none;
     border-radius: 30px;
     background: $color-card;
     color:$color-white;
-    padding-block: 10px;
+    padding-block: 15px;
     padding-inline: 20px;
     cursor:pointer;
     border:none;
