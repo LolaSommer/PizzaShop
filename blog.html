@@ -10,28 +10,172 @@
     </head>
     <body>
          <a href="#main" class="visually-hidden-focusable">skip to content</a> 
-        <div class="container">
-         <header class="header">
-            <div class="header__logo"><svg aria-hidden="true" focusable="false"><use href="img/sprite.svg#logo-icon"></use></svg>
+        
+         <header class="header__blog">
+            <div class="header__blog-logo"><svg aria-hidden="true" focusable="false"><use href="img/sprite.svg#logo-icon"></use></svg>
             </div>
-            <nav class="nav" aria-label="Main navigation">
-             <ul class="nav__bar">
-                <li class="nav__item"><a href="#hero" class="nav__link">Home</a></li>
-                <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
-                <li class="nav__item"><a href="#events" class="nav__link">Events</a></li>
-                <li class="nav__item"><a href="#about" class="nav__link">About us</a></li>
+            <nav class="nav__blog" aria-label="Main navigation">
+             <ul class="nav__blog-bar">
+                <li class="nav__blog-item"><a href="#hero" class="nav__link">Home</a></li>
+                <li class="nav__blog-item"><a href="#about" class="nav__link">About us</a></li>
+                <li class="nav__blog-item"><a href="#events" class="nav__link">Events</a></li>
+                <li class="nav__blog-item"><a href="#stories" class="nav__link"> Stories & Connection</a></li>
              </ul>
             </nav>
-            <div class="header__btn">
-            <button  type="button"  aria-label="Log in to your account" class="header__order">Main page</button>
+            <div class="blog__btn">
+            <a href="index.html" aria-label="Main page" class="blog__page">Main page</a>
            
             </div>
         </header>
-        </header>
-        <section class="blog__news">
-
-            
+        <main>
+        <div class="container">
+        <section id="hero" class="blog__home" aria-labelledby="hero-home">
+             <h1 class="blog__title" id="hero-home">The "About Us" That's Actually About You.</h1>
+             <div class="blog__group">
+                <div class="blog__pic">
+                    <picture>
+         <source srcset="img/pizzaOven.webp" type="image/webp">
+                         <img class="blog__svg" src="img/pizzaOven.webp" alt="fresh pizza in the oven">
+                         </picture>
+                         </div>
+                         <div class="blog__text-group">
+                         <p class="blog__text">It started with a fire. A real one, in a brick oven. And an idea: what if a pizza place felt less like a restaurant and more like the best kind of party?</p>
+                         <p class="blog__text">We built that feeling. The buzz of conversation, the clink of glasses, the shared anticipation as a hot, blistered pizza lands on the table. We believe in dough with character, toppings with integrity, and moments with connection.</p>
+                         <p class="blog__text">You loved it. You told your friends. You made us a part of your stories. And because of you, that little party grew.</p>
+                         <p class="blog__text">In just a couple of years, we've opened six locations across the country — bringing the party to New York, Los Angeles, Chicago, Austin, Miami, and Seattle. And we’re just getting started — more cities are already on the map!</p>
+                         <p class="blog__text">This isn't just our story. It's yours. Let's make more of it together.</p>
+                        </div>
+                        </div>
+                    </section>
+                    <section class="about" id="about" aria-labelledby="about__us">
+                        <div class="slider__container"> 
+                         <div class="slider">
+                                   <h2 class="slider__title" id="about__us">Our pizzaShop</h2>
+                                <ul class="slider__inner">
+                                    <li class="slider__item">
+                                        <div class="slider__item-inner">
+                                            <picture>
+                                         <source srcset="img/pizzaWomen.webp" type="image/webp">
+                         <img class="slider__svg" src="img/pizzaWomen.webp" alt="fresh pizza in the oven">
+                         </picture>
+                                         <div class="card">
+                                            <div class="card__info">
+                                            <p class="card__text">2023: The Spark. A single oven in Brooklyn. Trial, error, and a lot of dough.</p>
+                                            </div>
+                                        </div>
+                                            </div>
+                                         </li>
+                                         <li class="slider__item">
+                                        <div class="slider__item-inner">
+                                            <picture>
+                                         <source srcset="img/pizzeria.webp" type="image/webp">
+                         <img class="slider__svg" src="img/pizzeria.webp" alt="Pizza and pizzeria">
+                         </picture>
+                                         <div class="card">
+                                            <div class="card__info">
+                                            <p class="card__text">2024: The Buzz. Queues around the corner. Our community was growing.</p>
+                                            </div>
+                                        </div>
+                                            </div>
+                                         </li>
+                                          <li class="slider__item">
+                                        <div class="slider__item-inner">  
+                                         <source srcset="img/oil.webp" type="image/webp">
+                         <img class="slider__svg" src="img/oil.webp" alt="Pizza and oil">
+                         </picture>
+                                         <div class="card">
+                                            <div class="card__info">
+                                            <p class="card__text">2025: West Coast, Same Soul. We brought our fire to Los Angeles.</p>
+                                            </div>
+                                        </div>
+                                            </div>
+                                         </li>
+                                </ul>
+                            </div>
+                            </div>           
+        </section>
+        <section id="events"  aria-labelledby="events__section" class="blog__events">
+       <h1 class="blog__events-title" id="events__section"> Events & Specials</h1>
+       <h3 class="blog__events-untertitle">Great food tastes even better when shared. That's why we love creating special moments for our guests.</h3>
+           <div class="blog__events-cards">
+       <div class="blog__events-group">
+        <picture>
+       <source srcset="img/frends.webp" type="image/webp">
+                         <img class="blog__events-svg" src="img/frends.webp" alt="Frends eat pizza">
+                         </picture>
+                         <p class="blog__events-texttitle">"Double Trouble" Tuesday</p>
+                         <p class="blog__events-text">Every Tuesday is a celebration. Bring a friend, a date, or your whole crew and enjoy TWO of our signature pizzas for the price of one. Double the flavor, double the fun, same legendary quality. The perfect excuse for a midweek feast.</p>
+                         <div class="blog__events-btnwrap">
+                         <button class="blog__events-btn">Claim Your Double</button>
+                         </div>
+                        </div>
+                        <div class="blog__events-group">
+                            <picture>
+       <source srcset="img/pizzailo.webp" type="image/webp">
+                         <img class="blog__events-svg" src="img/pizzailo.webp" alt="Pizza">
+                         </picture>
+                         <p class="blog__events-texttitle">Secrets of the Hearth</p>
+                         <p class="blog__events-text">Ever wondered what makes our crust so irresistibly charred and chewy? Join our weekly Kitchen Tour! Meet our pizzaiolos, feel the heat of the wood-fired oven, and learn the story behind our dough. A 20-minute journey into the heart of our craft.</p>
+                         <div class="blog__events-btnwrap">
+                         <button class="blog__events-btn">Book a Tour</button>
+                         </div>
+                        </div>
+                         <div class="blog__events-group">
+                            <picture>
+       <source srcset="img/pizzacofee.webp" type="image/webp">
+                         <img class="blog__events-svg" src="img/pizzacofee.webp" alt="Pizza and cofee">
+                         </picture>
+                         <p class="blog__events-texttitle">The Perfect Finish</p>
+                         <p class="blog__events-text">The perfect pairing: our artisan pizza and a cup of premium Italian roast. Order three or more pizzas, and we'll treat your table to a complimentary pot of our rich, aromatic coffee. Because every great gathering deserves a grand finale.</p>
+                         <div class="blog__events-btnwrap">
+                         <button type="button" class="blog__events-btn">Order & Enjoy</button>
+                         </div>
+                        </div>
+                        </div>
+        </section>
+        <section class="stories" id="stories" aria-labelledby="srories-connection">
+            <h1 class="stories__title" id="stories-connection">Stories & Connection</h1>
+            <div class="stories__group">
+                <div class="stories__item">
+         <picture>
+         <source srcset="img/insta.webp" type="image/webp">
+                         <img class="stories__svg" src="img/insta.webp" alt="instagram foto">
+                        </picture>
+                        <p class="stories__untertitle">#SliceOfTheDay</p>
+                         <p class="stories__text">Get your daily dose of dough therapy! On our Instagram, it's not just food pics. It's the morning bake, our team's smiles, your happy tables, and secret off-menu creations. Be the first to know about flash sales and new locations. Join our digital piazza!</p>
+                        <div class="stories__btn-group">
+                        <button type="button" class="stories__btn">Join Us on IG</button>
+                        </div>
+                    </div>
+                         <div class="stories__item">
+                         <picture>
+         <source srcset="img/threePizzas.webp" type="image/webp">
+                         <img class="stories__svg" src="img/threePizzas.webp" alt="three fresh pizzas">
+                         </picture>
+                         <p class="stories__untertitle">Our Promise, Your Pizza</p>
+                         <p class="stories__text">🔥 Craft, Not Fast: 48-hour fermented dough, wood-fired perfection.</p>
+                         <p class="stories__text">👨🍳 The Human Touch: Every pizza is shape by hand, with passion.</p>
+                         <p class="stories__text">🏙️ Local Soul: We source locally where we can, supporting our communities.</p>
+                         <p class="stories__text">🎉 The Vibe: We're in the business of creating joy, not just transactions.</p>
+                          <div class="stories__btn-group">
+                         <button type="button" class="stories__btn">Taste the Difference</button>
+                          </div>
+                        </div>
+               <div class="stories__item">     
+<picture>
+         <source srcset="img/team.webp" type="image/webp">
+                         <img class="stories__svg" src="img/team.webp" alt="team">
+                         </picture>
+                          <p class="stories__untertitle">Meet the Team</p>
+                         <p class="stories__text">From our founder to every pizzaiolo stretching dough — we're a family. Click here to meet the passionate people who turn simple ingredients into your favorite memories.</p>
+                         <div class="stories__btn-group">
+                         <button type="button" class="stories__btn"> Meet the Crew</button>
+                        </div>
+                        </div>
+                        </div>
         </section>
     </div>
+    </main>
+    <script src="js/main.js" type="module"></script>
     </body>
 </html>

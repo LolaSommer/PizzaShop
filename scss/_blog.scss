@@ -1,0 +1,220 @@
+.header__blog{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    gap:50px;
+     position:sticky;
+   top:0;
+   z-index:100;
+   width: 100%;
+   background: $color-bg;
+   &-logo{
+      max-width:clamp(6rem,8vw,10.125rem);
+        color:#FFA228;
+       filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
+       padding-inline: 50px;
+   }
+
+}
+.nav__blog{
+    &-bar{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap:50px;
+        align-self: center;
+        padding-block: 45px;
+    }
+}
+.blog{
+    &__btn{
+        padding-block: 30px;
+    }
+    &__page{
+        border-radius: 30px;
+        padding: 10px;
+        cursor: pointer;
+        background: $color-btn;
+        color:$color-white;
+        font-size:18px;
+        border: none;
+        text-decoration: none;
+        transition: transform .3s ease, box-shadow .3s ease;
+             &:hover {
+        background:$color-footer-header;
+        color:$color-card;
+             }
+    }
+    &__svg{
+        border-radius: 60px;
+    }
+    &__group{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:clamp(50px,5vw,75px);
+
+    }
+    &__text{
+        color:$color-footer-header;
+        font-size: $fs-body;
+    }
+    &__title{
+        font-size: $fs-h1;
+        color:$color-white;
+        text-align: center;
+    }
+}
+.slider {
+    position:relative;
+    margin:0;
+    &__caption{
+      position:absolute;
+      text-transform: uppercase;
+      font-size: $fs-body;
+      opacity: 0.32;
+      writing-mode:sideways-lr;
+      left:-25px;
+      top:30px;
+      letter-spacing: 1px;
+        }
+
+    &__inner{
+        display:flex;
+        flex-wrap: nowrap;
+        gap:clamp(0.625rem, 4vw, 1.875rem);
+        list-style: none;
+       padding:0;
+       margin:0;
+       
+    }
+    &__item{
+        position:relative;
+        flex:0 0 30rem;
+        &-inner{
+          position:relative;
+        }
+        
+    }
+    
+    &__svg{
+        display: block;
+        height: auto;
+        width: 100%;
+        border-radius: 30px;
+    }
+    &__container{
+        display: flex;
+        justify-content: center;
+    }
+    &__title{
+         font-size: $fs-h1;
+        color:$color-white;
+        text-align: center;
+    }
+}
+.card {
+ display:grid;
+ grid-template-rows: auto 1fr auto;
+ gap:1.25rem;
+ background:$color-btn;
+ min-width: clamp(17.5rem, 30vw, 26.25rem);
+ position:absolute;
+ bottom: clamp(-2.5rem, -5vw, -4.688rem);
+ left: clamp(-0.625rem, -2vw, -1.563rem);
+ align-items: stretch;
+ padding:clamp(0.5rem, 1vw, 1rem);
+ border-radius:30px;
+ &__text{
+    font-size: $fs-body;
+ }
+
+}
+.blog__events{
+   
+    &-title{
+        font-size: $fs-h1;
+        color:$color-white;
+        text-align: center;
+    }
+    &-untertitle{
+        color:$color-footer-header;
+    }
+    &-cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:30px;
+    }
+    &-text{
+        font-size: $fs-body;
+        color: $color-white;
+        text-align: center;
+    }
+    &-texttitle{
+        font-size: $fs-price;
+        color:$color-footer-header;
+        text-align: center;
+    }
+    &-btn{
+        border-radius:30px;
+        font-size: $fs-body;
+        color: $color-white;
+        background: $color-btn;
+        border:none;
+        cursor: pointer;
+        padding: 10px;
+        transition: transform .3s ease, box-shadow .3s ease;
+             &:hover {
+        background:$color-footer-header;
+        color:$color-card;
+             }
+    }
+    &-btnwrap{
+        display: flex;
+        justify-content: center;
+    }
+    &-svg{
+        border-radius: 30px;
+    }
+}
+.stories{
+    &__text{
+        font-size: $fs-body;
+        color: $color-footer-header;
+    }
+    &__title{
+        font-size: $fs-h1;
+        color: $color-white;
+        text-align: center;
+    }
+    &__untertitle{
+        font-size: $fs-price;
+        color:$color-white;
+        text-align: center;
+    }
+    &__svg{
+        border-radius: 30px;
+    }
+    &__group{
+        display: grid;
+        grid-template-areas: "a a a" "b c c" "b c c";
+        gap:50px;
+    }
+&__btn{
+        border-radius:30px;
+        font-size: $fs-body;
+        color: $color-white;
+        background: $color-btn;
+        border:none;
+        cursor: pointer;
+        padding: 10px;
+        transition: transform .3s ease, box-shadow .3s ease;
+             &:hover {
+        background:$color-footer-header;
+        color:$color-card;
+             }
+} 
+&__btn-group{
+    display: flex;
+    justify-content: center;
+}
+}
+

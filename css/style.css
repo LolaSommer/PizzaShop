@@ -1677,5 +1677,177 @@ input:-webkit-autofill:focus {
   .modal__cards {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem; } }
+.header__blog {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  gap: 50px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%); }
+  .header__blog-logo {
+    max-width: clamp(6rem, 8vw, 10.125rem);
+    color: #FFA228;
+    filter: drop-shadow(0 0 6px rgba(255, 100, 50, 0.6));
+    padding-inline: 50px; }
+
+.nav__blog-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 50px;
+  align-self: center;
+  padding-block: 45px; }
+
+.blog__btn {
+  padding-block: 30px; }
+.blog__page {
+  border-radius: 30px;
+  padding: 10px;
+  cursor: pointer;
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  color: #FFFFFF;
+  font-size: 18px;
+  border: none;
+  text-decoration: none;
+  transition: transform .3s ease, box-shadow .3s ease; }
+  .blog__page:hover {
+    background: #e7cdb4;
+    color: #210A01; }
+.blog__svg {
+  border-radius: 60px; }
+.blog__group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(50px, 5vw, 75px); }
+.blog__text {
+  color: #e7cdb4;
+  font-size: 1.125rem; }
+.blog__title {
+  font-size: clamp(48px, 5vw, 70px);
+  color: #FFFFFF;
+  text-align: center; }
+
+.slider {
+  position: relative;
+  margin: 0; }
+  .slider__caption {
+    position: absolute;
+    text-transform: uppercase;
+    font-size: 1.125rem;
+    opacity: 0.32;
+    writing-mode: sideways-lr;
+    left: -25px;
+    top: 30px;
+    letter-spacing: 1px; }
+  .slider__inner {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: clamp(0.625rem, 4vw, 1.875rem);
+    list-style: none;
+    padding: 0;
+    margin: 0; }
+  .slider__item {
+    position: relative;
+    flex: 0 0 30rem; }
+    .slider__item-inner {
+      position: relative; }
+  .slider__svg {
+    display: block;
+    height: auto;
+    width: 100%;
+    border-radius: 30px; }
+  .slider__container {
+    display: flex;
+    justify-content: center; }
+  .slider__title {
+    font-size: clamp(48px, 5vw, 70px);
+    color: #FFFFFF;
+    text-align: center; }
+
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1.25rem;
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  min-width: clamp(17.5rem, 30vw, 26.25rem);
+  position: absolute;
+  bottom: clamp(-2.5rem, -5vw, -4.688rem);
+  left: clamp(-0.625rem, -2vw, -1.563rem);
+  align-items: stretch;
+  padding: clamp(0.5rem, 1vw, 1rem);
+  border-radius: 30px; }
+  .card__text {
+    font-size: 1.125rem; }
+
+.blog__events-title {
+  font-size: clamp(48px, 5vw, 70px);
+  color: #FFFFFF;
+  text-align: center; }
+.blog__events-untertitle {
+  color: #e7cdb4; }
+.blog__events-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px; }
+.blog__events-text {
+  font-size: 1.125rem;
+  color: #FFFFFF;
+  text-align: center; }
+.blog__events-texttitle {
+  font-size: 1.563rem;
+  color: #e7cdb4;
+  text-align: center; }
+.blog__events-btn {
+  border-radius: 30px;
+  font-size: 1.125rem;
+  color: #FFFFFF;
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform .3s ease, box-shadow .3s ease; }
+  .blog__events-btn:hover {
+    background: #e7cdb4;
+    color: #210A01; }
+.blog__events-btnwrap {
+  display: flex;
+  justify-content: center; }
+.blog__events-svg {
+  border-radius: 30px; }
+
+.stories__text {
+  font-size: 1.125rem;
+  color: #e7cdb4; }
+.stories__title {
+  font-size: clamp(48px, 5vw, 70px);
+  color: #FFFFFF;
+  text-align: center; }
+.stories__untertitle {
+  font-size: 1.563rem;
+  color: #FFFFFF;
+  text-align: center; }
+.stories__svg {
+  border-radius: 30px; }
+.stories__group {
+  display: grid;
+  grid-template-areas: "a a a" "b c c" "b c c";
+  gap: 50px; }
+.stories__btn {
+  border-radius: 30px;
+  font-size: 1.125rem;
+  color: #FFFFFF;
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform .3s ease, box-shadow .3s ease; }
+  .stories__btn:hover {
+    background: #e7cdb4;
+    color: #210A01; }
+.stories__btn-group {
+  display: flex;
+  justify-content: center; }
 
 /*# sourceMappingURL=style.css.map */

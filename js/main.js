@@ -8,6 +8,7 @@ import { initCart } from "./modules/cart.js";
 import { initAuth } from "./modules/auth.js";
 import {initFooter} from  "./modules/footer.js";
 import { showSkeleton, hideSkeleton } from "./modules/skeleton.js";
+import { initBlog } from "./modules/blog.js";
 import "./modules/modal-lock.js";
 document.addEventListener("DOMContentLoaded", () => {
     initNavigation();
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initCart();
     initAuth();
     initFooter();
+    initBlog();
 });
 
 
