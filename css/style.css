@@ -1700,6 +1700,19 @@ input:-webkit-autofill:focus {
   align-self: center;
   padding-block: 45px; }
 
+.nav__self {
+  text-decoration: none;
+  color: #A3A3A3;
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease; }
+  .nav__self:hover {
+    background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%);
+    color: #FF5924; }
+
+.nav__self.active {
+  border-bottom: 2px solid #ff3d00;
+  transition: 0.3s ease; }
+
 .blog__btn {
   padding-block: 30px; }
 .blog__page {
@@ -1849,5 +1862,147 @@ input:-webkit-autofill:focus {
 .stories__btn-group {
   display: flex;
   justify-content: center; }
+
+.tour__modal {
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  font-size: 1.125rem;
+  position: fixed;
+  inset: 0; }
+.tour__window {
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  position: relative;
+  color: #FFFFFF;
+  z-index: 1;
+  padding: clamp(0.938rem, 4vw, 1.875rem);
+  max-height: 50vh;
+  height: 50vh;
+  border-radius: 30px;
+  margin: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  max-width: 450px;
+  width: 100%; }
+.tour__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px); }
+.tour__close {
+  display: grid;
+  justify-self: end;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #FF5924; }
+.tour__line {
+  position: relative; }
+.tour__icon {
+  width: 20px;
+  height: 20px; }
+.tour__form {
+  display: flex;
+  flex-direction: column; }
+.tour__input, .tour__text {
+  display: flex;
+  flex-direction: column;
+  background: inherit;
+  border: none;
+  padding-block: 15px; }
+.tour__input {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  opacity: 0.8;
+  padding-block: 20px;
+  transition: 0.3s;
+  box-sizing: border-box;
+  padding-block: 0.75em 1em;
+  appearance: none;
+  -webkit-appearance: none; }
+  .tour__input:focus {
+    outline: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+    opacity: 1;
+    transition: border-color .25s ease; }
+.tour__link {
+  text-decoration: none;
+  font-size: 15px;
+  transition: .2s;
+  color: gray; }
+  .tour__link:hover {
+    color: rgba(255, 255, 255, 0.85); }
+.tour__text {
+  padding-block: 20px; }
+.tour__btn {
+  display: grid;
+  justify-self: center;
+  max-width: 150px;
+  border-radius: 30px;
+  background: #210A01;
+  color: #FFFFFF;
+  padding-block: 15px;
+  padding-inline: 20px;
+  cursor: pointer;
+  border: none;
+  translate: transform .3s ease, box-shadow .3s ease; }
+  .tour__btn:hover {
+    background: #e7cdb4;
+    color: #210A01; }
+
+.meet__modal {
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  font-size: 1.125rem;
+  position: fixed;
+  inset: 0; }
+.meet__window {
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  position: relative;
+  color: #FFFFFF;
+  z-index: 1;
+  padding: clamp(0.938rem, 4vw, 1.875rem);
+  height: auto;
+  border-radius: 30px;
+  margin: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  max-width: 450px;
+  width: 100%; }
+.meet__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px); }
+.meet__close {
+  display: grid;
+  justify-self: end;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #FF5924; }
+.meet__line {
+  position: relative; }
+.meet__icon {
+  width: 20px;
+  height: 20px; }
+.meet__button {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+.meet__btn {
+  border: none;
+  border-radius: 20px;
+  background: #210A01;
+  color: #FFFFFF;
+  padding: 10px; }
+.meet__title, .meet__text {
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */

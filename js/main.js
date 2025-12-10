@@ -10,21 +10,30 @@ import {initFooter} from  "./modules/footer.js";
 import { showSkeleton, hideSkeleton } from "./modules/skeleton.js";
 import { initBlog } from "./modules/blog.js";
 import "./modules/modal-lock.js";
+const pageType = document.body.dataset.page;
 document.addEventListener("DOMContentLoaded", () => {
-    initNavigation();
-    initHero();
-    initEffects();
-    initFilter();
-    showSkeleton();
-    setTimeout(() => {
-        initMenu();
-        hideSkeleton();
-    }, 600);
-    initPizzaModal();
-    initCart();
-    initAuth();
-    initFooter();
+  if (pageType === "blog") {
     initBlog();
+    initFooter();
+    return;
+  }
+  initNavigation();
+  initHero();
+  initEffects();
+  initFilter();
+  showSkeleton();
+  setTimeout(() => {
+    initMenu();
+    hideSkeleton();
+  }, 600);
+  initPizzaModal();
+  if (window.location.hash === "#pizza") {
+  const firstBtn = document.querySelector('.card__ingredients');
+  if (firstBtn) firstBtn.click();
+};
+  initCart();
+  initAuth();
+  initFooter();
 });
 
 

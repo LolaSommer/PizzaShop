@@ -1,5 +1,7 @@
 import { toggleBodyLock } from "./modal-lock.js";
 export function initFooter() {
+       const netModal = document.querySelector('.net__modal');
+    if (!netModal) return;
     const titles = {
         twitter: "X",
         instagram: "Instagram",
@@ -11,7 +13,6 @@ export function initFooter() {
     facebook:"https://facebook.com/pizzashop-demo"
     }
     const netGroup = document.querySelector('.footer__social');
-    const netModal = document.querySelector('.net__modal');
     const netSpan = netModal.querySelector('.net__span');
     const netCopied = netModal.querySelector('.net__copied');
     function showOnlyNet(type) {

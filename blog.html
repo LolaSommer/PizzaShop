@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/style.css">
     </head>
-    <body>
+    <body data-page="blog">
          <a href="#main" class="visually-hidden-focusable">skip to content</a> 
         
          <header class="header__blog">
@@ -16,10 +16,10 @@
             </div>
             <nav class="nav__blog" aria-label="Main navigation">
              <ul class="nav__blog-bar">
-                <li class="nav__blog-item"><a href="#hero" class="nav__link">Home</a></li>
-                <li class="nav__blog-item"><a href="#about" class="nav__link">About us</a></li>
-                <li class="nav__blog-item"><a href="#events" class="nav__link">Events</a></li>
-                <li class="nav__blog-item"><a href="#stories" class="nav__link"> Stories & Connection</a></li>
+                <li class="nav__blog-item"><a href="#hero" class="nav__self">Home</a></li>
+                <li class="nav__blog-item"><a href="#about" class="nav__self">About us</a></li>
+                <li class="nav__blog-item"><a href="#events" class="nav__self">Events</a></li>
+                <li class="nav__blog-item"><a href="#stories" class="nav__self"> Stories & Connection</a></li>
              </ul>
             </nav>
             <div class="blog__btn">
@@ -106,7 +106,7 @@
                          <p class="blog__events-texttitle">"Double Trouble" Tuesday</p>
                          <p class="blog__events-text">Every Tuesday is a celebration. Bring a friend, a date, or your whole crew and enjoy TWO of our signature pizzas for the price of one. Double the flavor, double the fun, same legendary quality. The perfect excuse for a midweek feast.</p>
                          <div class="blog__events-btnwrap">
-                         <button class="blog__events-btn">Claim Your Double</button>
+                         <button class="blog__events-btn" data-action="main">Claim Your Double</button>
                          </div>
                         </div>
                         <div class="blog__events-group">
@@ -117,7 +117,7 @@
                          <p class="blog__events-texttitle">Secrets of the Hearth</p>
                          <p class="blog__events-text">Ever wondered what makes our crust so irresistibly charred and chewy? Join our weekly Kitchen Tour! Meet our pizzaiolos, feel the heat of the wood-fired oven, and learn the story behind our dough. A 20-minute journey into the heart of our craft.</p>
                          <div class="blog__events-btnwrap">
-                         <button class="blog__events-btn">Book a Tour</button>
+                         <button type="button" class="blog__events-btn" data-action="tour">Book a Tour</button>
                          </div>
                         </div>
                          <div class="blog__events-group">
@@ -128,7 +128,7 @@
                          <p class="blog__events-texttitle">The Perfect Finish</p>
                          <p class="blog__events-text">The perfect pairing: our artisan pizza and a cup of premium Italian roast. Order three or more pizzas, and we'll treat your table to a complimentary pot of our rich, aromatic coffee. Because every great gathering deserves a grand finale.</p>
                          <div class="blog__events-btnwrap">
-                         <button type="button" class="blog__events-btn">Order & Enjoy</button>
+                         <button type="button" class="blog__events-btn" data-action="main">Order & Enjoy</button>
                          </div>
                         </div>
                         </div>
@@ -144,7 +144,7 @@
                         <p class="stories__untertitle">#SliceOfTheDay</p>
                          <p class="stories__text">Get your daily dose of dough therapy! On our Instagram, it's not just food pics. It's the morning bake, our team's smiles, your happy tables, and secret off-menu creations. Be the first to know about flash sales and new locations. Join our digital piazza!</p>
                         <div class="stories__btn-group">
-                        <button type="button" class="stories__btn">Join Us on IG</button>
+                        <button type="button" class="stories__btn" data-action="social">Join Us on IG</button>
                         </div>
                     </div>
                          <div class="stories__item">
@@ -158,7 +158,7 @@
                          <p class="stories__text">🏙️ Local Soul: We source locally where we can, supporting our communities.</p>
                          <p class="stories__text">🎉 The Vibe: We're in the business of creating joy, not just transactions.</p>
                           <div class="stories__btn-group">
-                         <button type="button" class="stories__btn">Taste the Difference</button>
+                         <button type="button" class="stories__btn" data-action="main">Taste the Difference</button>
                           </div>
                         </div>
                <div class="stories__item">     
@@ -169,13 +169,124 @@
                           <p class="stories__untertitle">Meet the Team</p>
                          <p class="stories__text">From our founder to every pizzaiolo stretching dough — we're a family. Click here to meet the passionate people who turn simple ingredients into your favorite memories.</p>
                          <div class="stories__btn-group">
-                         <button type="button" class="stories__btn"> Meet the Crew</button>
+                         <button type="button" class="stories__btn" data-action="crew"> Meet the Crew</button>
                         </div>
                         </div>
                         </div>
         </section>
     </div>
     </main>
+     <footer class="footer">
+          <div class="container__footer">
+            <div class="footer__container">
+              <div class="footer__rows">
+             <div class="footer__logo"><svg aria-hidden="true" focusable="false" class="footer__logo-img"><use href="img/sprite.svg#logo-icon"></use></svg></div>
+            <div class="footer__nav-item">
+          <ul>
+            <li><a class="footer__nav-link footer__strong" data-scroll="hero">Home</a></li>
+            <li><a class="footer__nav-link" data-scroll="menu">Order Now</a></li>
+            <li><a class="footer__nav-link" data-scroll="about">About Us</a></li>
+            <li><a class="footer__nav-link" data-scroll="events">Events</a></li>
+          </ul>
+          </div>
+           <div class="footer__nav-item">
+          <ul>
+            <li><a class="footer__nav-link footer__strong" data-scroll="events">Events</a></li>
+            <li><a class="footer__nav-link" data-scroll="events">Free Coffee</a></li>
+            <li><a class="footer__nav-link" data-scroll="events">Two the Price of One</a></li>
+            <li><a class="footer__nav-link" data-scroll="events">Kitchen Tour</a></li>
+          </ul>
+           </div>
+            <div class="footer__nav-item">
+          <ul>
+            <li><a class="footer__nav-link footer__strong" data-scroll="menu">Menu</a></li>
+            <li><a class="footer__nav-link" data-scroll="menu">Show All</a></li>
+            <li><a class="footer__nav-link" data-scroll="veg">Vegetarian</a></li>
+            <li><a class="footer__nav-link" data-scroll="meat">Meat Lovers</a></li>
+          </ul>
+            </div>
+             <div class="footer__nav-item">
+          <ul>
+            <li><a class="footer__nav-link footer__strong">About Us</a></li>
+            <li><a class="footer__nav-link" data-scroll="about">Our Story</a></li>
+            <li><a class="footer__nav-link" data-scroll="events">Why Choose Us?</a></li>
+          </ul>
+             </div>
+            
+             </div>
+          <div class="footer__contacts">
+            <div class="footer__coll">
+          <p class="footer__tel">
+          <a class="footer__link" href="tel:15551234567" aria-label="Call PizzaShop">
+         +1 (555) 123 4567
+         </a>
+         </p>
+         </div>
+         <div class="footer__social">
+         <a href="#"  aria-label="Instagram" class="footer__icon" data-type="instagram"><svg class="footer__img" aria-hidden="true" focusable="false" ><use href="img/sprite.svg#icon-inst"></use></svg></a>
+         <a href="#" aria-label="Twitter" class="footer__icon" data-type="twitter"><svg class="footer__img" aria-hidden="true" focusable="false"><use href="img/sprite.svg#icon-twitter"></use></svg></a>
+         <a href="#" aria-label="Facebook" class="footer__icon" data-type="facebook"><svg class="footer__img" aria-hidden="true" focusable="false"><use href="img/sprite.svg#icon-fb"></use></svg></a>
+         </div>
+         </div>
+         </div>
+         </div>
+        </footer>
+        <div class="modal-open net__modal hidden">
+                      <div class="net__overlay"></div>
+                      <div class="net__line">
+                      <button class="net__close" aria-label="close">
+                      <svg class="net__icon"><use href="img/sprite.svg#icon-close"></use></svg>
+                      </button>
+                      <div class="net__window">
+                        <div class="net__title">Follow us on <span class="net__span"></span></div>
+      
+                           <div class="net__group">
+                   <a href="#"  aria-label="X" class="net__item" data-type="twitter"><svg class="net__x-img" aria-hidden="true" focusable="false" ><use xlink:href="img/sprite.svg#X"></use></svg></a>
+                   <a href="#"  aria-label="instagram" class="net__item" data-type="instagram"><svg class="net__instagram-img" aria-hidden="true" focusable="false" ><use xlink:href="img/sprite.svg#inst"></use></svg></a>
+                <a href="#"  aria-label="facebook" class="net__item" data-type="facebook"><svg class="net__facebook-img" aria-hidden="true" focusable="false" ><use xlink:href="img/sprite.svg#facebook-net"></use></svg></a>
+              </div>
+              <div class="net__copied hidden">Copied!</div>
+                      </div>
+                    </div>
+                     </div>
+
+                           <div class="modal-open tour__modal hidden">
+                      <div class="tour__overlay"></div>
+                         <div class="tour__line">
+                      <button class="tour__close" aria-label="close">
+                      <svg class="tour__icon"><use href="img/sprite.svg#icon-close"></use></svg>
+                      </button>
+                      <div class="tour__window">
+                        <h3 class="tour__title">Would you like a kitchen tour?</h3>
+                        <form class="tour__form">
+                        <label class="tour__text">Email
+                       <input class="tour__input" type="email" name="email" placeholder="Enter your email address"  pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" required>
+                       </label>
+                       <label class="tour__text">Name
+                        <input class="tour__input" type="text" name="name" placeholder="Enter your name" pattern="[A-Za-zА-Яа-я '\-]{2,}" required>
+                       </label>
+                      </form>
+                        <div class="tour-btn">
+                       <button type="button" data-action="tour" class="tour__btn" disabled>Reserve Now</button>
+                       </div>
+                      </div>
+                    </div>
+                 </div>  
+
+                  <div class="modal-open meet__modal hidden" aria-hidden="true">
+                 <div class="meet__overlay"></div>
+                 <div class="meet__line">
+                 <button class="meet__close" aria-label="close">
+                      <svg class="meet__icon"><use href="img/sprite.svg#icon-close"></use></svg>
+                      </button>
+                 <div class="meet__window">
+                <h2 class="meet__title">Got it! We'll contact you to find a perfect time.</h2>
+                <div class="meet__button">
+                <button class="meet__btn">OK</button>
+                </div>
+                </div>
+                </div>
+                </div>
     <script src="js/main.js" type="module"></script>
     </body>
 </html>

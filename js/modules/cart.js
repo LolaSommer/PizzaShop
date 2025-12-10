@@ -17,16 +17,6 @@ if(storedCart === null){
   renderCart();
 }
 }
-const cartTotal = document.querySelector('.cart__total');
-const cart = document.querySelector('.header__cart');
-const cartModal = document.querySelector('.cart__modal');
-const cartModalOverlay = document.querySelector('.cart__modal-overlay');
-const cartClose = document.querySelector('.cart__modal-close');
-const checkTotal = document.querySelector('.cart__modal-checkout');
-const thanks = document.querySelector('.thankyou__modal');
-const accBtn = document.querySelector('.account-btn');
-const thanksClose = document.querySelector('.thankyou__close');
-const thanksOver = document.querySelector('.thankyou__overlay');
 export function getCartTotal(){
 const total = cartItems.reduce((acc, item) => acc + item.price, 0);
 return total;
@@ -43,33 +33,7 @@ localStorage.removeItem("cart");
 export function getRawTotal() {
   return cartItems.reduce((sum, item) => sum + item.price, 0);
 };
-function thanksCloseAll() {
-thanks.classList.add('hidden');
-thanks.setAttribute('aria-hidden', 'true');
-};
-thanksClose.addEventListener('click',()=>{
-thanksCloseAll();
-toggleBodyLock();
-});
-thanksOver.addEventListener('click', ()=>{
-thanksCloseAll();
-toggleBodyLock();
-});
-const thanksBtn = document.querySelector('.thankyou__btn');
-thanksBtn.addEventListener('click', ()=>{
-  thanksCloseAll();
-  toggleBodyLock();
-})
-function cartModalOpen() { 
-  cartModal.classList.remove('hidden'); 
-  cartModal.setAttribute('aria-hidden', 'false'); 
-  cartModalOverlay.classList.remove('hidden'); 
-} 
-function cartModalClose() {
-   cartModal.classList.add('hidden');
-    cartModal.setAttribute('aria-hidden','true'); 
-  cartModalOverlay.classList.add('hidden'); 
-}
+
 
 function isSamePizza(item1, item2) {
     if (
@@ -174,7 +138,7 @@ return `
 };
 
 const renderCart = () =>{
-
+const cartTotal = document.querySelector('.cart__total');
 const container = document.querySelector('.cart__modal-items');
 container.innerHTML = '';
 const totalHTML = cartItems.reduce((acc, item, index) => {
@@ -255,6 +219,44 @@ export function updateCartItem(index, newItem) {
 }
 
 export function initCart() {
+const cartTotal = document.querySelector('.cart__total');
+const cart = document.querySelector('.header__cart');
+const cartModal = document.querySelector('.cart__modal');
+const cartModalOverlay = document.querySelector('.cart__modal-overlay');
+const cartClose = document.querySelector('.cart__modal-close');
+const checkTotal = document.querySelector('.cart__modal-checkout');
+const thanks = document.querySelector('.thankyou__modal');
+const accBtn = document.querySelector('.account-btn');
+const thanksClose = document.querySelector('.thankyou__close');
+const thanksOver = document.querySelector('.thankyou__overlay');
+function thanksCloseAll() {
+thanks.classList.add('hidden');
+thanks.setAttribute('aria-hidden', 'true');
+};
+
+function cartModalOpen() { 
+  cartModal.classList.remove('hidden'); 
+  cartModal.setAttribute('aria-hidden', 'false'); 
+  cartModalOverlay.classList.remove('hidden'); 
+} 
+function cartModalClose() {
+   cartModal.classList.add('hidden');
+    cartModal.setAttribute('aria-hidden','true'); 
+  cartModalOverlay.classList.add('hidden'); 
+}
+thanksClose.addEventListener('click',()=>{
+thanksCloseAll();
+toggleBodyLock();
+});
+thanksOver.addEventListener('click', ()=>{
+thanksCloseAll();
+toggleBodyLock();
+});
+const thanksBtn = document.querySelector('.thankyou__btn');
+thanksBtn.addEventListener('click', ()=>{
+  thanksCloseAll();
+  toggleBodyLock();
+});
   loadCartFromLocal();
       let total = 0;
 cartModal.addEventListener("click", (event) => {

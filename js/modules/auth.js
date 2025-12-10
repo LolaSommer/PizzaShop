@@ -10,11 +10,14 @@ const currentUser = {
 let universal;
 let universalBtn;
 export function openUniversal() {
+   if (!universal) return;
   universal.classList.remove('hidden');
   universal.setAttribute('aria-hidden', 'false'); 
 }
 export function initAuth () {
 // =============== SELECTORS ===============
+universal = document.querySelector('.universal__modal');
+  if (!universal) return;
 const logIn = document.querySelector('.header__order');
 const accountBtn = document.querySelector('.account-btn');
 const accLog = document.querySelector('.acc__modal-log');
@@ -25,7 +28,7 @@ const accGroup = document.querySelector('.acc__modal-group');
 const regOver = regModal.querySelector('.reg__overlay');
 const regClose = regModal.querySelector('.modal__close');
 const checkOut = document.querySelector('.reg-btn');
-universal = document.querySelector('.universal__modal');
+const universalEmail = universal.querySelector('input[type="email"]');
 const universalClose = document.querySelector('.universal__close');
 const universalOver = document.querySelector('.universal__overlay');
 universalBtn = document.querySelector('.universal__btn');
