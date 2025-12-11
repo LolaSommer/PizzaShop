@@ -15,6 +15,7 @@ if(storedCart === null){
   const data = JSON.parse(storedCart);
   cartItems = data;
   renderCart();
+  syncExtrasUIWithCart();
 }
 }
 export function getCartTotal(){
@@ -25,10 +26,6 @@ export function clearCart() {
 cartItems = [];
 renderCart();
 localStorage.removeItem("cart");  
-  const extras = document.querySelectorAll('.cart__modal-extra')
-    extras.forEach(ex => {
-        ex.classList.remove('hidden');
-    });
 }
 export function getRawTotal() {
   return cartItems.reduce((sum, item) => sum + item.price, 0);
@@ -36,26 +33,26 @@ export function getRawTotal() {
 
 
 function isSamePizza(item1, item2) {
-    if (
-        item1.title !== item2.title ||
-        item1.size !== item2.size ||
-        item1.crust !== item2.crust ||
-        item1.ingredients.length !== item2.ingredients.length
-    ) {
-        return false;
-    }
-
-    const sortedIngr1 = [...item1.ingredients].sort();
-    const sortedIngr2 = [...item2.ingredients].sort();
-
-    for (let i = 0; i < sortedIngr1.length; i++) {
-        if (sortedIngr1[i] !== sortedIngr2[i]) return false;
-    }
-    return true;
+   return item1.key === item2.key;
 }
+function syncExtrasUIWithCart() {
+  const extras = document.querySelectorAll('[data-extra-id]');
+  const itemsCart = cartItems;
+  const extraItems = itemsCart.filter(item => item.type === "extra");
+  extras.forEach(extra => {
+const currentId = extra.dataset.extraId;
+const exist = extraItems.some(item =>item.extraId === currentId)
+if(exist){
+  extra.classList.add('hidden');
+}else{
+  extra.classList.remove('hidden');
+}
+  });
+}
+
 const generateCartItem = (item,index)=>{
   if(item.type === "extra"){
-    return `<div class="cart__modal-item" data-index="${index}">
+    return `<div class="cart__modal-item" data-key="${item.key}">
 
   <div class="cart__modal-wrapper">
     <div class="cart__modal-pic">
@@ -80,7 +77,7 @@ const generateCartItem = (item,index)=>{
       <div class="cart__modal-left">-</div>
       <div class="cart__modal-count">${item.quantity}</div>
       <div class="cart__modal-right">+</div>
-      <div class="cart__modal-remove">
+      <div class="cart__modal-remove" data-remove="extra">
   <svg class="icon-trash">
     <use href="img/sprite.svg#icon-trash"></use>
   </svg>
@@ -95,7 +92,7 @@ const generateCartItem = (item,index)=>{
  else{
   //добавление карточки товара пиццы в корзину
 return `
-<div class="cart__modal-item" data-index="${index}">
+<div class="cart__modal-item" data-key="${item.key}">
 
   <div class="cart__modal-wrapper">
     <div class="cart__modal-pic">
@@ -121,7 +118,7 @@ return `
       <div class="cart__modal-left">-</div>
       <div class="cart__modal-count">${item.quantity}</div>
       <div class="cart__modal-right">+</div>
-      <div class="cart__modal-remove">
+      <div class="cart__modal-remove" data-remove="pizza">
   <svg class="icon-trash">
     <use href="img/sprite.svg#icon-trash"></use>
   </svg>
@@ -198,9 +195,23 @@ if(cartItems.length === 0){
 }
 //добавление товара экстра в корзину
 export function addToCart (item) {
+  const title = item.title || '';
+  const size = item.size || '';
+  const crust = item.crust || '';
+
+  const ingredients = item.ingredients || [];
+  const extras = item.extras || [];
+
+  const ingrKey = [...ingredients].sort().join('-');
+  const extrasKey = [...extras].sort().join('-');
+
+  const key = `${title}_${size}_${crust}_${ingrKey}_${extrasKey}`;
+  item.key = key;
+
   const existingItem = cartItems.find(cartItem => 
     isSamePizza(item, cartItem)
   );
+
   if (existingItem) {
     existingItem.quantity += item.quantity;
     existingItem.price = calculatePrice(existingItem);
@@ -208,10 +219,15 @@ export function addToCart (item) {
     saveCartToLocal();
     return;
   }
+
   cartItems.push(item);
+
   renderCart();
   saveCartToLocal();
+  syncExtrasUIWithCart();
+  
 };
+
 export function updateCartItem(index, newItem) {
     cartItems[index] = newItem;
     renderCart();
@@ -298,6 +314,7 @@ document.addEventListener("click", (event) => {
 cart.addEventListener('click',()=>{
   cartModalOpen();
    renderCart();
+   syncExtrasUIWithCart();
    toggleBodyLock();
 });
 
@@ -317,79 +334,80 @@ cartModalOverlay.addEventListener('click',()=>{
 
 const container = document.querySelector('.cart__modal-items');
 container.addEventListener('click',(event)=>{
- const removeBtn = event.target.closest('.cart__modal-remove');
 if(event.target.classList.contains('cart__modal-right')){
 const parent = event.target.closest('.cart__modal-item')
         if (!parent) return;   
-const idxString = parent.dataset.index;
-const index = Number(idxString);
+const key = parent.dataset.key;
+const index = cartItems.findIndex(item => item.key === key);
 const item = cartItems[index];
 if(item.type === "extra"){
   item.quantity=item.quantity+1;
   item.price = item.basePrice * item.quantity;
   renderCart();
   saveCartToLocal();
+  syncExtrasUIWithCart();
 } else{
 item.quantity=item.quantity+1;
 item.price = calculatePrice(item);
 renderCart();
 }
 }
+const removeBtn = event.target.closest('[data-remove]');
+if (removeBtn) {
+    const type = removeBtn.dataset.remove;
+    const parent = removeBtn.closest('.cart__modal-item');
+    if (!parent) return;
 
-else if (removeBtn){
-const parent = event.target.closest('.cart__modal-item');
-        if (!parent) return;   
-const idxString = parent.dataset.index;
-const index = Number(idxString);
-const item = cartItems[index];
-if(item.type === "extra"){
-  const extraContainer = document.querySelector('.cart__modal-extras');
-  const extras = extraContainer.querySelectorAll('.cart__modal-extra');
-     extras.forEach(ex => {
-        if(ex.dataset.extraId === item.extraId){
-      ex.classList.remove('hidden');
-        }
-    });
+    const key = parent.dataset.key;
+    const index = cartItems.findIndex(item => item.key === key);
+    const item = cartItems[index];
+    if (!item) return;
 
-  cartItems.splice(index,1);
-}else{
-cartItems.splice(index,1);
-}
-renderCart();
-saveCartToLocal();
+    if (type === "pizza") {
+        cartItems.splice(index, 1);
+    }
+
+    if (type === "extra") {
+        cartItems.splice(index, 1);
+        syncExtrasUIWithCart();
+    }
+
+    renderCart();
+    saveCartToLocal();
+    return;
 }
 else if(event.target.classList.contains('cart__modal-left')){
 const parent = event.target.closest('.cart__modal-item');
         if (!parent) return;   
-const idxString = parent.dataset.index;
-const index = Number(idxString);
+const key = parent.dataset.key;
+const index = cartItems.findIndex(item => item.key === key);
 const item = cartItems[index];
 if (item.type === "extra") {
     if (item.quantity > 1) {
         item.quantity = item.quantity - 1;
         item.price = item.basePrice * item.quantity;
         renderCart();
+        saveCartToLocal();
+        syncExtrasUIWithCart();
         return;
     }
-    const extraContainer = document.querySelector('.cart__modal-extras');
-    const extras = extraContainer.querySelectorAll('.cart__modal-extra');
-    extras.forEach(ex => {
-        if (ex.dataset.extraId === item.extraId) {
-            ex.classList.remove('hidden');
-        }
-    });
     cartItems.splice(index, 1);
     renderCart();
+    saveCartToLocal();
+    syncExtrasUIWithCart();
     return;
 }
 if (item.quantity > 1) {
     item.quantity -= 1;
     item.price = calculatePrice(item);
     renderCart();
+    saveCartToLocal();
+    syncExtrasUIWithCart();
 } else {
     cartItems.splice(index, 1);
     renderCart();
     saveCartToLocal();
+    syncExtrasUIWithCart();
 }
 }
 
@@ -425,13 +443,17 @@ addToCart(itemExtra);
 });
 container.addEventListener('click', (event) => {
     const change = event.target.closest('.cart__modal-change');
-    if (change) {
-        const parent = event.target.closest('.cart__modal-item');
-                if (!parent) return;   
-        const index = Number(parent.dataset.index);
-        const item = cartItems[index];
-        startEditMode(item, index);
-    }
+  if (change) {
+    const parent = event.target.closest('.cart__modal-item');
+    if (!parent) return;
+
+    const key = parent.dataset.key;
+    const item = cartItems.find(i => i.key === key);
+
+    if (!item) return;
+    startEditMode(key);
+}
+
 });
 };
 

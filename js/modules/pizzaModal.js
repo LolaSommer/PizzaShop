@@ -3,9 +3,10 @@ import { toggleBodyLock } from "./modal-lock.js";
 import { updateCartItem } from "./cart.js";
 let pendingEdit = null;
 
-export const startEditMode = (item, index) => {
-    pendingEdit = { item, index };
+export const startEditMode = (key) => {
+    pendingEdit = { key };
 };
+
 
 export function initPizzaModal() {
 /* =======================
@@ -152,7 +153,7 @@ const extractFromCard = (card) =>{
       index: null
    }
 }
-const extractFromCartItem = (item,index) =>{
+const extractFromCartItem = (item) =>{
  const title = item.title;
  const  description = item.description;
   const img = item.img;
@@ -259,10 +260,16 @@ document.addEventListener("click", (event) => {
     const changeBtn = event.target.closest('.cart__modal-change');
     if (!changeBtn) return;
 
-    const { item, index } = pendingEdit;
-    openModalUnified( extractFromCartItem(item, index));
+    const { key } = pendingEdit;
+    const currentItem = window.cartItems?.find(i => i.key === key);
+    if (!currentItem) {
+    pendingEdit = null;
+    return;
+  }
+    openModalUnified(extractFromCartItem(currentItem));
 
 });
+
 
 }
 
