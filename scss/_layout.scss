@@ -151,9 +151,10 @@
     flex: 0 1 14.313rem;
      box-sizing: border-box;
      max-width: clamp(10rem,15vw,18.563rem); 
-    opacity: 1;
-    transform: scale(1);
-     transition: opacity .25s ease, transform .25s ease; 
+    transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+  will-change: opacity, transform;
     }
     &__img-wrapper{
        height:clamp(5rem,8vw,10rem);

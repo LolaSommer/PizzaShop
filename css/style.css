@@ -298,9 +298,8 @@ input:-webkit-autofill:focus {
   flex: 0 1 14.313rem;
   box-sizing: border-box;
   max-width: clamp(10rem, 15vw, 18.563rem);
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity .25s ease, transform .25s ease; }
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  will-change: opacity, transform; }
 .menu__img-wrapper {
   height: clamp(5rem, 8vw, 10rem);
   display: flex;
@@ -1515,7 +1514,13 @@ input:-webkit-autofill:focus {
   color: #FFFFFF; }
 
 .menu__card.hidden {
-  display: none; }
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  pointer-events: none; }
+
+.menu__card.is-entering {
+  opacity: 0;
+  transform: translateY(12px) scale(0.98); }
 
 .modal__card-value {
   background: linear-gradient(180deg, #1A0B00 0%, #140800 100%);

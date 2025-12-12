@@ -365,8 +365,15 @@
    color:$color-white;
 }
 .menu__card.hidden { 
-  display: none; 
+   opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  pointer-events: none; 
 }
+.menu__card.is-entering {
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+}
+
 
 .modal__card-value{
    background:$color-bg-footer;
