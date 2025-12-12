@@ -1,7 +1,7 @@
 import { calculatePrice, sizeMap } from "./state.js";
 import { toggleBodyLock } from "./modal-lock.js";
 import { openUniversal } from "./auth.js";
-import { startEditMode } from "./pizzaModal.js";
+import { openEditModal } from "./pizzaModal.js";
 let cartItems = [];
 function saveCartToLocal() {
   const cartItemsString = JSON.stringify(cartItems);
@@ -31,7 +31,6 @@ export function getRawTotal() {
   return cartItems.reduce((sum, item) => sum + item.price, 0);
 };
 
-
 function isSamePizza(item1, item2) {
    return item1.key === item2.key;
 }
@@ -50,7 +49,7 @@ if(exist){
   });
 }
 
-const generateCartItem = (item,index)=>{
+const generateCartItem = (item,key)=>{
   if(item.type === "extra"){
     return `<div class="cart__modal-item" data-key="${item.key}">
 
@@ -227,11 +226,14 @@ export function addToCart (item) {
   syncExtrasUIWithCart();
   
 };
-
-export function updateCartItem(index, newItem) {
-    cartItems[index] = newItem;
+//обновить корзину 
+export function updateCartItemByKey(key, updatedItem) {
+  const index = cartItems.findIndex(item => item.key === key);
+  if (index !== -1) {
+    cartItems[index] = updatedItem;
     renderCart();
     saveCartToLocal();
+  }
 }
 
 export function initCart() {
@@ -328,7 +330,6 @@ cartModalOverlay.addEventListener('click',()=>{
   cartModalClose();
   toggleBodyLock();
 });
-
 
 //подтягивание контента из карточки в корзину
 
@@ -451,9 +452,9 @@ container.addEventListener('click', (event) => {
     const item = cartItems.find(i => i.key === key);
 
     if (!item) return;
-    startEditMode(key);
+    openEditModal(key, item);
 }
 
 });
-};
 
+};

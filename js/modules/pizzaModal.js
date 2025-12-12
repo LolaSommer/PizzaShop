@@ -1,18 +1,6 @@
 import { calculatePrice, sizeMap } from "./state.js";
 import { toggleBodyLock } from "./modal-lock.js";
-import { updateCartItem } from "./cart.js";
-let pendingEdit = null;
-
-export const startEditMode = (key) => {
-    pendingEdit = { key };
-};
-
-
-export function initPizzaModal() {
-/* =======================
-    SELECTORS
-======================= */ 
-   //модальное окно 
+import { updateCartItemByKey,addToCart } from "./cart.js";
 const modal = document.querySelector('.modal');
 const modalClose = document.querySelector('.modal__close');
 const ingredientCards = document.querySelectorAll('.modal__card');
@@ -23,9 +11,9 @@ const cartModal = document.querySelector('.cart__modal');
 const modalSizeButtons = modal.querySelectorAll('.modal__radio button');
 const crustBtns = modal.querySelectorAll('.modal__btn button');
 const modalCount = modal.querySelector('.modal__count');
-/* ===== STATE ===== */
-let editingIndex = null;
 
+let editingKey = null;
+let editingBaseItem = null;
 //объект пицца в модальном окне:размер, тесто, ингредиенты, базовая цена и экстрацена
 let modalState = {
   size:10,
@@ -33,14 +21,80 @@ let modalState = {
   ingredients:[],
   quantity:1
 };
-/* ===== UI HELPERS ===== */
-const updateModalButtonText = () =>{
-  if(editingIndex !== null){
+export function openEditModal(key,item) {
+  editingKey = key;
+  editingBaseItem = item;
+  modalState.size= item.size;
+  modalState.crust = item.crust;
+  modalState.ingredients = [...item.ingredients];
+  modalState.quantity = item.quantity;
+  fillModalUIFromData(item);
+  updateModalUIFromState();
+  openModal();
+}
+export function fillModalUIFromData(pizzaData) {
+   const modalTitle = modal.querySelector('.ingredients__title').textContent = pizzaData.title;
+    const modalImg = modal.querySelector('.modal__img');
+    modalImg.src = pizzaData.img;
+    modalImg.alt = pizzaData.alt;
+     const modalText = modal.querySelector('.modal__ingredients-text');
+    modalText.textContent = pizzaData.description || "";
+     const modalSource = modalImg.previousElementSibling;
+    modalSource.srcset = pizzaData.img;
+}
+export function updateModalUIFromState() {
+    // size
+    setModalSize(modalState.size);
+    // crust
+    setModalCrust(modalState.crust);
+    // ingredients
+    ingredientCards.forEach(card => {
+        const ing = card.dataset.ing;
+        updateIngredientCardUI(card, ing);
+    });
+    // price + text
+    updateModalButtonText();
+};
+export function setModalCrust(crust) {
+    modalState.crust = crust;
+    crustBtns.forEach(btn => {
+        btn.classList.toggle('btn-active', btn.dataset.crust === crust);
+    });
+    calculatePrice(modalState);
+    updateModalButtonText();
+};
+export function  updateIngredientCardUI (card, name) {
+  if (modalState.ingredients.includes(name)) {
+    card.classList.add('modal__card-value');
+  } else {
+    card.classList.remove('modal__card-value');
+  }
+};
+export function  setModalSize(size)  {
+    modalState.size= size;
+
+    modalSizeButtons.forEach(btn => {
+        btn.classList.toggle('active-btn', btn.dataset.size === String(size));
+    });
+
+    calculatePrice(modalState);
+    updateModalButtonText();
+};
+export function updateModalButtonText() {
+  if(editingKey !== null){
  modalOrderBtn.textContent = `Save Changes ${calculatePrice(modalState).toFixed(2)}$`;
   }else{
      modalOrderBtn.textContent = `Grab Your Slice ${calculatePrice(modalState).toFixed(2)}$`;
   }
 }
+export function openModal() {
+    modal.classList.remove('hidden');
+    modal.setAttribute('aria-hidden', 'false');
+    toggleBodyLock();
+};
+export function initPizzaModal() {
+/* ===== UI HELPERS ===== */
+
 const resetUI = () => {
 
     // сброс ингредиентов
@@ -55,17 +109,6 @@ const resetUI = () => {
     // сброс количества в модалке
     if (modalCount) modalCount.textContent = 1;
 };
-
-const setModalSize = (size) => {
-    modalState.size = size;
-
-    modalSizeButtons.forEach(btn => {
-        btn.classList.toggle('active-btn', btn.dataset.size === String(size));
-    });
-
-    calculatePrice(modalState);
-    updateModalButtonText();
-};
 const toggleIngredient = (name) => {
   if (modalState.ingredients.includes(name)) {
     modalState.ingredients = modalState.ingredients.filter(item => item !== name);
@@ -74,26 +117,7 @@ const toggleIngredient = (name) => {
     modalState.ingredients.push(name);
   }
 };
-const updateIngredientCardUI = (card, name) => {
-  if (modalState.ingredients.includes(name)) {
-    card.classList.add('modal__card-value');
-  } else {
-    card.classList.remove('modal__card-value');
-  }
-};
-const setModalCrust = (crust) => {
-    modalState.crust = crust;
-    crustBtns.forEach(btn => {
-        btn.classList.toggle('btn-active', btn.dataset.crust === crust);
-    });
-    calculatePrice(modalState);
-    updateModalButtonText();
-};
-const openModal = () => {
-    modal.classList.remove('hidden');
-    modal.setAttribute('aria-hidden', 'false');
-    toggleBodyLock();
-};
+
 const closeModal = () => {
 modal.classList.add('hidden');
 modal.setAttribute('aria-hidden', 'true');
@@ -105,37 +129,12 @@ window._pizzaData = pizzaData;
 modalState.crust = pizzaData.crust;
 modalState.ingredients = [...pizzaData.ingredients];
 modalState.quantity = pizzaData.quantity;
-if (pizzaData.source === "cart") {
-    editingIndex = pizzaData.index;
-}
 fillModalUIFromData(pizzaData);
 updateModalUIFromState();
 openModal();
 
 }
-function fillModalUIFromData(pizzaData) {
-   const modalTitle = modal.querySelector('.ingredients__title').textContent = pizzaData.title;
-    const modalImg = modal.querySelector('.modal__img');
-    modalImg.src = pizzaData.img;
-    modalImg.alt = pizzaData.alt;
-     const modalText = modal.querySelector('.modal__ingredients-text');
-    modalText.textContent = pizzaData.description || "";
-     const modalSource = modalImg.previousElementSibling;
-    modalSource.srcset = pizzaData.img;
-}
-const updateModalUIFromState = () => {
-    // size
-    setModalSize(modalState.size);
-    // crust
-    setModalCrust(modalState.crust);
-    // ingredients
-    ingredientCards.forEach(card => {
-        const ing = card.dataset.ing;
-        updateIngredientCardUI(card, ing);
-    });
-    // price + text
-    updateModalButtonText();
-};
+
 const extractFromCard = (card) =>{
   const title = card.querySelector(".card__header").textContent;
   const description = card.querySelector(".card__text").textContent;
@@ -149,45 +148,26 @@ const extractFromCard = (card) =>{
       size,
       crust: "traditional",
       ingredients: [],
-      quantity: 1,
-      index: null
+      quantity: 1
    }
 }
-const extractFromCartItem = (item) =>{
- const title = item.title;
- const  description = item.description;
-  const img = item.img;
- const size = item.size;
-  const crust = item.crust;
- const ingredients = item.ingredients;
- const quantity = item.quantity;
- return {
-   source: "cart",
-    title:item.title,
-    description: item.description,
-    img: item.img,
-    size: item.size,
-    crust: item.crust,
-    ingredients: [...item.ingredients],
-    quantity: item.quantity,
-    index
- }
+function createItemFromState(modalState, baseItem) {
+     const ingredientsKey = [...modalState.ingredients]
+    .sort()              
+    .join('_');           
+  const key = `${baseItem.title}|${modalState.size}|${modalState.crust}|${ingredientsKey}`;
+  return {
+    key,                 
+    title: baseItem.title,
+    img: baseItem.img,
+    description: baseItem.description,
+    size: modalState.size,
+    crust: modalState.crust,
+    ingredients: [...modalState.ingredients],
+    quantity: modalState.quantity,
+    price: calculatePrice(modalState, baseItem)
+  };
 }
-function createItemFromState(modalState, pizzaData) {
-    return {
-        img: pizzaData.img,
-        alt: pizzaData.title,
-        title: pizzaData.title,
-        description: pizzaData.description,
-        size: modalState.size,
-        crust: modalState.crust,
-        ingredients: [...modalState.ingredients],
-        quantity: modalState.quantity,
-        price: calculatePrice(modalState)
-    };
-}
-
-
 //кнопка ингредиенты 
 btnIngredients.forEach((button) => {
   button.addEventListener('click', () => {
@@ -236,14 +216,15 @@ ingredientCards.forEach((ingredientCard)=>{
 modalOrderBtn.addEventListener('click', () => {
 
   // 🔥 1. Режим редактирования
-if (editingIndex !== null) {
-    const newItem = createItemFromState(modalState, window._pizzaData);
-    updateCartItem(editingIndex, newItem);
-    editingIndex = null;
+if (editingKey !== null) {
+    const newItem = createItemFromState(modalState, editingBaseItem);
+    updateCartItemByKey(editingKey, newItem);
+    editingKey = null;
+    editingBaseItem = null;
 }
   else {
-const item = createItemFromState(modalState, window._pizzaData);
-window._createdItemForCart = item;
+    const item = createItemFromState(modalState, window._pizzaData);
+   addToCart(item);
     resetUI();
   }
   // 🔥 3. Закрываем модалку
@@ -252,22 +233,6 @@ window._createdItemForCart = item;
   if (!cartModal.classList.contains('hidden')) {
     toggleBodyLock();
   }
-});
-
-//кнопка изменить в модалке 
-document.addEventListener("click", (event) => {
-    if (!pendingEdit) return;
-    const changeBtn = event.target.closest('.cart__modal-change');
-    if (!changeBtn) return;
-
-    const { key } = pendingEdit;
-    const currentItem = window.cartItems?.find(i => i.key === key);
-    if (!currentItem) {
-    pendingEdit = null;
-    return;
-  }
-    openModalUnified(extractFromCartItem(currentItem));
-
 });
 
 

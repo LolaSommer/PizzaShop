@@ -1779,7 +1779,7 @@ input:-webkit-autofill:focus {
     color: #FFFFFF;
     text-align: center; }
 
-.card {
+.story {
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 1.25rem;
@@ -1791,7 +1791,7 @@ input:-webkit-autofill:focus {
   align-items: stretch;
   padding: clamp(0.5rem, 1vw, 1rem);
   border-radius: 30px; }
-  .card__text {
+  .story__text {
     font-size: 1.125rem; }
 
 .blog__events-title {
@@ -1800,7 +1800,7 @@ input:-webkit-autofill:focus {
   text-align: center; }
 .blog__events-untertitle {
   color: #e7cdb4; }
-.blog__events-cards {
+.blog__events-stor {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px; }
