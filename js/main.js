@@ -27,10 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     hideSkeleton();
   }, 600);
   initPizzaModal();
-  if (window.location.hash === "#pizza") {
-  const firstBtn = document.querySelector('.card__ingredients');
-  if (firstBtn) firstBtn.click();
-};
   initCart();
   initAuth();
   initFooter();
