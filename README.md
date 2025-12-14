@@ -1,123 +1,185 @@
-🍕 PizzaShop — modern responsive pizza delivery UI
+
+## 🍕 PizzaShop — modern responsive pizza delivery UI
 
 PizzaShop is a fully responsive, accessible landing page and ordering interface for a pizza-delivery service.
-Built with clean SCSS architecture and vanilla JavaScript, it features dynamic modals, cart state management, ingredient customization, and smooth UI interactions.
+Built with clean SCSS architecture and vanilla JavaScript, it focuses on **UI logic, state management, and realistic product behavior** rather than static layouts.
 
-🚀 Demo
+The project simulates a real-world e-commerce flow: product selection, customization, cart management, authentication preview, and multi-page navigation.
 
-Live: https://lolasommer.github.io/PizzaShop/
+---
+
+## 🚀 Demo
+
+**Live:**
+[https://lolasommer.github.io/PizzaShop/](https://lolasommer.github.io/PizzaShop/)
 
 (automatically deployed via GitHub Pages)
 
-🧩 Features
-🔥 Core functionality
+---
 
-Fully responsive layout (mobile → desktop)
+## 🧩 Features
 
-Adaptive SCSS architecture (BEM + partials)
+### 🔥 Core functionality
 
-Pixel-perfect implementation of provided design
+* Fully responsive layout (mobile → desktop)
+* Adaptive SCSS architecture (BEM + partials)
+* Clean component-based UI structure
+* Smooth transitions and micro-interactions
+* Keyboard accessibility and ARIA attributes for modals
+* Lighthouse optimized (100/100/100/100)
 
-Smooth animations and transitions
+---
 
-Keyboard accessibility and ARIA attributes for modals
+## 🛒 Cart & Ordering Logic
 
-🛒 Cart & ordering
+* Add pizzas to cart with selected:
 
-Add pizzas to cart with selected:
+  * size
+  * crust type
+  * ingredients
+  * quantity
 
-size
+* Smart cart state management:
 
-crust
+  * identical pizzas are merged (same size, crust, ingredients)
+  * ingredient lists are sorted for safe comparison
+  * dynamic total count & price calculation
+  * correct update and removal logic
 
-ingredients
+* Add-on products (extras):
 
-quantity
+  * dynamic show / hide logic
+  * independent quantity handling
 
-Smart cart logic:
+* Side cart (slide-in panel):
 
-identical pizzas are merged (same size, crust, ingredients)
+  * animated open / close
+  * body scroll lock handling
+  * synchronized UI state across modals
 
-dynamic total count & price calculation
+---
 
-Add-on products (extras) with hide/show logic
+## 🍕 Product Details Modal
 
-Removing + updating items with correct UI reactions
+* Full product information displayed in a modal:
 
-🍕 Customization modal
+  * pizza image and description
+  * size selector (10" / 12" / 14")
+  * traditional / thin crust toggle
+  * selectable additional ingredients
+* Real-time price updates based on selection
+* Scrollable ingredients panel (right side)
+* Clean modal state reset on close
+* Accessible focus handling and keyboard support
 
-Size selector (10" / 12" / 14")
+---
 
-Traditional / thin crust toggle
+## 🔐 Authentication (SPA-style preview logic)
 
-Selectable additional ingredients
+The project includes a **single-page authentication flow simulation**, designed as UI/UX and state-logic preview:
 
-Real-time price updates
+* Login & Registration modals
+* Registration flow with:
 
-Clean modal state reset on close
+  * email form
+  * referral program participation (UI logic)
+* Social login buttons:
 
-Ingredient sorting for safe comparison
+  * Google
+  * Facebook
+  * Apple
 
-🔐 Auth preview modal
+> Social buttons copy the corresponding social link to clipboard
+> and automatically close the modal, simulating a completed action.
 
-Smooth login/signup modal
+* Modal transitions and blurred background
+* ARIA-labeled inputs and buttons
+* No backend — focus on **frontend logic and UX behavior**
 
-Icons for Email / Apple / Google / Facebook
+---
 
-Accessible structure with ARIA labels
+## 📰 Blog & Storytelling Page
 
-Animated blurred background
+A separate content-driven page focused on brand storytelling rather than sales:
 
-Clean UI fit into project art-direction
+* Editorial layout with visual hierarchy
+* Action-oriented CTA buttons
+* Context-aware navigation (no menu/cart logic here)
 
-🛠 Tech Stack
+### Dynamic modals on blog page:
 
-Frontend
+* **Kitchen Tour**
 
-HTML5 semantic structure
+  * interactive modal with booking form
+* **Meet the Crew**
 
-SCSS (partials, variables, mixins, components)
+  * reused modal with dynamic content injection
 
-JavaScript (DOM events, state management, modular logic)
+These modals share logic but adapt content dynamically based on user action.
 
-Build/Tools
+---
 
-GitHub Pages (auto deploy)
+## 🛠 Tech Stack
 
-Git version control
+### Frontend
 
-Lighthouse-optimized (100/100/100/100)
+* HTML5 (semantic markup)
+* SCSS
 
-📂 Project Structure
+  * variables, mixins
+  * partials and components
+  * BEM naming
+* Vanilla JavaScript
+
+  * DOM events
+  * state management
+  * modal orchestration
+  * cart logic
+
+### Build / Tools
+
+* Git version control
+* GitHub Pages (auto deploy)
+* Lighthouse performance optimization
+
+---
+
+## 📂 Project Structure
+
+```
 PizzaShop
 │
-├── css/            # compiled CSS
-├── scss/           # SCSS modules (components, blocks, variables)
-├── js/             # application logic (modal, cart, state)
-├── img/            # assets & sprite
-├── index.html      # main entry point
+├── css/        # compiled CSS
+├── scss/       # SCSS modules (components, blocks, variables)
+├── js/         # application logic (modals, cart, state)
+├── img/        # assets & sprite
+├── index.html  # main entry point
+├── blog.html   # storytelling / blog page
 └── README.md
+```
 
-🎯 Planned improvements
+---
 
-Persistent cart using LocalStorage
+## 🎯 Planned Improvements
 
-Promo-code system
+* Persistent cart using LocalStorage
+* Promo-code system
+* Mock API integration
+* Form validation for auth modals
+* Dark theme toggle
+* Extended accessibility audit
+* Unit tests for cart logic
 
-Server-side mock API integration
+---
 
-Form validation for login/signup modal
+## 👩‍💻 Author
 
-Dark theme toggle
+Developed by **LolaSommer** —
+frontend developer focused on **clean architecture, UI logic, and realistic product behavior**.
 
-Improved accessibility audit
+---
 
-Unit tests for cart logic
+## ⭐ If you like the project
 
-👩‍💻 Author
+Give it a ⭐ — it helps visibility and motivates further development.
 
-Developed by LolaSommer — frontend developer focused on clean architecture, UX logic, and detailed UI performance.
-
-⭐ If you like the project
-
-Give it a star — it helps visibility and motivates further development!
