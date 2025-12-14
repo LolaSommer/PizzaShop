@@ -131,13 +131,13 @@
         }
     }
     //текст на карточке пиццы
-     .card__text{
+     .card{
+ &__text{
         color:$color-white;
         font-size: $fs-small;
         text-align:start;
      }
-     //кнопки на карточке пиццы 
-     .card__btn{
+     &__btn{
         display: flex;
         gap:clamp(0.625rem,2vw,1.563rem);
         padding-left:0.625rem;
@@ -158,8 +158,7 @@
     }
         }
      }
-     //кнопка ингредиенты 
-     .card__ingredients{
+    &__ingredients{
       border-radius:1.875rem;
       width: clamp(7rem,10vw,12.125rem);
       padding-block:0.5rem;
@@ -173,8 +172,7 @@
         color:$color-white;
     }
      }
-     //кнопка заказа в карточке пиццы 
-     .card__order{
+    &__order{
       border-radius:1.875rem;
       width: clamp(7rem,10vw,12.125rem);
       padding-block:0.5rem;
@@ -189,6 +187,46 @@
         color:$color-border;
         transform: translateY(-3px) scale(1.05);
     }
+     }
+      //кнопки плюс и минус
+     &__minus,&__plus{
+            border-radius:3.125rem;
+            width:1.438rem;
+            padding-block:0.125rem;
+            border:1px solid $color-text;
+            background:$color-bg;
+            color:$color-text;
+            margin-bottom:0.625rem;
+            text-align: center;
+    }
+     &__plus{
+        background: $color-btn;
+        color:$color-white;
+           cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-bg;
+        color:$color-border;
+      }
+
+     }
+     &__minus{
+         cursor:pointer;
+      transition: transform .3s ease, box-shadow .3s ease;
+      &:hover {
+        background:$color-btn;
+        color:$color-white;
+       
+      }
+     }
+     //счетчик пицц
+     &__count{
+        color:$color-text;
+
+     }
+ &__positiv{
+        padding-top:1.25rem;
+     }
      }
      //кнопка заказа в модальном окне 
        .modal__order-btn{
@@ -207,56 +245,15 @@
         transform: translateY(-3px) scale(1.05);
     }
      }
-     //кнопки плюс и минус
-     .card__minus,.card__plus{
-            border-radius:3.125rem;
-            width:1.438rem;
-            padding-block:0.125rem;
-            border:1px solid $color-text;
-            background:$color-bg;
-            color:$color-text;
-            margin-bottom:0.625rem;
-            text-align: center;
-    }
-     
-     .card__plus{
-        background: $color-btn;
-        color:$color-white;
-           cursor:pointer;
-      transition: transform .3s ease, box-shadow .3s ease;
-      &:hover {
-        background:$color-bg;
-        color:$color-border;
-      }
-
-     }
-     .card__minus{
-         cursor:pointer;
-      transition: transform .3s ease, box-shadow .3s ease;
-      &:hover {
-        background:$color-btn;
-        color:$color-white;
-       
-      }
-     }
-     //счетчик пицц
-     .card__count{
-        color:$color-text;
-
-     }
      //цена 
      .product-card__price{
         color:$color-white;
         padding-top:1.063rem;
-        font-size: $fs-price;
-
-        
+        font-size: $fs-price;     
      }
-     .card__positiv{
-        padding-top:1.25rem;
-     }
-     
-     .pic__text{
+    
+     .pic{
+       &__text{
         color:$color-white;
         font-weight: $fw-medium;
         font-size: $fs-price;
@@ -267,7 +264,7 @@
         transform: translate(-50%, -50%);
 
      }
-     .pic__header{
+     &__header{
         font-size: $fs-h1;
         color:$color-white;
         font-weight: $fw-black;
@@ -276,14 +273,14 @@
         margin-top: 0;
         align-self: flex-end;
      }
-     .pic__text-info{
+     &__text-info{
         color:$color-white;
         font-size:$fs-filter;
         text-align: end;
         
      }
     
-     .pic__button{
+     &__button{
       position: absolute;
        top: 80%;
        left: 50%;
@@ -297,16 +294,20 @@
         width:clamp(7rem,10vw,12.75rem);
         padding-block:0.5rem;
            cursor:pointer;
-      transition: transform .3s ease, box-shadow .3s ease;
       &:hover {
         background:$color-bg;
         color:$color-border;
+        
       }
      }
-     .pic__img{
+     &__img{
       border-radius:3.125rem;
       padding-block:1.25rem;
+      
      }
+    
+     }
+   
 //корзина значок 
 .cart {
   position: relative;

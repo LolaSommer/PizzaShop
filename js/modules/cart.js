@@ -253,15 +253,18 @@ thanks.setAttribute('aria-hidden', 'true');
 };
 
 function cartModalOpen() { 
-  cartModal.classList.remove('hidden'); 
-  cartModal.setAttribute('aria-hidden', 'false'); 
-  cartModalOverlay.classList.remove('hidden'); 
+  cartModal.classList.add('is-open'); 
+  cartModalOverlay.classList.add('is-active'); 
+  cartModal.setAttribute('aria-hidden', 'false');
 } 
+
 function cartModalClose() {
-   cartModal.classList.add('hidden');
-    cartModal.setAttribute('aria-hidden','true'); 
-  cartModalOverlay.classList.add('hidden'); 
+  cartModal.classList.remove('is-open');
+  cartModalOverlay.classList.remove('is-active'); 
+  cartModal.setAttribute('aria-hidden', 'true'); 
+ 
 }
+
 thanksClose.addEventListener('click',()=>{
 thanksCloseAll();
 toggleBodyLock();

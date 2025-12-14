@@ -225,6 +225,7 @@ input:-webkit-autofill:focus {
     background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
     color: #FFFFFF;
     border-radius: 1.875rem;
+    border: none;
     text-align: center;
     font-size: 1.125rem;
     cursor: pointer;
@@ -304,7 +305,12 @@ input:-webkit-autofill:focus {
   height: clamp(5rem, 8vw, 10rem);
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  overflow: hidden;
+  transform: translateY(0) scale(1);
+  transition: transform 0.25s ease; }
+  .menu__img-wrapper:hover {
+    transform: translateY(-2px) scale(1.02); }
 .menu__bottom {
   display: flex;
   flex-wrap: wrap;
@@ -522,7 +528,9 @@ input:-webkit-autofill:focus {
   font-size: 1.125rem;
   position: fixed;
   right: 0;
-  top: 0; }
+  top: 0;
+  transform: translateX(100%);
+  transition: transform .4s ease; }
   .cart__modal-sad {
     display: flex;
     justify-content: center;
@@ -639,6 +647,18 @@ input:-webkit-autofill:focus {
     cursor: pointer; }
   .cart__modal-remove {
     cursor: pointer; }
+
+.cart__modal.is-open {
+  transform: translateX(0); }
+
+.cart__modal-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease; }
+
+.cart__modal-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto; }
 
 .modal {
   display: grid;
@@ -1316,7 +1336,6 @@ input:-webkit-autofill:focus {
   color: #FFFFFF;
   font-size: 0.875rem;
   text-align: start; }
-
 .card__btn {
   display: flex;
   gap: clamp(0.625rem, 2vw, 1.563rem);
@@ -1334,7 +1353,6 @@ input:-webkit-autofill:focus {
     .card__btn-10:hover, .card__btn-12:hover, .card__btn-14:hover {
       background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
       color: #FFFFFF; }
-
 .card__ingredients {
   border-radius: 1.875rem;
   width: clamp(7rem, 10vw, 12.125rem);
@@ -1347,7 +1365,6 @@ input:-webkit-autofill:focus {
   .card__ingredients:hover {
     background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
     color: #FFFFFF; }
-
 .card__order {
   border-radius: 1.875rem;
   width: clamp(7rem, 10vw, 12.125rem);
@@ -1362,6 +1379,33 @@ input:-webkit-autofill:focus {
     background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%);
     color: #FF5924;
     transform: translateY(-3px) scale(1.05); }
+.card__minus, .card__plus {
+  border-radius: 3.125rem;
+  width: 1.438rem;
+  padding-block: 0.125rem;
+  border: 1px solid #A3A3A3;
+  background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%);
+  color: #A3A3A3;
+  margin-bottom: 0.625rem;
+  text-align: center; }
+.card__plus {
+  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease; }
+  .card__plus:hover {
+    background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%);
+    color: #FF5924; }
+.card__minus {
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease; }
+  .card__minus:hover {
+    background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
+    color: #FFFFFF; }
+.card__count {
+  color: #A3A3A3; }
+.card__positiv {
+  padding-top: 1.25rem; }
 
 .modal__order-btn {
   border-radius: 1.875rem;
@@ -1378,42 +1422,10 @@ input:-webkit-autofill:focus {
     color: #FF5924;
     transform: translateY(-3px) scale(1.05); }
 
-.card__minus, .card__plus {
-  border-radius: 3.125rem;
-  width: 1.438rem;
-  padding-block: 0.125rem;
-  border: 1px solid #A3A3A3;
-  background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%);
-  color: #A3A3A3;
-  margin-bottom: 0.625rem;
-  text-align: center; }
-
-.card__plus {
-  background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
-  color: #FFFFFF;
-  cursor: pointer;
-  transition: transform .3s ease, box-shadow .3s ease; }
-  .card__plus:hover {
-    background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%);
-    color: #FF5924; }
-
-.card__minus {
-  cursor: pointer;
-  transition: transform .3s ease, box-shadow .3s ease; }
-  .card__minus:hover {
-    background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
-    color: #FFFFFF; }
-
-.card__count {
-  color: #A3A3A3; }
-
 .product-card__price {
   color: #FFFFFF;
   padding-top: 1.063rem;
   font-size: 1.563rem; }
-
-.card__positiv {
-  padding-top: 1.25rem; }
 
 .pic__text {
   color: #FFFFFF;
@@ -1424,7 +1436,6 @@ input:-webkit-autofill:focus {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%); }
-
 .pic__header {
   font-size: clamp(48px, 5vw, 70px);
   color: #FFFFFF;
@@ -1433,12 +1444,10 @@ input:-webkit-autofill:focus {
   padding-top: 0;
   margin-top: 0;
   align-self: flex-end; }
-
 .pic__text-info {
   color: #FFFFFF;
   font-size: 1.25rem;
   text-align: end; }
-
 .pic__button {
   position: absolute;
   top: 80%;
@@ -1452,12 +1461,10 @@ input:-webkit-autofill:focus {
   background: linear-gradient(261.69deg, #FF5924 12.12%, #FFA229 86.72%);
   width: clamp(7rem, 10vw, 12.75rem);
   padding-block: 0.5rem;
-  cursor: pointer;
-  transition: transform .3s ease, box-shadow .3s ease; }
+  cursor: pointer; }
   .pic__button:hover {
     background: linear-gradient(245.71deg, #1E0C00 4.96%, #1F0700 33.7%, #170A00 68.41%, #1E0D00 96.42%);
     color: #FF5924; }
-
 .pic__img {
   border-radius: 3.125rem;
   padding-block: 1.25rem; }

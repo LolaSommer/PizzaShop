@@ -8,6 +8,8 @@
   position: fixed;
   right: 0;
   top:0;
+   transform: translateX(100%);
+  transition: transform .4s ease;
    &-sad{
     display: flex;
     justify-content: center;
@@ -175,5 +177,16 @@ cursor: pointer;
  }
 
 }
+.cart__modal.is-open {
+  transform: translateX(0);
+}
+.cart__modal-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
 
-
+.cart__modal-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}

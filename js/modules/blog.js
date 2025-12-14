@@ -106,9 +106,14 @@ ctas.forEach(btn =>{
         openModal(tourModal);
         checkTourForm();
         }
-        if(action === "main"){
-            window.location.href = "index.html#pizza";
-        }
+        if (action === "main") {
+  const section = document.querySelector('#menu');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    window.location.href = "index.html#menu";
+  }
+}
     });
 });
 const tourTriggers = [tourClose, tourOver];
