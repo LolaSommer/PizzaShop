@@ -160,15 +160,20 @@ PizzaShop
 
 ---
 
-## 🎯 Planned Improvements
+Planned Improvements (Optional / Future Ideas)
 
-* Persistent cart using LocalStorage
-* Promo-code system
-* Mock API integration
-* Form validation for auth modals
-* Dark theme toggle
-* Extended accessibility audit
-* Unit tests for cart logic
+The project is considered feature-complete in its current scope.
+The following items are optional extensions, not required for the core experience:
+
+Promo-code system (UI logic only)
+
+Mock API integration for product data
+
+Dark theme toggle
+
+Deeper automated testing for cart logic
+
+(LocalStorage persistence and form validation are already implemented.)
 
 ---
 
