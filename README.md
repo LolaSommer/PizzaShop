@@ -1,5 +1,7 @@
 
 ## 🍕 PizzaShop — modern responsive pizza delivery UI
+This project was built entirely with vanilla JavaScript to demonstrate deep understanding of state management, UI synchronization, and complex user flows without relying on frameworks.
+
 
 PizzaShop is a fully responsive, accessible landing page and ordering interface for a pizza-delivery service.
 Built with clean SCSS architecture and vanilla JavaScript, it focuses on **UI logic, state management, and realistic product behavior** rather than static layouts.
